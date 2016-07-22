@@ -1,8 +1,9 @@
 language: ruby
 rvm:
-  - 2.3.1p112
+  - 2.3.1
 env:
   - DB=postgresql
+before_install: cd Waitr
 script:
   - bundle exec rake spec
 before_script:
