@@ -1,7 +1,7 @@
 language: ruby
 env:
   - DB=postgresql
-before_script: cd Waitr
+before_install: cd Waitr
 script:
   - bundle exec rake spec
 before_script:
