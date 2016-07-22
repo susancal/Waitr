@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.2'
 # Specified sprockets version to get rid of deprecation warnings
 gem 'sprockets', '3.6.3'
 
+gem 'httparty'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

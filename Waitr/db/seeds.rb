@@ -14,3 +14,5 @@ Party.create(restaurant_id: 1, name: "Fonzi3", size: 4, cell: "4002123453", in_q
 Party.create(restaurant_id: 1, name: "Fonzi4", size: 6, cell: "4002954323", :in_queue => true, points_earned: 0)
 Party.create(restaurant_id: 1, name: "Fonzi5", size: 6, cell: "4002954321", :in_queue => false, points_earned: 0)
 
+api = Triviaapi.new
+api.seed_db
