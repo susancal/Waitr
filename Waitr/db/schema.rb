@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20160722152632) do
     t.integer  "points_earned", default: 0
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.index ["restaurant_id"], name: "index_parties_on_restaurant_id", using: :btree
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.string   "author"
+    t.text     "contents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "prizes", force: :cascade do |t|
@@ -43,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160722152632) do
     t.boolean  "active",        default: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.index ["restaurant_id"], name: "index_prizes_on_restaurant_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
