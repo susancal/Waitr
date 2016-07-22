@@ -1,4 +1,6 @@
 language: ruby
+rvm
+  - 2.3.1p112
 env:
   - DB=postgresql
 before_install: cd Waitr
