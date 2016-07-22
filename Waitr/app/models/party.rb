@@ -8,6 +8,5 @@ class Party < ApplicationRecord
   validates :size, presence: true,  numericality: {only_integer: true, less_than: 20}
   validates :cell, presence: true, length: { minimum: 10, maximum: 20}
   validates :in_queue, presence: true
-  validates :boolean_field_in_queue, inclusion: { in: [true, false] }
   validates :points_earned, presence: true
 end
