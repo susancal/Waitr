@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :party 
   end
 
+  resources  :prizes
 
 end

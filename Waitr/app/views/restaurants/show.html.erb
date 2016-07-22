@@ -1,0 +1,22 @@
+<h1>WAITR</h1>
+
+<h2><%= @restaurant.name %></h2>
+
+<h3>Current Promotion </h3> 
+
+<!-- < % = button_to "Edit", { :action => edit_prize_path, :id => 1 }% > -->
+
+
+
+<!-- link_to 'Delete', category_article_path(@category, @article), method: :delete, data: { confirm: "Are you sure?" }  -->
+
+<div>
+  <ul>
+    <%= @parties.each do |party| %>
+      <!-- < %= link_to party.name, restaurant_party_path(@restaurant, party) % > -->
+      <li> <%= party.size %> - <%= party.cell %> </li>
+    <%end %>
+  </ul>
+</div>
+
+
