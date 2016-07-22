@@ -1,5 +1,5 @@
 language: ruby
-rvm
+rvm:
   - 2.3.1p112
 env:
   - DB=postgresql
