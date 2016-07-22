@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 20160722152632) do
 
   create_table "parties", force: :cascade do |t|
     t.integer  "restaurant_id"
-    t.string   "name",                          null: false
-    t.integer  "size",                          null: false
-    t.string   "cell",                          null: false
-    t.boolean  "in_queue",      default: false
+    t.string   "name",                      null: false
+    t.integer  "size",                      null: false
+    t.string   "cell",                      null: false
+    t.boolean  "in_queue"
     t.integer  "points_earned", default: 0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "prizes", force: :cascade do |t|
