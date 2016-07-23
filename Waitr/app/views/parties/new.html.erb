@@ -1,21 +1,7 @@
-<%= form_for :party, url: restaurant_parties_path do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
+<h1>Add Party - Waiting List</h1>
 
-   <p>
-    <%= f.label :size %>
-    <%= f.text_field :size %>
-  </p>
+<%= render 'form' %>
 
-    <p>
-    <%= f.label :cell %>
-    <%= f.text_field :cell %>
-  </p>
+<%= link_to "Back", restaurant_parties_path(params[:restaurant_id]) %>
 
-  <p>
-    <%= f.submit %>
-  </p>
 
-<% end %>

@@ -5,22 +5,22 @@ class PrizesController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.find(params["restaurant_id"])
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @prize = Prize.new(prize_params)
-    @prize.restaurant_id = params["restaurant_id"]
+    @prize.restaurant_id = params[:restaurant_id]
     @prize.save
     redirect_to @restaurant
   end
 
   def edit
-    p "editing"
     @restaurant = Restaurant.find(params[:id])
     @prize = Prize.find(params[:id])
   end
 
   def update
-    p "UPDATE PARAMS!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p params
+    @prize = Prize.find(params[:id])
+    @prize.update(prize_params)
+    redirect_to restaurant_path(params[:restaurant_id])
   end
 
   private

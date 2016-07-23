@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # Specified sprockets version to get rid of deprecation warnings
 gem 'sprockets', '3.6.3'
+gem 'twilio-ruby', '~> 4.11.1'
 
 gem 'httparty'
 # Use jquery as the JavaScript library
