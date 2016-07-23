@@ -13,12 +13,14 @@ class PrizesController < ApplicationController
   end
 
   def edit
+    p "editing"
     @restaurant = Restaurant.find(params[:id])
-    @prize = @restaurant.prize
+    @prize = Prize.find(params[:id])
   end
 
   def update
-
+    p "UPDATE PARAMS!!!!!!!!!!!!!!!!!!!!!!!!!"
+    p params
   end
 
   private

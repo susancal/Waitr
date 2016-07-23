@@ -1,6 +1,4 @@
-<h1>New Prize</h1>
-
-<%= form_for :prize, url: restaurant_prizes_path(:prize) do |f| %>
+<%= form_for :prize, url: restaurant_prizes_path do |f| %>
   <p>
     <%= f.label :prize_name %>
     <%= f.text_field :prize_name %>
