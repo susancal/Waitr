@@ -1,0 +1,27 @@
+<%= form_for [@restaurant, @party] do |f| %>
+  <h1><%= @restaurant.id %></h1>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :size %><br />
+    <%= f.text_field :size %>
+  </p>
+
+  <p>
+    <%= f.label :cell %><br />
+    <%= f.text_field :cell  %>
+  </p>
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<!-- < % = f.text_field(:phone, data: { mask: '(999) 999-9999' }) % > -->
+
+<!-- url: post_path(@post) -->

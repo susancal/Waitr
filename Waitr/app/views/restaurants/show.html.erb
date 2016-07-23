@@ -16,7 +16,7 @@
   </tr>
   <% @waiting_list.each do |party| %>
     <tr>
-        <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  :confirm => "Are you sure?" %></td>
+        <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  data: { confirm: "Would you like to remove party from waiting list?" } %></td>
         <td><%= party.size %></td>
         <td><%= party.cell %></td>
         <td><%= party.points_earned %></td>
