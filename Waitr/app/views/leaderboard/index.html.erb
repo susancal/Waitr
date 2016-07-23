@@ -1,6 +1,7 @@
 Thanks for eating at <%= @rest.name %>
 <br>
 <br>
+
 <table>
 <% @current.each do |player| %>
   <tr>
@@ -10,6 +11,6 @@ Thanks for eating at <%= @rest.name %>
 <% end %>
 </table>
 <br>
-<a href="/restaurant/<%= @rest.id %>/parties/1">Back to Main</a>
+<a href="/restaurants/<%= @rest.id %>/parties/1">Back to Main</a>
 <br>
 <a href=""></a>

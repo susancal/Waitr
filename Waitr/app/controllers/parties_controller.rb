@@ -10,6 +10,7 @@ class PartiesController < ApplicationController
     @restaurant = @party.restaurant
     parties = @restaurant.waiting_list.map { |e| e.id  }
     @people_ahead = parties.index(@party.id)
+    @prize = @restaurant.prize
   end
 
   def edit
