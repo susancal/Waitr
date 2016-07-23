@@ -14,6 +14,8 @@
   checkCompletion: function(){
       if (this.state.question_count === this.props.questions.length - 1) {
         this.setState({complete: true});
+        var summary_url = '/quizzes/' + this.props.quiz_id + '/rounds/' + this.props.round_id + '/summary'
+        window.location.replace(summary_url)
         console.log("FINISHED")
       }
   },

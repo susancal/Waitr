@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :quizzes do
     resources :rounds do
+      get '/summary' => 'rounds#summary'
       resources :questions
       resources :guesses
     end
