@@ -29,6 +29,9 @@ class PartiesController < ApplicationController
     party = Party.new(party_params)
     party.restaurant_id = params[:restaurant_id]
     if party.save
+      # session[:party_id] = party.id
+      # session[:party_key] = party.key
+      
       account_sid = 'AC30eba678ab51326f08e0af6ec82ddc8f'
       auth_token = '7cd9dd7f964c9929ecd5e6b16052200f'
       link = request.base_url + "/" + party.key
