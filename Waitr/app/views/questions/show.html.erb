@@ -1,17 +1,4 @@
-<%= react_component('Quiz', {questions: @quiz_questions, user: @user}) %>
-
-
-<!-- need to make form part of react -->
-<h3>RAILS FORM</h3>
-  <%= form_for @guess do |f| %>
-    <%= f.label :guess_value %>
-    <%= f.text_field :guess_value%>
-    <%= f.hidden_field :round_id, value: @guess.round_id%>
-    <%= f.hidden_field :question_id, value: @guess.question_id%>
-<!-- Hardcoded party id until it works in sessions -->
-    <%= f.hidden_field :party_id, value: 1%>
-    <%= f.submit %>
-  <% end %>
+<%= react_component('Quiz', {questions: @quiz_questions, party_id: @party_id, round_id: @round_id}) %>
 
 
 
