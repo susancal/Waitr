@@ -13,6 +13,7 @@ var QuestionTimer = React.createClass({
     if (this.state.timer <= 0) {
       clearInterval(this.interval);
     }
+    clearInterval(interval);
   },
 
   startTimer: function() {
