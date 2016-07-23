@@ -27,9 +27,9 @@ You are logged in as: <h2><%= @restaurant.name %></h2>
     <tr>
         <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  :confirm => "Are you sure?" %></td>
         <td><%= party.size %></td>
-        <td><%= party.cell %></td>
+        <td><%= party.formatted_cell %></td>
         <td><%= party.points_earned %></td>
-        <td><%= party.created_at %></td>
+        <td><%= party.elapsed %></td>
     </tr>
   <% end %>
 </table>

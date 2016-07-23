@@ -1,3 +1,5 @@
+require 'date'
+
 class Party < ApplicationRecord
   has_many :guesses
   has_many :rounds
@@ -17,6 +19,11 @@ class Party < ApplicationRecord
     queue_index + 1
   end
 
+  def formatted_cell
+    ph = self.cell
+    return "(#{ph[0,3]}) #{ph[3,3]}-#{ph[6,4]}"
+  end
+
   def self.waiting_parties_count
     parties = []
     self.all.each do |party|
@@ -25,6 +32,10 @@ class Party < ApplicationRecord
       end
     end
     return parties.length
+  end
+
+  def elapsed
+    return (Time.now - self.created_at)
   end
 
 end
