@@ -8,6 +8,7 @@ class Quiz < ApplicationRecord
     length = questions.length
     randnum = rand(length)
     questions[randnum]
+    # need to define some question
   end
 
 

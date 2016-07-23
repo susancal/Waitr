@@ -1,6 +1,7 @@
 <div class="question-header">
   <h1> <%= @question.question_text %> </h1>
 </div>
+<%= react_component('QuestionTimer') %>
 
 
   <%= form_for @guess do |f| %>
