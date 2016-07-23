@@ -11,6 +11,8 @@ class Party < ApplicationRecord
   validates :cell, presence: true, length: { minimum: 10, maximum: 20}
   validates :points_earned, presence: true
 
+
+
   def queue_index
     list = self.restaurant.waiting_list
     list.index(self)
@@ -36,6 +38,10 @@ class Party < ApplicationRecord
     return Time.at(t).utc.strftime("%H:%M:%S")
   end
 
+  before_create do
+    self.key = [*"0".."9"].sample(6).join
+  end
+  
   def quizzes_already_played
 
   end
