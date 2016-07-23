@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :restaurants do 
-    resources :parties 
+  resources :restaurants do
+    resources :parties
     resources :prizes
   end
 
@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
 
+  resources :rounds
+  post '/rounds/new' => 'rounds#create'
+  mount ActionCable.server => "/cable"
 end
