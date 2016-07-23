@@ -3,14 +3,15 @@
 
 <p>Your position in line is <%= @party.queue_position %></p>
 
+
 <div>
-	<ul>
-	<% @waiting_parties.times do |icons| %>
-		<% if icons == @party.queue_index %>
-			<li>"OTHER PEOPLE"</li>
-		<% else %>
-			<li>"IT'S YOU!!!!!!"</li>
-		<% end %>
-	<% end %>
-	</ul>
+  <ul>
+  <% @waiting_parties.times do |icons| %>
+    <% if icons == @party.queue_index %>
+      <li>"OTHER PEOPLE"</li>
+    <% else %>
+      <li>"IT'S YOU!!!!!!"</li>
+    <% end %>
+  <% end %>
+  </ul>
 </div>

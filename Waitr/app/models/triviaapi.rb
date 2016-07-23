@@ -25,4 +25,3 @@ class Triviaapi
     end
   end
 end
-

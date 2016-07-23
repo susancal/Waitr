@@ -5,9 +5,9 @@ class CreateParties < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.integer :size, null: false
       t.string :cell, null: false
-      t.boolean :in_queue, default: false
+      t.boolean :in_queue, default: true
       t.integer :points_earned, default: 0
-      
+
 
       t.timestamps
     end
