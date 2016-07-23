@@ -22,7 +22,23 @@ class PartiesController < ApplicationController
     @party.restaurant_id = params[:restaurant_id]
     @party.in_queue = true
     if @party.save
-      p "Saved"
+      account_sid = 'AC30eba678ab51326f08e0af6ec82ddc8f'
+      auth_token = '7cd9dd7f964c9929ecd5e6b16052200f'
+
+      @client = Twilio::REST::Client.new account_sid, auth_token
+
+
+      @client.messages.create(
+        from: '+12242796373',
+        to: '+18155457182',
+        body: 'I have hard coded the numbers but it is working after the create!'
+      )
+      @client.messages.create(
+        from: '+12242796373',
+        to: '+18479620328',
+        body: 'I have hard coded the numbers but it is working after the create!'
+      )
+
     else
       p "Not saved"
     end
