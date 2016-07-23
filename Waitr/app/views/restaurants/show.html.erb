@@ -2,20 +2,22 @@
 
 You are logged in as: <h2><%= @restaurant.name %></h2>
 
+<div class="prize-div">
 <h3>Current Promotion </h3>
 
-<%= button_to "ADD", new_restaurant_party_path(@restaurant, @waiting_list), method: :get %> </p>
 
 <% if @prize != nil %>
   <h4> <%= @prize.prize_name %> - <%= @prize.points_needed %></h4><br>
-  <%= link_to "Change", edit_restaurant_prize_path(@restaurant) %>
+  <%= button_to "Change Promo", edit_restaurant_prize_path(@restaurant), method: :get %> </p>
 <% else %>
   <h4>No current promo!</h4><br>
-  <%= link_to "Add", new_restaurant_prize_path(@restaurant) %>
+  <%= button_to "ADD Promo", new_restaurant_prize_path(@restaurant), method: :get %> </p>
 <% end %>
-<br><br>
-<%= link_to "ADD PARTY", new_restaurant_party_path(@restaurant) %>
+</div>
 
+<br><br>
+
+<%= button_to "ADD Party", new_restaurant_party_path(@restaurant, @waiting_list), method: :get %> </p>
 
 <table class="waiting_list">
   <tr>

@@ -22,12 +22,11 @@ class PartiesController < ApplicationController
     redirect_to restaurant_path(params[:restaurant_id])
   end
 
-<<<<<<< HEAD
   def create 
   
     party = Party.new(party_params)
     party.restaurant_id = params[:restaurant_id]
-    if @party.save
+    if party.save
       account_sid = 'AC30eba678ab51326f08e0af6ec82ddc8f'
       auth_token = '7cd9dd7f964c9929ecd5e6b16052200f'
 
