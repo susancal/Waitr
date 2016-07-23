@@ -48,8 +48,8 @@ class Party < ApplicationRecord
     return Time.at(t).utc.strftime("%H:%M:%S")
   end
 
-  # before_create do
-  #   self.key = [*"a".."z", *"0".."9"].sample(4).join
-  # end
+  before_create do
+    self.key = [*"0".."9"].sample(6).join
+  end
 
 end
