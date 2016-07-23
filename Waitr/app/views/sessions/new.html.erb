@@ -1,0 +1,22 @@
+<h1>THIS IS THE FUCKING LOGIN PAGE</h1>
+
+<% if @error %>
+  <%= @error %>
+<% end %>
+
+<%= form_for :restaurant, url:'/login' , method: :post do |f|%>
+	<div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <button type="submit" name="Login">Login</button>
+  </div>
+
+<% end %>
