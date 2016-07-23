@@ -1,15 +1,15 @@
 class PartiesController < ApplicationController
 
   def new
+
     @restaurant = Restaurant.find(params[:restaurant_id])
     @party = Party.new
   end
 
   def show
+
     @party = Party.find(params[:id])
     @restaurant = @party.restaurant
-    p @restaurant
-    p @party
     @waiting_parties = @restaurant.waiting_list
     # @waiting_parties = Party.waiting_parties_count
     # p @waiting_parties
@@ -23,6 +23,9 @@ class PartiesController < ApplicationController
   end
 
   def create 
+    p "~~~~~~~~~~~~~~~~~~~~"
+    p request.protocol + request.host
+    p request.base_url
   
     party = Party.new(party_params)
     party.restaurant_id = params[:restaurant_id]
@@ -38,6 +41,7 @@ class PartiesController < ApplicationController
         to: '+17082548335',
         body: 'I have hard coded the numbers but it is working after the create! http://lifehacker.com'
       )
+
 
       redirect_to restaurant_path(params[:restaurant_id])
     else
