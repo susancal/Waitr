@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :restaurants do
     resources :parties
     resources :prizes
@@ -22,4 +21,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
 
+  resources :rounds
+  post '/rounds/new' => 'rounds#create'
+  mount ActionCable.server => "/cable"
 end
