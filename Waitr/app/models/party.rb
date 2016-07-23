@@ -9,8 +9,12 @@ class Party < ApplicationRecord
   validates :cell, presence: true, length: { minimum: 10, maximum: 20}
   validates :points_earned, presence: true
 
-  def queue_position
+  def queue_index
     self.restaurant.waiting_list.index(self)
+  end
+
+  def queue_position
+    queue_index + 1
   end
 
   def self.waiting_parties_count
