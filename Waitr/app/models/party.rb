@@ -25,14 +25,9 @@ class Party < ApplicationRecord
     return "(#{ph[0,3]}) #{ph[3,3]}-#{ph[6,4]}"
   end
 
-  def self.total_waiting_parties_count
-    parties = []
-    self.all.each do |party|
-      if party.in_queue
-        parties << party
-      end
-    end
-    return parties.length
+
+  def place_in_line
+    @restaurant
   end
 
   def clean_number
@@ -40,7 +35,7 @@ class Party < ApplicationRecord
     number[0] == "1" ? number[0] = '' : number
     number unless number.length != 10
   end
-  
+
   def elapsed
     t = (Time.now - self.created_at)
     return Time.at(t).utc.strftime("%H:%M:%S")

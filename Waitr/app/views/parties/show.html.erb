@@ -1,17 +1,13 @@
-<h1>show page for parties</h1>
-
-
-<p>Your position in line is <%= @party.queue_position %></p>
-
-
-<div>
-  <ul>
-  <% @waiting_parties.times do |icons| %>
-    <% if icons == @party.queue_index %>
-      <li>"OTHER PEOPLE"</li>
-    <% else %>
-      <li>"IT'S YOU!!!!!!"</li>
-    <% end %>
-  <% end %>
-  </ul>
+Thanks for dining at <%= @restaurant.name %>!<br>
+Party name: <%= @party.name %><br><br>
+There are
+<br>
+<div id="people-ahead">
+  <%= @people_ahead %>
 </div>
+people ahead of you
+<br><br>
+<button>PLAY HEAD TO HEAD</button>
+<br>
+<button>view leaderboard</button><br>
+<%= link_to "View Leaderboard!", leaderboard_path(@restaurant) %>

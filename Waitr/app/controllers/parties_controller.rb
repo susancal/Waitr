@@ -8,11 +8,8 @@ class PartiesController < ApplicationController
   def show
     @party = Party.find(params[:id])
     @restaurant = @party.restaurant
-    p @restaurant
-    p @party
-    @waiting_parties = @restaurant.waiting_list
-    # @waiting_parties = Party.waiting_parties_count
-    # p @waiting_parties
+    parties = @restaurant.waiting_list.map { |e| e.id  }
+    @people_ahead = parties.index(@party.id)
   end
 
   def edit
@@ -22,8 +19,8 @@ class PartiesController < ApplicationController
     redirect_to restaurant_path(params[:restaurant_id])
   end
 
-  def create 
-  
+  def create
+
     party = Party.new(party_params)
     party.restaurant_id = params[:restaurant_id]
     if party.save
@@ -53,4 +50,4 @@ class PartiesController < ApplicationController
     end
 
 end
-  
+
