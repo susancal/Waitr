@@ -1,0 +1,23 @@
+<h1>Change Current Promo edit</h1>
+
+<%= form_for :prize, url: edit_restaurant_prize_path(:prize) do |f| %>
+  <p>
+    <%= f.label :prize_name %>
+    <%= f.text_field :prize_name %>
+  </p>
+
+   <p>
+    <%= f.label :points_needed %>
+    <%= f.text_field :points_needed %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<form>
+
+</form>
+

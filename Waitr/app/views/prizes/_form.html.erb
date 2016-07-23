@@ -1,0 +1,16 @@
+<%= form_for :prize, url: restaurant_prizes_path do |f| %>
+  <p>
+    <%= f.label :prize_name %>
+    <%= f.text_field :prize_name %>
+  </p>
+
+   <p>
+    <%= f.label :points_needed %>
+    <%= f.text_field :points_needed %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

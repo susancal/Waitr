@@ -4,7 +4,6 @@ class CreatePrizes < ActiveRecord::Migration[5.0]
       t.integer :restaurant_id
       t.integer :points_needed, null: false
       t.string :prize_name, null: false
-      t.boolean :active, default: false
       t.timestamps
     end
   end

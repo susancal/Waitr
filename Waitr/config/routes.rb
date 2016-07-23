@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :restaurants do 
     resources :parties 
-
+    resources :prizes
   end
 
-  resources  :prizes
 
   root 'restaurants#show'
+
   get '/restaurants/:id/leaderboard', to: 'leaderboard#index', as: 'leaderboard'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
