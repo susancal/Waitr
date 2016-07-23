@@ -1,15 +1,13 @@
-class RestaurantController < ApplicationController
+class PartiesController < ApplicationController
 
-  def index
-    
-  end
-
-  def show
-    @restaurant = Restaurant.find(params[:restaurant_id])
+  def edit
+    party = Party.find(params[:id])
+    p party.name
+    p party.in_queue
     p params
-    @parties = Party.where(restaurant_id: params[:restaurant_id])
+    party.in_queue = false
+    party.save
+    redirect_to restaurant_path(params[:restaurant_id])
+
   end
-
-
-
 end

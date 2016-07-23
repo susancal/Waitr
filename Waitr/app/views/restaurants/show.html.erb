@@ -4,19 +4,24 @@
 
 <h3>Current Promotion </h3> 
 
-<!-- < % = button_to "Edit", { :action => edit_prize_path, :id => 1 }% > -->
 
 
-
-<!-- link_to 'Delete', category_article_path(@category, @article), method: :delete, data: { confirm: "Are you sure?" }  -->
-
-<div>
-  <ul>
-    <%= @parties.each do |party| %>
-      <!-- < %= link_to party.name, restaurant_party_path(@restaurant, party) % > -->
-      <li> <%= party.size %> - <%= party.cell %> </li>
-    <%end %>
-  </ul>
-</div>
-
+<table class="waiting_list">
+  <tr>
+    <th> Name </th>
+    <th> Party Size </th>
+    <th> Phone# </th>
+    <th> Points </th>
+    <th> Wait Time </th>
+  </tr>
+  <% @waiting_list.each do |party| %>
+    <tr>
+        <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  :confirm => "Are you sure?" %></td>
+        <td><%= party.size %></td>
+        <td><%= party.cell %></td>
+        <td><%= party.points_earned %></td>
+        <td><%= party.created_at %></td>
+    </tr>
+  <% end %>
+</table>
 

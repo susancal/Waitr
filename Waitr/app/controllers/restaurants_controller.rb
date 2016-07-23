@@ -6,8 +6,8 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    p params
-    @parties = Party.where(restaurant_id: params[:id])
+    @parties = Party.where(restaurant_id: params[:id], in_queue: true)
+    @waiting_list = @parties.order(:created_at)
   end
 
 
