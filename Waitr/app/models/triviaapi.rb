@@ -17,7 +17,7 @@ class Triviaapi
   end
 
   def seed_db
-    3000.times do |x|
+    30.times do |x|
       Quiz.create
       get_random.each do |q|
         create_question(q, (x+1))
