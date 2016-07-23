@@ -8,4 +8,8 @@ class Restaurant < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
 
+  def waiting_list
+    self.parties.where(in_queue: true)
+  end
+
 end

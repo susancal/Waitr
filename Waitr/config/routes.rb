@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   # put '/restaurants/:restaurant_id/parties/:id', to: 'parties#rex', as: 'party_update'
   
   resources  :prizes
+  get '/restaurants/:id/leaderboard', to: 'leaderboard#index', as: 'leaderboard'
 
 end
