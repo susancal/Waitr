@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   resources :restaurants do
     resources :parties
-    resources :prize
+    resources :prizes
   end
 
-  # put '/restaurants/:restaurant_id/parties/:id', to: 'parties#rex', as: 'party_update'
+  # get '/restaurants/:id/prizes/new' =>'prizes#new'
+  # post '/prizes' =>'prizes#create'
+  # get '/restaurants/:id/prizes/edit' =>'prizes#edit'
+  # put '/prizes' =>'prizes#update'
 
   get '/restaurants/:id/leaderboard', to: 'leaderboard#index', as: 'leaderboard'
 

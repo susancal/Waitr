@@ -3,7 +3,12 @@
 <h2><%= @restaurant.name %></h2>
 
 <h3>Current Promotion </h3>
-<h4> <%= @restaurant.prize.prize_name %> - <%= @restaurant.prize.points_needed %></h4>ß
+<% if @restaurant.prize != nil %>
+  <h4> <%= @restaurant.prize.prize_name %> - <%= @restaurant.prize.points_needed %></h4><br>
+<% else %>
+  <h4>No current promo!</h4><br>
+  <%= link_to "Create Prize", new_restaurant_prize_path(@restaurant) %>
+<% end %>
 
 
 <table class="waiting_list">

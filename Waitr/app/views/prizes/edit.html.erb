@@ -1,0 +1,9 @@
+<form id="edit-prize-form" method="post" action="/prizes">
+  <input type="hidden" name="_method" value="put">
+    <label for="item-name">Promo</label>
+    <input id="promo" type="text" name="promo" value="<%= @prize.prize_name %>">
+    <br>
+    <label for="item-end-date">Points Needed</label>
+    <input id="end-date" type="text" name="points" value="<%= @prize.points_needed %>"><br>
+    <input type="submit" value="submit">
+  </form>
