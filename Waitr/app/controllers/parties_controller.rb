@@ -34,7 +34,7 @@ class PartiesController < ApplicationController
       @client.messages.create(
         from: '+12242796373',
         to: '+17082548335',
-        body: 'I have hard coded the numbers but it is working after the create!'
+        body: 'I have hard coded the numbers but it is working after the create! http://lifehacker.com'
       )
 
     else
