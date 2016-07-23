@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
-  resources :restaurants do 
-    resources :parties 
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :restaurants do
+    resources :parties
     resources :prizes
   end
 
+  resources :quizzes do
+    resources :rounds do
+      get '/summary' => 'rounds#summary'
+      resources :questions #can get rid of a lot of these routes
+      resources :guesses #can get rid of a lot of these routes
+    end
+  end
 
   root 'restaurants#show'
 
