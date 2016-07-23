@@ -35,7 +35,8 @@ class Party < ApplicationRecord
   end
 
   def elapsed
-    return (Time.now - self.created_at)
+    t = (Time.now - self.created_at)
+    return Time.at(t).utc.strftime("%H:%M:%S")
   end
 
 end
