@@ -1,8 +1,8 @@
 class Restaurant < ApplicationRecord
   has_secure_password
-  
+
   has_many :parties
-  has_many :prizes
+  has_one :prize
 
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
