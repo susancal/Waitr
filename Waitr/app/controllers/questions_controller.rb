@@ -5,6 +5,6 @@ class QuestionsController < ApplicationController
     @question = @quiz.select_question
     @guess = Guess.new(round_id: @round.id, question_id: @question.id)
     @quiz_questions = @quiz.questions
-
+    @user = Party.find(2)
   end
 end

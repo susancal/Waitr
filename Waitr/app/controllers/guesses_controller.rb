@@ -1,15 +1,18 @@
 class GuessesController < ApplicationController
   def create
-    p " KJAHFK JAHDSJK AHSJKHASJK ADJKSHASHD AS"
-    p params[:round_id]
-    @round = Round.find(params[:guess][:round_id])
-    @question = Question.find(params[:guess][:question_id])
-    @quiz = Quiz.find(@question.quiz.id)
-    @next_question = @quiz.select_question
+    binding.pry
+
+
+
+    # @round = Round.find(params[:guess][:round_id])
+    # @question = Question.find(params[:guess][:question_id])
+    # @quiz = Quiz.find(@question.quiz.id)
+    # @next_question = @quiz.select_question
 
     @guess = Guess.new(guess_params)
+    p @guess
     if @guess.save
-      redirect_to quiz_round_question_path(@quiz, @round, @next_question)
+      render json: {message: "Your guess has saved."}.to_json
     else
       p "SHIT"
     end

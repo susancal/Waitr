@@ -1,14 +1,8 @@
-<!-- <div class="question-header">
-  <h1> <%= @question.question_text %> </h1>
-</div> -->
-<%= react_component('Quiz', {questions: @quiz_questions}) %>
-<div class="question-header">
-  <h1> <%= @question.question_text %> </h1>
-</div>
-<%= react_component('QuestionTimer', {quiz_id: @quiz.id , round_id: @round.id, question_id: @question.id}) %>
->>>>>>> 10d9c116c388a1833f654c2579425680704d2364
+<%= react_component('Quiz', {questions: @quiz_questions, user: @user}) %>
 
 
+<!-- need to make form part of react -->
+<h3>RAILS FORM</h3>
   <%= form_for @guess do |f| %>
     <%= f.label :guess_value %>
     <%= f.text_field :guess_value%>
@@ -18,4 +12,6 @@
     <%= f.hidden_field :party_id, value: 1%>
     <%= f.submit %>
   <% end %>
+
+
 
