@@ -27,22 +27,12 @@ class Party < ApplicationRecord
     return "(#{ph[0,3]}) #{ph[3,3]}-#{ph[6,4]}"
   end
 
-  def self.total_waiting_parties_count
-    parties = []
-    self.all.each do |party|
-      if party.in_queue
-        parties << party
-      end
-    end
-    return parties.length
-  end
-
   def clean_number
     number = self.number.scan(/\d+/).join
     number[0] == "1" ? number[0] = '' : number
     number unless number.length != 10
   end
-  
+
   def elapsed
     t = (Time.now - self.created_at)
     return Time.at(t).utc.strftime("%H:%M:%S")
@@ -50,6 +40,10 @@ class Party < ApplicationRecord
 
   before_create do
     self.key = [*"0".."9"].sample(6).join
+  end
+  
+  def quizzes_already_played
+
   end
 
 end

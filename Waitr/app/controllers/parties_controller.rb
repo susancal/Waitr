@@ -10,9 +10,9 @@ class PartiesController < ApplicationController
 
     @party = Party.find(params[:id])
     @restaurant = @party.restaurant
-    @waiting_parties = @restaurant.waiting_list
-    # @waiting_parties = Party.waiting_parties_count
-    # p @waiting_parties
+    parties = @restaurant.waiting_list.map { |e| e.id  }
+    @people_ahead = parties.index(@party.id)
+    @prize = @restaurant.prize
   end
 
   def edit
@@ -59,4 +59,4 @@ class PartiesController < ApplicationController
     end
 
 end
-  
+

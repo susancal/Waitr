@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160723191531) do
   create_table "rounds", force: :cascade do |t|
     t.integer  "quiz_id"
     t.integer  "party_one_id",                null: false
-    t.integer  "party_two_id",    default: 0
+    t.integer  "party_two_id"
     t.integer  "party_one_score", default: 0
     t.integer  "party_two_score", default: 0
     t.datetime "created_at",                  null: false

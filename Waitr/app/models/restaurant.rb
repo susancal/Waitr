@@ -12,6 +12,7 @@ class Restaurant < ApplicationRecord
 
   def waiting_list
     active_parties = self.parties.where(in_queue: true)
+    active_parties.sort{|a,b| b[:created_at] <=> a[:created_at]}
     return active_parties
   end
 
