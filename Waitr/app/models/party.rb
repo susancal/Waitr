@@ -12,7 +12,8 @@ class Party < ApplicationRecord
   validates :points_earned, presence: true
 
   def queue_index
-    self.restaurant.waiting_list.index(self)
+    list = self.restaurant.waiting_list
+    list.index(self)
   end
 
   def queue_position
@@ -24,7 +25,7 @@ class Party < ApplicationRecord
     return "(#{ph[0,3]}) #{ph[3,3]}-#{ph[6,4]}"
   end
 
-  def self.waiting_parties_count
+  def self.total_waiting_parties_count
     parties = []
     self.all.each do |party|
       if party.in_queue
