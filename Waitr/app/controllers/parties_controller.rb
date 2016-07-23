@@ -3,7 +3,11 @@ class PartiesController < ApplicationController
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
     @party = Party.new
+  end
 
+  def show
+    @party = Party.find(params[:id])    
+    @waiting_parties = Party.waiting_parties_count
   end
 
   def edit
@@ -11,7 +15,6 @@ class PartiesController < ApplicationController
     party.in_queue = false
     party.save
     redirect_to restaurant_path(params[:restaurant_id])
-
   end
 
   def create 
@@ -30,12 +33,7 @@ class PartiesController < ApplicationController
 
       @client.messages.create(
         from: '+12242796373',
-        to: '+18155457182',
-        body: 'I have hard coded the numbers but it is working after the create!'
-      )
-      @client.messages.create(
-        from: '+12242796373',
-        to: '+18479620328',
+        to: '+17082548335',
         body: 'I have hard coded the numbers but it is working after the create!'
       )
 
@@ -51,3 +49,4 @@ class PartiesController < ApplicationController
       params.require(:party).permit(:name, :size, :cell)
     end
 end
+  
