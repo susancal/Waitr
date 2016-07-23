@@ -9,12 +9,18 @@ class Party < ApplicationRecord
   validates :cell, presence: true, length: { minimum: 10, maximum: 20}
   validates :points_earned, presence: true
 
+  def queue_position
+    self.restaurant.waiting_list.index(self)
+  end
 
-
-
-  def position_in_queue(party, parties)
-
-
+  def self.waiting_parties_count
+    parties = []
+    self.all.each do |party|
+      if party.in_queue
+        parties << party
+      end
+    end
+    return parties.length
   end
 
 end
