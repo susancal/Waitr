@@ -1,0 +1,15 @@
+current directory: /Users/markcassidy/Desktop/devbootcamp/phase-3/Waitr/Waitr/vendor/cache/ruby/2.3.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+/Users/markcassidy/.rvm/rubies/ruby-2.3.1/bin/ruby -r ./siteconf20160722-50625-l3r0v8.rb extconf.rb
+creating Makefile
+
+current directory: /Users/markcassidy/Desktop/devbootcamp/phase-3/Waitr/Waitr/vendor/cache/ruby/2.3.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /Users/markcassidy/Desktop/devbootcamp/phase-3/Waitr/Waitr/vendor/cache/ruby/2.3.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+
+current directory: /Users/markcassidy/Desktop/devbootcamp/phase-3/Waitr/Waitr/vendor/cache/ruby/2.3.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.bundle ./.gem.20160722-50625-n7aoxu

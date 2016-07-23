@@ -1,5 +1,6 @@
 class RoundsController < ApplicationController
 
+
   def index
 
   end
@@ -13,6 +14,11 @@ class RoundsController < ApplicationController
     @round = Round.create(party_one_id: params[:player_one_id])
     p @round
     render :waiting
+  end
+
+
+
+  def summary
   end
 
 

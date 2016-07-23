@@ -14,14 +14,10 @@ Party.create!(restaurant_id: 1, name: "Johnson", size: 8, cell: "7739050234", in
 Party.create!(restaurant_id: 1, name: "Fonzi", size: 2, cell: "7736243333", in_queue: true, points_earned: 500)
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Restaurant.create(name: "WPE", email: "few@few", password_digest: "hi")
-
-
-Party.create(restaurant_id: 1, name: "Fonzi", size: 2, cell: "4002919203", in_queue: true, points_earned: 0)
-Party.create(restaurant_id: 1, name: "Fonzi2", size: 12, cell: "4002923203", in_queue: true, points_earned: 0)
-Party.create(restaurant_id: 1, name: "Fonzi3", size: 4, cell: "4002123453", in_queue: true, points_earned: 0)
-Party.create(restaurant_id: 1, name: "Fonzi4", size: 6, cell: "4002954323", :in_queue => true, points_earned: 10)
-Party.create(restaurant_id: 1, name: "Fonzi5", size: 6, cell: "4002954321", :in_queue => false, points_earned: 10)
 
 api = Triviaapi.new
 api.seed_db
+
+Round.create!(quiz_id: 1, party_one_id: 1)
+
+
