@@ -1,0 +1,16 @@
+<div class="question-header">
+  <h1> <%= @question.question_text %> </h1>
+</div>
+
+
+  <%= form_for @guess do |f| %>
+    <%= f.label :guess_value %>
+    <%= f.text_field :guess_value%>
+    <%= f.hidden_field :round_id, value: @guess.round_id%>
+    <%= f.hidden_field :question_id, value: @guess.question_id%>
+<!-- Hardcoded party id until it works in sessions -->
+    <%= f.hidden_field :party_id, value: 1%>
+    <%= f.submit %>
+  <% end %>
+
+
