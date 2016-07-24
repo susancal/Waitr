@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
 
 
-
   resources :restaurants, only: [:show] do
+    get '/waitingroom' => 'rounds#waitingroom'
     resources :parties
     resources :prizes
   end
@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
 
-  mount ActionCable.server => "/cable"
+  # mount ActionCable.server => "/cable"
 end
