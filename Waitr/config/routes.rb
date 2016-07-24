@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
 
-  mount ActionCable.server => "/cable"
+  # mount ActionCable.server => "/cable"
 end

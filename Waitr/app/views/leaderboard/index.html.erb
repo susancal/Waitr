@@ -1,16 +1,21 @@
-Thanks for eating at <%= @rest.name %>
-<br>
-<br>
+<h3>Thanks for eating at <%= @rest.name %></h3>
+<h1>Leader Board</h1>
 
-<table>
-<% @current.each do |player| %>
-  <tr>
-    <td><%= player.name %></td>
-    <td><%= player.points_earned %></td>
-  </tr>
-<% end %>
+<table class="waiting_list bordered centered responsive-table">
+  <thead>
+    <tr>
+      <th data-field="name" class="leader-board-header"> Party </th>
+      <th data-field="name" class="leader-board-header">Points </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @current.each do |player| %>
+    <tr>
+      <td><%= player.name %></td>
+      <td><%= player.points_earned %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 <br>
-<a href="/restaurants/<%= @rest.id %>/parties/1">Back to Main</a>
-<br>
-<a href=""></a>
+<a class="waves-effect waves-light btn large" href=/restaurants/<%= @rest.id %>/parties/<%= @current_party.id %>>Back to Main</a>

@@ -1,24 +1,26 @@
 <!-- form_for [@restaurant, @party] do |f| -->
-<%= form_for :party, url: restaurant_parties_path do |f| %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
+<div class="row">
+  <%= form_for :party, url: restaurant_parties_path do |f| %>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
 
-  <p>
-    <%= f.label :size %><br />
-    <%= f.text_field :size %>
-  </p>
+    <p>
+      <%= f.label :size %><br />
+      <%= f.text_field :size %>
+    </p>
 
-  <p>
-    <%= f.label :cell %><br />
-    <%= f.text_field :cell  %>
-  </p>
+    <p>
+      <%= f.label :cell %><br />
+      <%= f.text_field :cell  %>
+    </p>
 
 
-  <p>
-    <%= f.submit %>
-  </p>
+    <p>
+      <%= f.submit "Add Party", class: "btn waves-effect waves-light"  %>
+    </p>
 
-<% end %>
+  <% end %>
 
+</div>

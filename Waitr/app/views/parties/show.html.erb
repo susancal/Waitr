@@ -1,18 +1,16 @@
+<h2>Thanks for dining at <%= @restaurant.name %>!</h2>
+<h3>Party name: <%= @party.name %><br><br></h3>
 
-Thanks for dining at <%= @restaurant.name %>!<br>
-Party name: <%= @party.name %><br><br>
-There are
-<br>
-<div id="people-ahead">
+<h1 id="people-ahead">
   <%= @people_ahead %>
-</div>
-people ahead of you
-<br><br>
+</h1><br>
+<h3>people ahead of you</h3>
+
+
 <div id="blurb">
   Want to pass the time? Play a round of head-to-head trivia for a chance to earn points and get rewards! Winner of the round keeps the points and loser gets none!
->>>>>>> master
 </div>
 
 <br>
-<%= button_to "PLAY", new_round_path(params: {player_one_id: @party.id}) %>
+
 <%= link_to "View Leaderboard!", leaderboard_path(@restaurant) %>
