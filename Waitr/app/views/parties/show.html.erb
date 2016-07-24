@@ -8,9 +8,10 @@
 
 
 <div id="blurb">
-  Want to pass the time? Play a round of head-to-head trivia for a chance to earn points and get rewards! Winner of the round keeps the points and loser gets none!
+  <h5>Want to pass the time? Play a round of head-to-head trivia for a chance to earn points and get rewards!</h5>
 </div>
-
 <br>
 
-<%= link_to "View Leaderboard!", leaderboard_path(@restaurant) %>
+<%= link_to "START PLAYING", restaurant_waitingroom_path(@restaurant) %>
+
+<a class="waves-effect waves-light btn" href="<%= leaderboard_path(@restaurant) %>">View Leaderboard</a>

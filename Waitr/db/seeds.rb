@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first
 
 
+Restaurant.create!(name: "The Matte Bakery", email:"matt@baker.com", password: "password")
 Restaurant.create!(name: "Susie's diner", email:"susie@susies.com", password: "password")
 Party.create!(restaurant_id: 1, name: "Smiths", size: 2, cell: "7738958335", in_queue: true, points_earned: 0)
 Party.create!(restaurant_id: 1, name: "Maxwell", size: 4, cell: "7734562334", in_queue: true, points_earned: 1000)

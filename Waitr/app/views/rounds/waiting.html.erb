@@ -1,2 +1,13 @@
-Waiting room!<br>
-Player one: <%= @round.party_one_id %>
+<h1> Waiting room!</h1><br>
+Player one: <%= @round.party_id %>
+<br>
+Player two: <%= @round.party_two_id %>
+<br>
+This is for Round # <%= @round.id %>
+<br>
+You will be taking quiz # <%= @round.quiz_id %>
+
+  <a class="waves-effect waves-light btn" href="<%= quiz_round_path(@round.quiz, @round) %>">Begin Game</a>
+
+<% if @round.party_two_id != nil %>
+<% end %>
