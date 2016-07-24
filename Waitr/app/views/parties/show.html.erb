@@ -1,8 +1,10 @@
-<h1>show page for parties</h1>
-<h3>Thanks for coming to <%= @restaurant.name %></h3>
+<h2>Thanks for dining at <%= @restaurant.name %>!</h2>
+<h3>Party name: <%= @party.name %><br><br></h3>
 
-<p>Your position in line is <%= @party.queue_position %></p>
-
+<h1 id="people-ahead">
+  <%= @people_ahead %>
+</h1><br>
+<h3>people ahead of you</h3>
 
 <div>
   <ul>
@@ -14,4 +16,12 @@
     <% end %>
   <% end %>
   </ul>
+  
+<div id="blurb">
+  <h5>Want to pass the time? Play a round of head-to-head trivia for a chance to earn points and get rewards!</h5>
 </div>
+<br>
+
+<%= link_to "START PLAYING", restaurant_waitingroom_path(@restaurant) %>
+
+<a class="waves-effect waves-light btn" href="<%= leaderboard_path(@restaurant) %>">View Leaderboard</a>

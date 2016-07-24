@@ -1,0 +1,2 @@
+class Waitingroom < ApplicationRecord
+end

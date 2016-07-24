@@ -1,24 +1,27 @@
 class PartiesController < ApplicationController
 
   def new
+
     @restaurant = Restaurant.find(params[:restaurant_id])
     @party = Party.new
   end
 
   def show
+    @prize = @restaurant.prize
     if session[:restaurant_id] == nil
       @party = Party.find(params[:id])
       @restaurant = @party.restaurant
       @waiting_parties = @restaurant.waiting_list
+      session[:party_id] = (params[:id])
+      parties = @restaurant.waiting_list.map { |e| e.id  }
+      @people_ahead = parties.index(@party.id)
     else
       @error = "You can't view patron's pages as a host"
       @restaurant = Restaurant.find_by(id: session[:restaurant_id])
       params[:id] = session[:restaurant_id]
       @waiting_list = @restaurant.waiting_list
-      @prize = @restaurant.prize
       render 'sessions/show'
     end
-  end
 
   def edit
     party = Party.find(params[:id])
@@ -27,13 +30,19 @@ class PartiesController < ApplicationController
     redirect_to restaurant_path(params[:restaurant_id])
   end
 
-  def create 
-  
+  def create
+    # p request.protocol + request.host
+    # p request.base_url
+
     party = Party.new(party_params)
     party.restaurant_id = params[:restaurant_id]
     if party.save
+      # session[:party_id] = party.id
+      # session[:party_key] = party.key
+
       account_sid = 'AC30eba678ab51326f08e0af6ec82ddc8f'
       auth_token = '7cd9dd7f964c9929ecd5e6b16052200f'
+      link = request.base_url + "/" + party.key
 
       @client = Twilio::REST::Client.new account_sid, auth_token
 
@@ -41,7 +50,7 @@ class PartiesController < ApplicationController
       @client.messages.create(
         from: '+12242796373',
         to: '+17082548335',
-        body: 'I have hard coded the numbers but it is working after the create! http://lifehacker.com'
+        body: "I have hard coded the numbers but it is working after the create! #{link}"
       )
 
       redirect_to restaurant_path(params[:restaurant_id])
@@ -60,4 +69,4 @@ class PartiesController < ApplicationController
     def self.party_finder
     end
 end
-  
+
