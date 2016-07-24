@@ -3,7 +3,9 @@ require 'date'
 class Party < ApplicationRecord
   has_many :guesses
   has_many :rounds
+  has_many :quizzes_taken, through: :rounds, source: :quiz
   belongs_to :restaurant
+  has_one :waitingroom
 
   validates :restaurant_id, presence: true
   validates :name, presence: true
@@ -41,9 +43,12 @@ class Party < ApplicationRecord
   before_create do
     self.key = [*"0".."9"].sample(6).join
   end
-  
-  def quizzes_already_played
 
+  def quizzes_not_played
+     taken = self.quizzes_taken.map { |q| q.id }
+     all = Quiz.all.map { |e| e.id }
+     avail = all - taken
+     return avail
   end
 
 end

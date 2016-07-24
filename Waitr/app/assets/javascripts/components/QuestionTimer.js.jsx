@@ -1,6 +1,6 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 5};
+    return {timer: 10};
   },
   componentDidMount: function(){
     this.startTimer();
@@ -19,7 +19,7 @@ var QuestionTimer = React.createClass({
     if (this.state.timer <=0) {
       clearInterval(this.interval);
       this.props.nextQuestion();
-      this.setState({timer: 5});
+      this.setState({timer: 10});
       this.startTimer();
     }
   },

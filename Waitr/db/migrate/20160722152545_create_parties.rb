@@ -3,6 +3,7 @@ class CreateParties < ActiveRecord::Migration[5.0]
     create_table :parties do |t|
       t.integer :restaurant_id
       t.string :name, null: false
+      t.string :key
       t.integer :size, null: false
       t.string :cell, null: false
       t.boolean :in_queue, default: true

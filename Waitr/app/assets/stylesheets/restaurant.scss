@@ -1,3 +1,23 @@
 // Place all the styles related to the restaurant controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container{
+  width: 80%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.add-party-button {
+  padding-bottom: 20px;
+}
+
+#people-ahead {
+  font-weight: bold;
+  color: dark red;
+  font-size:10em;
+}
+
+.leader-board-header {
+  font-size: 20px;
+}

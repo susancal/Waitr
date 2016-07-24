@@ -1,44 +1,49 @@
 You are logged in as: <%= @restaurant.name %>
+  <div class="prize-header">
+    <h3>Current Promotion </h3>
 
-<div class="prize-div">
-<h3>Current Promotion </h3>
 
+    <% if @prize != nil %>
+    <h4> <%= @prize.prize_name %> - <%= @prize.points_needed %></h4><br>
 
-<% if @prize != nil %>
-  <h4> <%= @prize.prize_name %> - <%= @prize.points_needed %></h4><br>
-
-  <a class="waves-effect waves-light btn" href="<%= edit_restaurant_prize_path(@restaurant) %>">Change Promo</a>
-<% else %>
-  <h4>No current promo!</h4><br>
-  <a class="waves-effect waves-light btn" href="<%= new_restaurant_prize_path(@restaurant) %>">Add Promo</a>
+    <a class="waves-effect waves-light btn" href="<%= edit_restaurant_prize_path(@restaurant) %>">Change Promo</a>
+    <% else %>
+    <h4>No current promo!</h4><br>
+    <a class="waves-effect waves-light btn" href="<%= new_restaurant_prize_path(@restaurant) %>">+ Add Promo</a>
   </p>
-<% end %>
+  <% end %>
 </div>
 
-<br><br>
 
 
-<a class="waves-effect waves-light btn large" href="<%= new_restaurant_party_path(@restaurant, @waiting_list) %>">+ Add Party</a>
-<table class="waiting_list bordered centered responsive-table">
-  <thead>
-    <tr>
-      <th data-field="name"> Name </th>
-      <th data-field="name">Party Size </th>
-      <th data-field="name"> Cell Phone </th>
-      <th data-field="name"> Points </th>
-      <th data-field="name"> Time Waiting </th>
-    </tr>
-  </thead>
-   <tbody>
-  <% @waiting_list.each do |party| %>
-    <tr>
+
+<div class="add-party-button">
+  <a class="waves-effect waves-light btn large" href="<%= new_restaurant_party_path(@restaurant) %>">+ Add Party</a>
+</div>
+
+<div class="party-table">
+  <table class="waiting_list bordered centered responsive-table">
+    <thead>
+      <tr>
+        <th data-field="name"> Name </th>
+        <th data-field="name">Party Size </th>
+        <th data-field="name"> Cell Phone </th>
+        <th data-field="name"> Points </th>
+        <th data-field="name"> Time Waiting </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% i = 1 %>
+      <% @waiting_list.each do |party| %>
+      <tr id="<%= i %>">
         <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  data: { confirm: "Would you like to remove party from waiting list?" } %></td>
         <td><%= party.size %></td>
         <td><%= party.formatted_cell %></td>
-        <td><%= party.points_earned %></td>
-        <td><%= party.elapsed %></td>
-    </tr>
-  <% end %>
-   <tbody>
-</table>
-
+        <td class="points-earned"><%= party.points_earned %></td>
+        <td class="elapsed <%= i %>"><%= party.elapsed %></td>
+      </tr>
+      <% i+=1 %>
+      <% end %>
+      <tbody>
+      </table>
+    </div>
