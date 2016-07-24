@@ -1,23 +1,22 @@
 class GuessesController < ApplicationController
   def create
-    binding.pry
-
-
-
-    # @round = Round.find(params[:guess][:round_id])
-    # @question = Question.find(params[:guess][:question_id])
-    # @quiz = Quiz.find(@question.quiz.id)
-    # @next_question = @quiz.select_question
-
+    # binding.pry
     @guess = Guess.new(guess_params)
+    @question = Question.find(@guess.question_id)
     p @guess
-    if @guess.save
-      render json: {message: "Your guess has saved."}.to_json
-    else
-      p "SHIT"
-    end
-  end
 
+    if @guess.save
+      if @guess.guess_value == @question.answer
+          @status = "correct"
+      else
+          @status = "incorrect"
+      end
+    else
+      @status = "notsave"
+    end
+
+      render json: {status: @status}
+  end
 
 
   private

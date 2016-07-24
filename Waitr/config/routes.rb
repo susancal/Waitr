@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   resources :quizzes do
     resources :rounds do
       get '/summary' => 'rounds#summary'
-      resources :questions #can get rid of a lot of these routes
-      resources :guesses #can get rid of a lot of these routes
+      # resources :questions
     end
   end
 
+  resources :guesses, only: [:create]
   root 'restaurants#show'
 
   get '/restaurants/:id/leaderboard', to: 'leaderboard#index', as: 'leaderboard'
@@ -21,7 +21,5 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
 
-  resources :rounds
-  post '/rounds/new' => 'rounds#create'
   mount ActionCable.server => "/cable"
 end
