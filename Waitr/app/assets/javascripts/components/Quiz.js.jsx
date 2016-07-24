@@ -19,20 +19,23 @@
   checkCompletion: function(){
       if (this.state.question_count === this.props.questions.length - 1) {
         this.setState({complete: true});
-        console.log('SENDING---------------')
         this.saveScoreDatabase();
+        this.loadSummaryPage();
       }
   },
 
   saveScoreDatabase: function(){
     url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.round_id
     data = {player_one_score: this.state.player_one_score}
-    $.ajax({url: url, type: 'PUT', data}).done(function(){
-      console.log(response)
-      var summary_url = '/quizzes/' + this.props.quiz_id + '/rounds/' + this.props.round_id + '/summary'
-      window.location.replace(summary_url)
-    })
 
+    $.ajax({url: url, type: 'PUT', data}).done(function(response){
+     console.log(response);
+    }.bind(this))
+  },
+
+  loadSummaryPage: function(){
+    var summary_url = '/quizzes/' + this.props.quiz_id + '/rounds/' + this.props.round_id + '/summary'
+    window.location.replace(summary_url)
   },
 
   updateAnswerStatus: function(){

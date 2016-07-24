@@ -10,14 +10,15 @@ class RoundsController < ApplicationController
 
   def update
     @round = Round.find(params[:id].to_i)
-    @round.party_score = params[:player_one_score].to_i
-    p "IM HERRREEEEEEEEEEE (ROUND)"
+    @round.party_one_score = params[:player_one_score].to_i
     p @round
-
+    p "IM HEERRRREEEEEE"
     if @round.save
-       render json: {status: "SAVED"}
+       @status = "SAVED"
+       render json: {status: @status}
     else
-       render json: {status: "NOT SAVED"}
+      @status = " NOT SAVED"
+       render json: {status: @status}
     end
   end
 
