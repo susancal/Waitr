@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+/*Login Page*/
+
+.row {
+  width: 50%;
+  padding-top: 50px;
+}
+
+nav {
+  background: blue;
+}
+
+.login-header, .login-slogan {
+  position: relative;
+  text-align: center;
+}
