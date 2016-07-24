@@ -6,13 +6,18 @@ class PartiesController < ApplicationController
   end
 
   def show
-    @party = Party.find(params[:id])
-    @restaurant = @party.restaurant
-    p @restaurant
-    p @party
-    @waiting_parties = @restaurant.waiting_list
-    # @waiting_parties = Party.waiting_parties_count
-    # p @waiting_parties
+    if session[:restaurant_id] == nil
+      @party = Party.find(params[:id])
+      @restaurant = @party.restaurant
+      @waiting_parties = @restaurant.waiting_list
+    else
+      @error = "You can't view patron's pages as a host"
+      @restaurant = Restaurant.find_by(id: session[:restaurant_id])
+      params[:id] = session[:restaurant_id]
+      @waiting_list = @restaurant.waiting_list
+      @prize = @restaurant.prize
+      render 'sessions/show'
+    end
   end
 
   def edit
@@ -52,5 +57,7 @@ class PartiesController < ApplicationController
       params.require(:party).permit(:name, :cell, :size, :restaurant_id)
     end
 
+    def self.party_finder
+    end
 end
   

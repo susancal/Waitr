@@ -1,12 +1,12 @@
 <h1>show page for parties</h1>
-
+<h3>Thanks for coming to <%= @restaurant.name %></h3>
 
 <p>Your position in line is <%= @party.queue_position %></p>
 
 
 <div>
   <ul>
-  <% @waiting_parties.times do |icons| %>
+  <% @waiting_list.times do |icons| %>
     <% if icons == @party.queue_index %>
       <li>"OTHER PEOPLE"</li>
     <% else %>

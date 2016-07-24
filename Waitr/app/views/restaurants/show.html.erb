@@ -15,6 +15,13 @@ You are logged in as: <h2><%= @restaurant.name %></h2>
 <% end %>
 </div>
 
+<div>
+  <% if @error %>
+    <%= @error %>
+  <% end %>
+</div>
+
+
 <br><br>
 
 <%= button_to "ADD Party", new_restaurant_party_path(@restaurant, @waiting_list), method: :get %> </p>

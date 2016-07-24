@@ -11,8 +11,10 @@ class Restaurant < ApplicationRecord
 
 
   def waiting_list
-    active_parties = self.parties.where(in_queue: true)
-    return active_parties
+    waiting_parties = []
+    active_parties = self.parties.where(in_queue: true).order(:created_at)
+    active_parties.each { |party| waiting_parties << party }
+    return waiting_parties
   end
 
 end
