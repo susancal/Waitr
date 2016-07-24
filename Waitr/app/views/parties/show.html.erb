@@ -10,9 +10,8 @@ people ahead of you
 <br><br>
 <div id="blurb">
   Want to pass the time? Play a round of head-to-head trivia for a chance to earn points and get rewards! Winner of the round keeps the points and loser gets none!
->>>>>>> master
 </div>
 
 <br>
-<%= button_to "PLAY", new_round_path(params: {player_one_id: @party.id}) %>
+<%= button_to "PLAY", new_round_path(params: {player_id: @party.id}) %>
 <%= link_to "View Leaderboard!", leaderboard_path(@restaurant) %>
