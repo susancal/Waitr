@@ -8,4 +8,6 @@ module SessionHelper
     current_user != nil
   end
 
+
+
 end

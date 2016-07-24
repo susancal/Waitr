@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723191531) do
+ActiveRecord::Schema.define(version: 20160724191459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,13 +28,13 @@ ActiveRecord::Schema.define(version: 20160723191531) do
   create_table "parties", force: :cascade do |t|
     t.integer  "restaurant_id"
     t.string   "name",                         null: false
+    t.string   "key"
     t.integer  "size",                         null: false
     t.string   "cell",                         null: false
     t.boolean  "in_queue",      default: true
     t.integer  "points_earned", default: 0
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.string   "key"
   end
 
   create_table "prizes", force: :cascade do |t|
@@ -70,12 +70,20 @@ ActiveRecord::Schema.define(version: 20160723191531) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer  "quiz_id"
-    t.integer  "party_id",                    null: false
-    t.integer  "party_two_id"
-    t.integer  "party_one_score", default: 0
-    t.integer  "party_two_score", default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "party_id",                null: false
+    t.integer  "party_score", default: 0
+    t.integer  "secret_key"
+    t.integer  "player_num"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "waitingrooms", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.integer  "party_id"
+    t.integer  "party_key"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

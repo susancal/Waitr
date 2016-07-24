@@ -12,7 +12,7 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id].to_i)
     @round.party_one_score = params[:player_one_score].to_i
     p @round
-    p "IM HEERRRREEEEEE"
+    p "IM HEERRRREEEEEEsubl "
     if @round.save
        @status = "SAVED"
        render json: {status: @status}

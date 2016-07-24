@@ -3,9 +3,9 @@ class CreateRounds < ActiveRecord::Migration[5.0]
     create_table :rounds do |t|
       t.integer :quiz_id
       t.integer :party_id, null: false
-      t.integer :party_two_id
-      t.integer :party_one_score, default: 0
-      t.integer :party_two_score, default: 0
+      t.integer :party_score, default: 0
+      t.integer :secret_key
+      t.integer :player_num
 
       t.timestamps
     end
