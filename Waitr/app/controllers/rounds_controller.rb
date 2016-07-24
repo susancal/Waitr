@@ -21,13 +21,14 @@ class RoundsController < ApplicationController
       @round = Round.create(party_id: params[:player_one_id], quiz_id: @qid)
     end
       render :waiting
-
-
-
-# ------------------------------------------------------------
-
   end
 
+  def show
+    @quiz = Quiz.find(params[:quiz_id])
+    @round = Round.find(params[:id])
+    @quiz_questions = @quiz.questions
+    @party_id = 1
+  end
 
 
   def summary
