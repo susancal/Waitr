@@ -16,8 +16,9 @@
 
 /*Login Page*/
 
-.row {
+.container .row {
   width: 50%;
+  margin: 0 auto;
   padding-top: 50px;
 }
 
@@ -29,3 +30,5 @@ nav {
   position: relative;
   text-align: center;
 }
+
+
