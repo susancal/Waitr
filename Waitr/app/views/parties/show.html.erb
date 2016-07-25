@@ -4,17 +4,7 @@
 <h1 id="people-ahead"><%= @people_ahead %></h1>
 <h3 class="people-ahead-2">parties ahead of you.</h3>
 
-<div>
-  <ul>
-  <% @waiting_list.times do |icons| %>
-    <% if icons == @party.queue_index %>
-      <li>"OTHER PEOPLE"</li>
-    <% else %>
-      <li>"IT'S YOU!!!!!!"</li>
-    <% end %>
-  <% end %>
-  </ul>
-  
+
 <div id="blurb">
   <h5>Need to pass time? Play trivia against other parties and win <span class="bold-text">free</span> food!</h5>
 </div>

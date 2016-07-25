@@ -8,7 +8,7 @@ class Round < ApplicationRecord
 
   def completed?
    self.guesses.any?
- end
+  end
 
  def self.waiting_rounds
    return Round.all.where(party_two_id: nil)

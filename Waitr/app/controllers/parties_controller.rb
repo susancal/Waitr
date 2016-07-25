@@ -7,21 +7,13 @@ class PartiesController < ApplicationController
   end
 
   def show
-    @prize = @restaurant.prize
-    if session[:restaurant_id] == nil
       @party = Party.find(params[:id])
       @restaurant = @party.restaurant
       @waiting_parties = @restaurant.waiting_list
       session[:party_id] = (params[:id])
       parties = @restaurant.waiting_list.map { |e| e.id  }
       @people_ahead = parties.index(@party.id)
-    else
-      @error = "You can't view patron's pages as a host"
-      @restaurant = Restaurant.find_by(id: session[:restaurant_id])
-      params[:id] = session[:restaurant_id]
-      @waiting_list = @restaurant.waiting_list
-      render 'sessions/show'
-    end
+      @prize = @restaurant.prize
   end
 
   def edit
