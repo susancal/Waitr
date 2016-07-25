@@ -10,10 +10,11 @@ class RoundsController < ApplicationController
   end
 
   def show
-    @quiz = Quiz.find(params[:quiz_id])
-    @round = Round.find(params[:id])
+    @round = Round.where(secret_key: params[:key], party_id: session[:party_id])[0]
+    p @round.quiz
+    @quiz = Quiz.find(@round.quiz_id)
     @quiz_questions = @quiz.questions
-    @party_id = 1
+    @party_id = session[:party_id]
   end
 
   def create
@@ -30,6 +31,7 @@ class RoundsController < ApplicationController
 
 
  def summary
+    Waitingroom.destroy_all
  end
 
 

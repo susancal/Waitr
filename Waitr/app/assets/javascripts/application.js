@@ -19,36 +19,13 @@
 //= require_tree .
 
 $(document).ready(function(e) {
-  function checkForFirstPlayer(){
-    $.ajax({
-      url: '/check',
-      type: 'GET',
-      dataType: 'JSON',
-      data: {}
-    })
-    .done(function(response) {
-      if (response === 2){
-        console.log("THERE ARE 2!!!!!!!!!!!!!!!!");
-        console.log(response);
-        location.href="http://localhost:3000/match"
-      } else if (response === 1){
-        console.log("you are alone")
-        console.log(response)
-        // checkForFirstPlayer();
-      }
-    })
-    .fail(function() {
-      console.log("error");
-    });
-
-  }
 
 
     // var checker = setInterval(checkForFirstPlayer(), 5000)
 
   if ($("#wr").length > 0 ){
     console.log("eutfoirejfgiojrg");
-    checkForFirstPlayer;
+    checkForFirstPlayer();
   }
 
   if ($(".prize-header").length > 0){
@@ -86,6 +63,30 @@ $(document).ready(function(e) {
         var $elapsedTag = $("<td>", {class: num})
       }
 
+  function checkForFirstPlayer(){
+    $.ajax({
+      url: '/check',
+      type: 'GET',
+      dataType: 'JSON',
+      data: {}
+    })
+    .done(function(response) {
+      console.log(response)
+      if (response === 2){
+        console.log("THERE ARE 2!!!!!!!!!!!!!!!!");
+        console.log(response);
+        location.href="http://localhost:3000/match"
+      } else if (response === 1){
+        console.log("you are alone")
+        console.log(response);
+        setInterval(checkForFirstPlayer(), 5000);
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    });
+
+  }
 
 
 

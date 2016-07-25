@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
   get '/check' => 'waitingroom#check'
   get '/match' => 'waitingroom#match'
+  get '/rounds/key/:key' => 'rounds#show'
   # mount ActionCable.server => "/cable"
 end
