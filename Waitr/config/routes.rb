@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
-
+  get '/check' => 'waitingroom#check'
+  get '/match' => 'waitingroom#match'
   # mount ActionCable.server => "/cable"
 end

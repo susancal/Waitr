@@ -19,8 +19,14 @@ class RestaurantsController < ApplicationController
 
   def waitingroom
     @party = Party.find(session[:party_id])
-    @wr = Waitingroom.create(restaurant_id: params[:id], party_id: @party.id, party_key: @party.key)
-    render :waiting
+    p @party
+    p params
+    if @party.waitingroom != nil
+      render :waiting
+    else
+      @wr = Waitingroom.find_or_create_by(restaurant_id: params[:restaurant_id], party_id: @party.id, party_key: @party.key)
+      render :waiting
+    end
   end
 
 private
@@ -33,3 +39,6 @@ private
   end
 
 end
+
+
+

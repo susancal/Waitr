@@ -19,15 +19,46 @@
 //= require_tree .
 
 $(document).ready(function(e) {
+  function checkForFirstPlayer(){
+    $.ajax({
+      url: '/check',
+      type: 'GET',
+      dataType: 'JSON',
+      data: {}
+    })
+    .done(function(response) {
+      if (response === 2){
+        console.log("THERE ARE 2!!!!!!!!!!!!!!!!");
+        console.log(response);
+        location.href="http://localhost:3000/match"
+      } else if (response === 1){
+        console.log("you are alone")
+        console.log(response)
+        // checkForFirstPlayer();
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    });
 
-  console.log("Yep!");
+  }
 
 
-  // $(".container").on('click', function(event) {
-  //   event.preventDefault();
-  //   console.log("clicked");
-  //   update_times();
-  // });
+    // var checker = setInterval(checkForFirstPlayer(), 5000)
+
+  if ($("#wr").length > 0 ){
+    console.log("eutfoirejfgiojrg");
+    checkForFirstPlayer;
+  }
+
+  if ($(".prize-header").length > 0){
+    console.log("home page!")
+    // timer
+  }
+
+});
+
+
 
   var update_times = function(){
     $.ajax({
@@ -36,7 +67,6 @@ $(document).ready(function(e) {
       dataType: 'JSON'
     })
     .done(function(response) {
-      console.log("success");
       for (var i = 0; i < response.length; i++){
         var x = i+1;
         $("td.elapsed").html(response[i]);
@@ -48,13 +78,14 @@ $(document).ready(function(e) {
     });
   }
 
-  console.log(typeof update_times);
-var timer = setInterval(update_times, 1000);
-  timer;
+
+// var timer = setInterval(update_times, 1000);
 
 
-});
+      function formatTime(time, num){
+        var $elapsedTag = $("<td>", {class: num})
+      }
 
-function formatTime(time, num){
-  var $elapsedTag = $("<td>", {class: num})
-}
+
+
+
