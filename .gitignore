@@ -15,3 +15,8 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+#Ignore Secrets
+secrets.sh
+.env
+
