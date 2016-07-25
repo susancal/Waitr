@@ -9,7 +9,16 @@ class WaitingroomController < ApplicationController
 
   def check
     if request.xhr?
-      render json: {"length" => Waitingroom.all.length.to_json
+      if Waitingroom.all.length == 1
+        render json: {"length" => Waitingroom.all.length}.to_json
+      elsif Waitingroom.all.length == 2
+        players = Waitingroom.first(2).map { |e| e.party_id }
+        rnd_key = match_key
+        random_q = rand(1..30)
+        Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[0], player_num: 1)
+        Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[1], player_num: 2)
+        render json: {"length" => Waitingroom.all.length, "key" => rnd_key}.to_json
+      end
     end
   end
 
@@ -17,7 +26,6 @@ class WaitingroomController < ApplicationController
     players = Waitingroom.first(2).map { |e| e.party_id }
     rnd_key = match_key
     random_q = rand(1..30)
-    p "are we here??????????????????????????????????????"
     Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[0], player_num: 1)
     Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[1], player_num: 2)
     redirect_to "/rounds/key/#{rnd_key}"

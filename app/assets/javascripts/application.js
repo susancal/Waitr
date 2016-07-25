@@ -68,14 +68,15 @@ $(document).ready(function(e) {
       data: {}
     })
     .done(function(response) {
-      console.log(response)
-      if (response === 2){
+      console.log(response.length)
+      if (response.length === 2){
+        url = "http://localhost:3000/rounds/key/" + response.key
         console.log(response);
-        location.href="http://localhost:3000/match"
-      } else if (response === 1){
+        location.href=url;
+      } else if (response.length === 1){
         console.log("you are alone")
         console.log(response);
-        setTimeout(checkForFirstPlayer, 3000)
+        setTimeout(checkForFirstPlayer, 1000)
       }
     })
     .fail(function() {
