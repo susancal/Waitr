@@ -1,7 +1,6 @@
 class PartiesController < ApplicationController
 
   def new
-
     @restaurant = Restaurant.find(params[:restaurant_id])
     @party = Party.new
   end
@@ -10,7 +9,7 @@ class PartiesController < ApplicationController
       @party = Party.find(params[:id])
       @restaurant = @party.restaurant
       @waiting_parties = @restaurant.waiting_list
-      session[:party_id] = (params[:id])
+      # session[:party_id] = (params[:id])
       parties = @restaurant.waiting_list.map { |e| e.id  }
       @people_ahead = parties.index(@party.id)
       @prize = @restaurant.prize

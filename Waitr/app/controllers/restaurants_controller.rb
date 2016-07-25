@@ -2,14 +2,16 @@ class RestaurantsController < ApplicationController
 
   def show
   	if logged_in?
-      # replace with current_restaurant helper method
-  		current_restaurant
-  		params[:id] = session[:restaurant_id]
-      @waiting_list = @restaurant.waiting_list
-      @prize = @restaurant.prize
-      @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
-      @waiting_list = @parties.order(:created_at)
-      @new = @waiting_list.map { |e| e.elapsed }
+      if correct_page 
+        @restaurant = Restaurant.find(params[:id])
+        @waiting_list = @restaurant.waiting_list
+        @prize = @restaurant.prize
+        @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
+        @waiting_list = @parties.order(:created_at)
+        @new = @waiting_list.map { |e| e.elapsed }
+      # else
+      #   redirect_to "/restaurants/#{session[:restaurant_id]}"
+      end
     else
       redirect_to login_path
     end
@@ -32,12 +34,16 @@ class RestaurantsController < ApplicationController
   end
 
 private
+  def correct_page
+    params[:id] == session[:restaurant_id]
+  end
+
 	def current_restaurant
     @restaurant = Restaurant.find_by(id: session[:restaurant_id])
   end
 
 	def logged_in?
-    current_restaurant != nil
+    session[:restaurant_id] != nil
   end
 
 end
