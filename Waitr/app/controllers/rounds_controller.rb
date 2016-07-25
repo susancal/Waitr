@@ -10,7 +10,7 @@ class RoundsController < ApplicationController
 
   def update
     @round = Round.find(params[:id].to_i)
-    @round.party_one_score = params[:player_one_score].to_i
+    @round.party_score = params[:party_score].to_i
     p @round
     p "IM HEERRRREEEEEEsubl "
     if @round.save
