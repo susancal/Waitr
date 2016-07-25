@@ -17,11 +17,12 @@ Rails.application.routes.draw do
   end
 
   resources :guesses, only: [:create]
-  root 'restaurants#show'
+  root 'restaurants#index'
 
   get '/restaurants/:id/leaderboard', to: 'leaderboard#index', as: 'leaderboard'
+  get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy'
+  get '/logout' => 'sessions#destroy'
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
   get '/check' => 'waitingroom#check'
   get '/match' => 'waitingroom#match'

@@ -1,17 +1,15 @@
 class RestaurantsController < ApplicationController
 
-  def show
+  def index
   	if logged_in?
-      if correct_page 
-        @restaurant = Restaurant.find(params[:id])
-        @waiting_list = @restaurant.waiting_list
-        @prize = @restaurant.prize
-        @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
-        @waiting_list = @parties.order(:created_at)
-        @new = @waiting_list.map { |e| e.elapsed }
+      @restaurant = Restaurant.find(session[:restaurant_id])
+      @waiting_list = @restaurant.waiting_list
+      @prize = @restaurant.prize
+      @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
+      @waiting_list = @parties.order(:created_at)
+      @new = @waiting_list.map { |e| e.elapsed }
       # else
       #   redirect_to "/restaurants/#{session[:restaurant_id]}"
-      end
     else
       redirect_to login_path
     end
