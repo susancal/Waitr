@@ -1,3 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
 <h1>YOU DID IT</h1>
+ <svg class="chart"></svg>
+ <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<script>
+        var w = 200,
+        h = 200,
+        p = 10;
+
+        var data = [{count:100,year:1999},
+            {count:240,year:2010},
+            {count:290,year:2009}];
+
+        var bar_height = d3.scale.linear()
+            .domain(d3.extent(data, function(d) { return d.count; }) )  // min max of count
+            .range([p,h-p]);  // min max of area to plot in
 
 
+        var bar_xpos = d3.scale.linear()
+            .domain(d3.extent(data, function(d) { return d.year; }) )  // min max of year
+            .range([p,w-p]);  // min max of area to plot in
+
+
+        var svg = d3.select("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        svg.selectAll("rect")
+            .data(data)
+            .enter().append("rect")
+            .attr("x", function(d) {
+                return bar_xpos(d.year); })
+            .attr("y", function(d) {
+                return h - bar_height(d.count); })
+            .attr("width", 10)
+            .attr("height", function(d) {return bar_height(d.count); })
+            .attr("fill", "steelblue")
+</script>

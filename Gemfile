@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.3.1"
 gem 'materialize-sass'
 gem 'react-rails'
-
+gem 'd3-rails'
 gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
