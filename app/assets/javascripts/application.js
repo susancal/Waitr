@@ -12,16 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require react
 //= require react_ujs
 //= require components
 //= require_tree .
 
 $(document).ready(function(e) {
-
-
-    // var checker = setInterval(checkForFirstPlayer(), 5000)
 
   if ($("#wr").length > 0 ){
     console.log("eutfoirejfgiojrg");
@@ -32,7 +28,6 @@ $(document).ready(function(e) {
     console.log("home page!")
     // timer
   }
-
 });
 
 
@@ -57,7 +52,7 @@ $(document).ready(function(e) {
 
 
 
-// var timer = setInterval(update_times, 1000);
+    // var timer = setInterval(update_times, 1000);
 
 
       function formatTime(time, num){
@@ -65,6 +60,7 @@ $(document).ready(function(e) {
       }
 
   function checkForFirstPlayer(){
+    var checker;
     $.ajax({
       url: '/check',
       type: 'GET',
@@ -74,13 +70,12 @@ $(document).ready(function(e) {
     .done(function(response) {
       console.log(response)
       if (response === 2){
-        console.log("THERE ARE 2!!!!!!!!!!!!!!!!");
         console.log(response);
         location.href="http://localhost:3000/match"
       } else if (response === 1){
         console.log("you are alone")
         console.log(response);
-        setInterval(checkForFirstPlayer(), 5000);
+        setTimeout(checkForFirstPlayer, 3000)
       }
     })
     .fail(function() {
@@ -89,9 +84,9 @@ $(document).ready(function(e) {
 
   }
 
-  console.log(typeof update_times);
 // var timer = setInterval(update_times, 100000);
   // timer;
+
 
 
 

@@ -21,8 +21,6 @@ class RestaurantsController < ApplicationController
 
   def waitingroom
     @party = Party.find(session[:party_id])
-    p @party
-    p params
     if @party.waitingroom != nil
       render :waiting
     else

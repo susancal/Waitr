@@ -9,7 +9,7 @@ class WaitingroomController < ApplicationController
 
   def check
     if request.xhr?
-      render json: Waitingroom.all.length.to_json
+      render json: {"length" => Waitingroom.all.length.to_json
     end
   end
 
