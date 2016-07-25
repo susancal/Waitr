@@ -4,6 +4,8 @@
 
 .timer {
   font-size: 36px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 h3.guess-status-incorrect {
@@ -61,7 +63,7 @@ font-weight: bold;
 }
 .player h4 {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 12px;
   padding: 4px;
   color: white;
   margin-bottom: 0px;
@@ -79,12 +81,26 @@ font-weight: bold;
 
 }
 
+.score-box-right {
+  margin: 0 auto;
+  font-size: 36px;
+  color: green
+  border: green solid 2px;
+  border-top: green solid 1px;
+
+}
+
 .score-board-container{
-  border: 5px red solid;
-  margin-bottom: 5px;
+  margin-bottom:25px;
+  margin-top: 10px;
 }
 
 .staticquestionheader {
   height: 230px;
   width: 100%;
+}
+
+.waiting {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }

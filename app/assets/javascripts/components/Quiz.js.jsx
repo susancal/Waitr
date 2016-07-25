@@ -25,7 +25,6 @@
         this.setState({complete: true});
         this.saveYourScoreDatabase();
         this.saveOtherScoreDatabase();
-        this.loadSummaryPage();
       }
   },
 
@@ -78,7 +77,7 @@
       <div>
         {this.renderStaticQuestionHeader()}
         <Form round_id={this.props.roundYou.id} party_id={this.props.roundYou.party_id} question_id={this.props.questions[this.state.question_count].id} setYourScore ={this.setYourScore} setOtherScore ={this.setOtherScore} updateAnswer={this.updateAnswerStatus}/>
-        <QuestionTimer nextQuestion={this.nextQuestion} complete={this.state.complete}/>
+        <QuestionTimer nextQuestion={this.nextQuestion} complete={this.state.complete} goToSummary={this.loadSummaryPage}/>
         <ScoreBoard yourScore={this.state.your_score} otherScore={this.state.other_score}/>
       </div>
       )

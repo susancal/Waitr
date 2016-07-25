@@ -1,6 +1,6 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 15, waiting: "Answer Now!"}
+    return {timer: 5, waiting: "Answer Now!"}
   },
   componentDidMount: function(){
     this.startTimer();
@@ -12,6 +12,8 @@ var QuestionTimer = React.createClass({
   componentDidUpdate: function(){
     if (this.props.complete === true){
       clearInterval(this.interval);
+      this.setState({waiting: "  "})
+      this.props.goToSummary();
     }
   },
 
@@ -20,13 +22,13 @@ var QuestionTimer = React.createClass({
       $('button').addClass('btn disabled')
       clearInterval(this.interval);
       this.setState({waiting: "Get Ready For Next Question" });
-      setTimeout(this.questionReset, 10000);
+      setTimeout(this.questionReset, 2000);
     }
   },
 
   questionReset: function(){
     this.props.nextQuestion();
-    this.setState({timer: 15});
+    this.setState({timer: 5});
     this.startTimer();
     this.setState({waiting: "Answer Now!" });
   },

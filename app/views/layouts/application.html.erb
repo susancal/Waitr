@@ -27,8 +27,10 @@
     <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Waitr</a>
-      <% if logged_in? %>
-        <p align="right"><%= link_to 'Logout', logout_path%></p>
+      <% if logged_in?%>
+        <% unless current_patron %>
+          <p align="right"><%= link_to 'Logout', logout_path%></p>
+        <% end %>
       <% end %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       </ul>

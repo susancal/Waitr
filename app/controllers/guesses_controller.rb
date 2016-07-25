@@ -3,7 +3,6 @@ class GuessesController < ApplicationController
     @guess = Guess.new(guess_params)
     @question = Question.find(@guess.question_id)
     @your_round = Round.find(params[:guess][:round_id])
-    p "IJDHKFJKDSHFKJSDFH "
     p @your_round
     @your_round.player_num = 1 ? other_num = 2 : other_num = 1
       @other_round = Round.find_by_secret_key_and_player_num(@your_round.secret_key, other_num)
