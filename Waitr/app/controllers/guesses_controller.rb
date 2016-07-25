@@ -2,7 +2,7 @@ class GuessesController < ApplicationController
   def create
     p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     p guess_params
-    binding.pry
+    # binding.pry
     @guess = Guess.new(guess_params)
     @question = Question.find(@guess.question_id)
     p @guess

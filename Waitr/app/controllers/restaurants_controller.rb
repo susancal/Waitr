@@ -7,9 +7,22 @@ class RestaurantsController < ApplicationController
   		params[:id] = session[:restaurant_id]
       @waiting_list = @restaurant.waiting_list
       @prize = @restaurant.prize
+      @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
+      @waiting_list = @parties.order(:created_at)
+      @new = @waiting_list.map { |e| e.elapsed }
     else
       redirect_to login_path
     end
+
+    if request.xhr?
+      render json: @new.to_json
+    end
+  end
+
+  def waitingroom
+    @party = Party.find(session[:party_id])
+    @wr = Waitingroom.create(restaurant_id: params[:id], party_id: @party.id, party_key: @party.key)
+    render :waiting
   end
 
 private

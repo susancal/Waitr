@@ -5,6 +5,7 @@ class Party < ApplicationRecord
   has_many :rounds
   has_many :quizzes_taken, through: :rounds, source: :quiz
   belongs_to :restaurant
+  has_one :waitingroom
 
   validates :restaurant_id, presence: true
   validates :name, presence: true

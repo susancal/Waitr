@@ -41,14 +41,16 @@ You are logged in as: <%= @restaurant.name %>
       </tr>
     </thead>
     <tbody>
+      <% i = 1 %>
       <% @waiting_list.each do |party| %>
-      <tr>
+      <tr id="<%= i %>">
         <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  data: { confirm: "Would you like to remove party from waiting list?" } %></td>
         <td><%= party.size %></td>
         <td><%= party.formatted_cell %></td>
-        <td><%= party.points_earned %></td>
-        <td><%= party.elapsed %></td>
+        <td class="points-earned"><%= party.points_earned %></td>
+        <td class="elapsed <%= i %>"><%= party.elapsed %></td>
       </tr>
+      <% i+=1 %>
       <% end %>
       <tbody>
       </table>

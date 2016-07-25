@@ -22,6 +22,7 @@ class PartiesController < ApplicationController
       @waiting_list = @restaurant.waiting_list
       render 'sessions/show'
     end
+  end
 
   def edit
     party = Party.find(params[:id])
@@ -64,9 +65,6 @@ class PartiesController < ApplicationController
   private
     def party_params
       params.require(:party).permit(:name, :cell, :size, :restaurant_id)
-    end
-
-    def self.party_finder
     end
 end
 

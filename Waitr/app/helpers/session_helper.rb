@@ -12,4 +12,6 @@ module SessionHelper
     current_restaurant != nil
   end
 
+
+
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   resources :restaurants, only: [:show] do
-    get '/waitingroom' => 'rounds#waitingroom'
+    get '/waitingroom' => 'restaurants#waitingroom'
     resources :parties
     resources :prizes
   end
