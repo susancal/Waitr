@@ -1,11 +1,9 @@
 class RoundsController < ApplicationController
 
   def index
-
   end
 
   def new
-
   end
 
   def update
@@ -23,7 +21,7 @@ class RoundsController < ApplicationController
   end
 
   def show
-    # @round = Round.where(secret_key: params[:key].to_i, party_id: session[:party_id])[0]rai
+    @round = Round.where(secret_key: params[:key].to_i, party_id: session[:party_id])[0]
     @quiz = Quiz.find(@round.quiz_id)
     @quiz_questions = @quiz.questions
     @round_you = Round.find(1)  #HARDCODED
@@ -69,10 +67,15 @@ class RoundsController < ApplicationController
    render :waiting
  end
 
-
  def summary
-    Waitingroom.destroy_all
- end
+  round = Round.where(secret_key: params[:key])
+  @player_1 = round.find_by(party_id: 1)
+  @player_2 = round.find_by(party_id: 2)
 
+  respond_to do |format|
+    format.json  render json: [@player_1, @player_2]
+  end
+
+ end
 
 end
