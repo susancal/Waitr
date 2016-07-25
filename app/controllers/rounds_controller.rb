@@ -23,7 +23,7 @@ class RoundsController < ApplicationController
   end
 
   def show
-    Waitingroom.destroy_all
+    # Waitingroom.destroy_all
     @round = Round.where(secret_key: params[:key], party_id: session[:party_id])[0]
     p @round.quiz
     @quiz = Quiz.find(@round.quiz_id)

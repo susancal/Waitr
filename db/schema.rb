@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160724191459) do
     t.integer  "restaurant_id"
     t.integer  "party_id"
     t.integer  "party_key"
+    t.string   "key"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

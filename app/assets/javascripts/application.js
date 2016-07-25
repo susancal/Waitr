@@ -20,8 +20,8 @@
 $(document).ready(function(e) {
 
   if ($("#wr").length > 0 ){
-    console.log("eutfoirejfgiojrg");
-    checkForFirstPlayer();
+    console.log("eutfoirejfgfcdafiojrg");
+    setTimeout(checkForFirstPlayer, 2000)
   }
 
   if ($(".prize-header").length > 0){
@@ -32,34 +32,36 @@ $(document).ready(function(e) {
 
 
 
-  var update_times = function(){
-    $.ajax({
-      url: '/restaurants/1',
-      type: 'GET',
-      dataType: 'JSON'
-    })
-    .done(function(response) {
-      for (var i = 0; i < response.length; i++){
-        var x = i+1;
-        $("td.elapsed").html(response[i]);
-      }
+  // var update_times = function(){
+  //   $.ajax({
+  //     url: '/restaurants/1',
+  //     type: 'GET',
+  //     dataType: 'JSON'
+  //   })
+  //   .done(function(response) {
+  //     for (var i = 0; i < response.length; i++){
+  //       var x = i+1;
+  //       $("td.elapsed").html(response[i]);
+  //     }
 
-    })
-    .fail(function() {
-      console.log("error");
-    });
-  }
+  //   })
+  //   .fail(function() {
+  //     console.log("error");
+  //   });
+  // }
 
 
 
     // var timer = setInterval(update_times, 1000);
 
 
-      function formatTime(time, num){
-        var $elapsedTag = $("<td>", {class: num})
-      }
+      // function formatTime(time, num){
+      //   var $elapsedTag = $("<td>", {class: num})
+      // }
 
   function checkForFirstPlayer(){
+    var id = $("#key").text()
+    console.log(id);
     var checker;
     $.ajax({
       url: '/check',
@@ -70,7 +72,7 @@ $(document).ready(function(e) {
     .done(function(response) {
       console.log(response.length)
       if (response.length === 2){
-        url = "http://localhost:3000/rounds/key/" + response.key
+        url = "http://localhost:3000/rounds/key/" + id
         console.log(response);
         location.href=url;
       } else if (response.length === 1){
