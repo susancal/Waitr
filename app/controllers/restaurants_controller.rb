@@ -22,6 +22,7 @@ class RestaurantsController < ApplicationController
   def waitingroom
     if Waitingroom.all.length == 0
       random = match_key
+      Key.create(key: random, quiz_id: rand(1..30))
     elsif Waitingroom.all.length == 1
         random = Waitingroom.first.key
     end
