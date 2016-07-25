@@ -4,7 +4,6 @@ class WaitingroomController < ApplicationController
   end
 
   def index
-
   end
 
   def check
@@ -28,7 +27,17 @@ class WaitingroomController < ApplicationController
   end
 
   def find_game
+  end
 
+  def sendstatus
+    round1 = Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[0], player_num: 1)
+    round2 = Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[1], player_num: 2)
+
+    if round1.save && round2.save
+      ActionCable.server.broadcast 'waitingroom',
+        message: "THERE WAS A MATCH OR SOMETHING ZOMG"
+      head :ok
+    end
   end
 
 end
