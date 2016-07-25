@@ -24,7 +24,6 @@ class RoundsController < ApplicationController
 
   def show
     # @round = Round.where(secret_key: params[:key].to_i, party_id: session[:party_id])[0]rai
-    @round = Round.first
     @quiz = Quiz.find(@round.quiz_id)
     @quiz_questions = @quiz.questions
     @round_you = Round.find(1)  #HARDCODED
@@ -32,6 +31,9 @@ class RoundsController < ApplicationController
   end
 
   def create
+    #FIND TWO PEOPLE
+
+
     @player1 = Party.find(session[:party_id])
     # @player = Party.find(session[:party_id])
     @round = Round.create!(party_one_id: params[:player_one_id])
