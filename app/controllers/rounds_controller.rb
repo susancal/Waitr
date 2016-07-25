@@ -28,7 +28,8 @@ class RoundsController < ApplicationController
     @round = Round.create(secret_key: params[:key], party_id: session[:party_id], quiz_id: @quiz.id)
     @quiz_questions = @quiz.questions
     @party_id = session[:party_id]
-    # Waitingroom.destroy_all
+    sleep(2)
+    Waitingroom.destroy_all
   end
 
   def create
