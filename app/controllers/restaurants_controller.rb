@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
   def index
+    # Is user logged in?
   	if logged_in?
       @restaurant = Restaurant.find(session[:restaurant_id])
       @waiting_list = @restaurant.waiting_list
