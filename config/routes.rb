@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   resources :quizzes do
     resources :rounds do
-      get '/summary' => 'rounds#summary'
       # resources :questions
     end
   end
@@ -27,5 +26,7 @@ Rails.application.routes.draw do
   get '/check' => 'waitingroom#check'
   get '/match' => 'waitingroom#match'
   get '/rounds/key/:key' => 'rounds#show'
+  get '/rounds/key/:key/summary' => 'rounds#summary'
+
   # mount ActionCable.server => "/cable"
 end

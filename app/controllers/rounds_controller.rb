@@ -23,13 +23,12 @@ class RoundsController < ApplicationController
   end
 
   def show
-    # @round = Round.where(secret_key: params[:key].to_i, party_id: session[:party_id])[0]
+    # @round = Round.where(secret_key: params[:key].to_i, party_id: session[:party_id])[0]rai
     @round = Round.first
-    p @round.quiz
     @quiz = Quiz.find(@round.quiz_id)
     @quiz_questions = @quiz.questions
-    @player1 = Party.find(1)  #current_user from session
-    @player2 = Party.find(2) #the other player with matching round key
+    @round_you = Round.find(1)  #HARDCODED
+    @round_other = Round.find(2) #HARDCODED
   end
 
   def create

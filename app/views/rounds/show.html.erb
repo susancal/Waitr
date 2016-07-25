@@ -1,1 +1,1 @@
-<%= react_component('Quiz', {quiz_id: @quiz.id, questions: @quiz_questions, player: @party_id, round_id: @round.id}) %>
+<%= react_component('Quiz', {quiz: @quiz, questions: @quiz_questions, roundYou: @round_you, roundOther: @round_other}) %>

@@ -36,7 +36,7 @@ text-align: center;
 .waiting {
 font-size: 20px;
 font-weight: bold;
-}
+  }
 
 .guess-container {
   left: 50%;
@@ -72,7 +72,7 @@ font-weight: bold;
 }
 .score-box {
   margin: 0 auto;
-  font-size: 32px;
+  font-size: 26px;
   color: white;
   border: white solid 2px;
   border-top: white solid 1px;
@@ -80,6 +80,11 @@ font-weight: bold;
 }
 
 .score-board-container{
-  padding-top: epx;
+  border: 5px red solid;
+  margin-bottom: 5px;
 }
 
+.staticquestionheader {
+  height: 230px;
+  width: 100%;
+}

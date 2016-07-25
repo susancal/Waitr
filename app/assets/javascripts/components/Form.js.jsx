@@ -7,7 +7,6 @@ var Form = React.createClass({
     if (nextProps.question_id !== this.props.question_id) {
       this.setState({value: ""});
       this.setState({guess: ""});
-      this.setState({guess_response: ""});
     }
   },
 
@@ -16,20 +15,22 @@ var Form = React.createClass({
   },
   saveGuess: function(party_id, question_id, round_id, guess_value){
     var guess = {party_id: party_id , question_id: question_id, round_id: round_id, guess_value: guess_value}
-      this.setState({guess: "'" + guess.guess_value + "'" + " was "})
     $.post('/guesses', {guess: guess}).done(function(response){
           this.props.updateAnswer();
           console.log(response)
+          this.props.setYourScore(response.your_new_score)
+          this.props.setOtherScore(response.other_new_score)
 
         if (response.status === "correct") {
-            this.props.incrementPlayerScore();
-            this.setState({guess_response: 'CORRECT!'})
-            $('h3#guess-status').removeClass("guess-status-incorrect")
+            this.setState({guess: "'" + guess.guess_value + "'" + " was "})
+            this.setState({guess_response: "CORRECT!"});
+            $('h3#guess').removeClass("guess-status-incorrect")
             $('h3#guess').addClass('guess-status-correct')
 
         } else {
+            this.setState({guess: "'" + guess.guess_value + "'" + " was "})
             this.setState({guess_response: 'INCORRECT'})
-            $('h3#guess-status').removeClass("guess-status-correct")
+            $('h3#guess').removeClass("guess-status-correct")
             $('h3#guess').addClass('guess-status-incorrect')
         }
     }.bind(this));
@@ -51,7 +52,7 @@ var Form = React.createClass({
               this.props.party_id,
               this.props.question_id,
               this.props.round_id,
-              this.state.value, this.props.incrementPlayerScore
+              this.state.value
               )
           }.bind(this)
         }>

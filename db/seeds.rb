@@ -23,4 +23,5 @@ api.seed_db
 
 Round.create!(quiz_id: 1, party_id: 1, secret_key: 123456)
 
+Round.create!(quiz_id: 1, party_id: 2, secret_key: 123456)
 
