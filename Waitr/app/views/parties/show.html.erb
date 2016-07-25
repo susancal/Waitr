@@ -6,7 +6,17 @@
 </h1><br>
 <h3>people ahead of you</h3>
 
-
+<div>
+  <ul>
+  <% @waiting_list.times do |icons| %>
+    <% if icons == @party.queue_index %>
+      <li>"OTHER PEOPLE"</li>
+    <% else %>
+      <li>"IT'S YOU!!!!!!"</li>
+    <% end %>
+  <% end %>
+  </ul>
+  
 <div id="blurb">
   <h5>Want to pass the time? Play a round of head-to-head trivia for a chance to earn points and get rewards!</h5>
 </div>
