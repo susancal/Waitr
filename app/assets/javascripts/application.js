@@ -13,7 +13,6 @@
 //= require_tree ./channels
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require react
 //= require react_ujs
 //= require components
@@ -21,51 +20,50 @@
 
 $(document).ready(function(e) {
 
-
-    // var checker = setInterval(checkForFirstPlayer(), 5000)
-
   if ($("#wr").length > 0 ){
-    console.log("eutfoirejfgiojrg");
-    checkForFirstPlayer();
+    console.log("eutfoirejfgfcdafiojrg");
+    setTimeout(checkForFirstPlayer, 2000)
   }
 
   if ($(".prize-header").length > 0){
     console.log("home page!")
     // timer
   }
-
 });
 
 
 
-  var update_times = function(){
-    $.ajax({
-      url: '/restaurants/1',
-      type: 'GET',
-      dataType: 'JSON'
-    })
-    .done(function(response) {
-      for (var i = 0; i < response.length; i++){
-        var x = i+1;
-        $("td.elapsed").html(response[i]);
-      }
+  // var update_times = function(){
+  //   $.ajax({
+  //     url: '/restaurants/1',
+  //     type: 'GET',
+  //     dataType: 'JSON'
+  //   })
+  //   .done(function(response) {
+  //     for (var i = 0; i < response.length; i++){
+  //       var x = i+1;
+  //       $("td.elapsed").html(response[i]);
+  //     }
 
-    })
-    .fail(function() {
-      console.log("error");
-    });
-  }
-
-
-
-// var timer = setInterval(update_times, 1000);
+  //   })
+  //   .fail(function() {
+  //     console.log("error");
+  //   });
+  // }
 
 
-      function formatTime(time, num){
-        var $elapsedTag = $("<td>", {class: num})
-      }
+
+    // var timer = setInterval(update_times, 1000);
+
+
+      // function formatTime(time, num){
+      //   var $elapsedTag = $("<td>", {class: num})
+      // }
 
   function checkForFirstPlayer(){
+    var id = $("#key").text()
+    console.log(id);
+    var checker;
     $.ajax({
       url: '/check',
       type: 'GET',
@@ -73,15 +71,15 @@ $(document).ready(function(e) {
       data: {}
     })
     .done(function(response) {
-      console.log(response)
-      if (response === 2){
-        console.log("THERE ARE 2!!!!!!!!!!!!!!!!");
+      console.log(response.length)
+      if (response.length === 2){
+        url = "http://localhost:3000/rounds/key/" + id
         console.log(response);
-        location.href="http://localhost:3000/match"
-      } else if (response === 1){
+        location.href=url;
+      } else if (response.length === 1){
         console.log("you are alone")
         console.log(response);
-        setInterval(checkForFirstPlayer(), 5000);
+        setTimeout(checkForFirstPlayer, 1000)
       }
     })
     .fail(function() {
@@ -90,9 +88,9 @@ $(document).ready(function(e) {
 
   }
 
-  console.log(typeof update_times);
 // var timer = setInterval(update_times, 100000);
   // timer;
+
 
 
 

@@ -4,6 +4,7 @@ class CreateWaitingrooms < ActiveRecord::Migration[5.0]
       t.integer :restaurant_id
       t.integer :party_id
       t.integer :party_key
+      t.string :key
 
       t.timestamps
     end
