@@ -1,25 +1,25 @@
 class GuessesController < ApplicationController
   def create
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p guess_params
-    # binding.pry
     @guess = Guess.new(guess_params)
     @question = Question.find(@guess.question_id)
-    p @guess
+    @round = Round.find(params[:guess][:round_id])
 
     if @guess.save
       if @guess.guess_value == @question.answer
-          @status = "correct"
+          @guess.status = "correct"
+          @round.party_score +=1
+          @round.save
+          @score = @round.party_score
       else
-          @status = "incorrect"
+          @guess.status = "incorrect"
+          @score = @round.party_score
       end
+      @guess.save
     else
-      @status = "notsave"
+      render json: {status: "error"}
     end
-
-      render json: {status: @status}
+      render json: {status: @guess.status, current_score: @score}
   end
-
 
   private
 

@@ -16,10 +16,11 @@ var Form = React.createClass({
   },
   saveGuess: function(party_id, question_id, round_id, guess_value){
     var guess = {party_id: party_id , question_id: question_id, round_id: round_id, guess_value: guess_value}
-      this.setState({guess: guess.guess_value})
+      this.setState({guess: "'" + guess.guess_value + "'" + " was "})
     $.post('/guesses', {guess: guess}).done(function(response){
           this.props.updateAnswer();
-          console.log(response.status)
+          console.log(response)
+
         if (response.status === "correct") {
             this.props.incrementPlayerScore();
             this.setState({guess_response: 'CORRECT!'})

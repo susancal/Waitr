@@ -45,7 +45,7 @@ var QuestionTimer = React.createClass({
   render: function(){
     return (
       <div>
-        <h1>{this.state.timer}'</h1>
+        <h1 className="timer">{this.state.timer}'</h1>
         <p className="waiting"> {this.state.waiting} </p>
       </div>
       )

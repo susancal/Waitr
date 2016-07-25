@@ -21,6 +21,6 @@ Party.create!(restaurant_id: 1, name: "Fonzi", size: 2, cell: "7736243333", in_q
 api = Triviaapi.new
 api.seed_db
 
-Round.create!(quiz_id: 1, party_id: 1)
+Round.create!(quiz_id: 1, party_id: 1, secret_key: 123456)
 
 
