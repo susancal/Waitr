@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 		if @restaurant && @restaurant.authenticate(login_params[:password])
 			session[:restaurant_id] = @restaurant.id
 
-			redirect_to r_show_path(:id => @restaurant.id)
+			redirect_to root_path
 		else
 			@error = "Your name or password was incorrect."
 			render 'new'
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		session.delete(:user_id)
+		session.delete(:restaurant_id)
     redirect_to root_path
 	end
 

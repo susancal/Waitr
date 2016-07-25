@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-<!--Import Google Icon Font-->
+      <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
@@ -25,6 +25,9 @@
     <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Waitr</a>
+      <% if logged_in? %>
+        <p align="right"><%= link_to 'Logout', logout_path%></p>
+      <% end %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       </ul>
     </div>
