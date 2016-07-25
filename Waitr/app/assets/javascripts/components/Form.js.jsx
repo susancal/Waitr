@@ -36,7 +36,7 @@ var Form = React.createClass({
 
   render: function(){
     return (
-      <div>
+      <div className="guess-container">
         <input
         type = "text"
         value = {this.state.value}
@@ -44,7 +44,7 @@ var Form = React.createClass({
         placeholder = "Enter Your Guess Here"
         />
 
-        <button className="btn waves-effect waves-light " onClick={
+        <button className="btn waves-effect waves-light" onClick={
           function(){
             this.saveGuess(
               this.props.party_id,

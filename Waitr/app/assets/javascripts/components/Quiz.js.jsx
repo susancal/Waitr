@@ -55,12 +55,11 @@
       var question = this.props.questions[this.state.question_count]
     return (
       <div>
-        <QuestionCount quizlength={this.props.questions.length}questionnumber={this.state.question_count}/>
+        <QuestionCount quizlength={this.props.questions.length}questionnumber={this.state.question_count}/>        
+        <ScoreBoard playerScore={this.state.player_score}/>
         <Question question={question}/>
         <QuestionTimer nextQuestion={this.nextQuestion} complete={this.state.complete}/>
         <Form round_id={this.props.round_id} party_id={this.props.party_id} question_id={this.props.questions[this.state.question_count].id} incrementPlayerScore ={this.incrementPlayerScore} updateAnswer={this.updateAnswerStatus}/>
-
-        <ScoreBoard playerScore={this.state.player_score}/>
       </div>
       )
   }

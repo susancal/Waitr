@@ -1,10 +1,8 @@
-<h2>Thanks for dining at <%= @restaurant.name %>!</h2>
-<h3>Party name: <%= @party.name %><br><br></h3>
+<h3><%= @party.name %> Party <h3>
+<h5>Thanks for dining at <%= @restaurant.name %>!</h5>
 
-<h1 id="people-ahead">
-  <%= @people_ahead %>
-</h1><br>
-<h3>people ahead of you</h3>
+<h1 id="people-ahead"><%= @people_ahead %></h1>
+<h3 class="people-ahead-2">parties ahead of you.</h3>
 
 <div>
   <ul>
@@ -18,10 +16,8 @@
   </ul>
   
 <div id="blurb">
-  <h5>Want to pass the time? Play a round of head-to-head trivia for a chance to earn points and get rewards!</h5>
+  <h5>Need to pass time? Play trivia against other parties and win <span class="bold-text">free</span> food!</h5>
 </div>
 <br>
 
-<%= link_to "START PLAYING", restaurant_waitingroom_path(@restaurant) %>
-
-<a class="waves-effect waves-light btn" href="<%= leaderboard_path(@restaurant) %>">View Leaderboard</a>
+<%= link_to "START PLAYING", restaurant_waitingroom_path(@restaurant),class: "waves-effect waves-light btn-large" %>
