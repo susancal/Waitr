@@ -1,8 +1,8 @@
 var ScoreBoard = React.createClass({
   render: function(){
     return (
-      <div>
-        <h3 className="score-board">Round Points: {this.props.playerScore}</h3>
+      <div className="scoreboard-container">
+        <h3 className="score-board"># Correct: {this.props.playerScore}</h3>
       </div>
     )
   }

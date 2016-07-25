@@ -6,29 +6,50 @@
 h3.guess-status-incorrect {
   color: red;
   font-style: italic;
-  font-size: 24px;
+  font-size: 16px;
 
 }
 
 h3.guess-status-correct {
   color: green;
   font-style: italic;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .question-display {
+  margin-top: 30px;
   font-style: italic;
-  font-size: 20px;
-  border: solid 2px black;
-  padding: 20px;
+  font-size: 24px;
+  border: solid 4px black;
+  padding: 15px;
 }
 
 .question-count {
+  font-size: 24px;
 font-weight: bold;
+text-align: center;
+text-decoration: underline;
 }
 
 .waiting {
-font-size: 24px;
+font-size: 20px;
+font-weight: bold;
+}
 
+.guess-container {
+  left: 50%;
+  right: 50%;
+}
 
+.scoreboard-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.score-board {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 1.92rem;
+  margin: 0 auto;
 }
