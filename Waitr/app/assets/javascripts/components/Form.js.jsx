@@ -19,9 +19,9 @@ var Form = React.createClass({
       this.setState({guess: guess.guess_value})
     $.post('/guesses', {guess: guess}).done(function(response){
           this.props.updateAnswer();
-          console.log(response)
+          console.log(response.status)
         if (response.status === "correct") {
-            this.props.incrementPlayerOneScore();
+            this.props.incrementPlayerScore();
             this.setState({guess_response: 'CORRECT!'})
             $('h3#guess-status').removeClass("guess-status-incorrect")
             $('h3#guess').addClass('guess-status-correct')
@@ -50,7 +50,7 @@ var Form = React.createClass({
               this.props.party_id,
               this.props.question_id,
               this.props.round_id,
-              this.state.value, this.props.incrementPlayerOneScore
+              this.state.value, this.props.incrementPlayerScore
               )
           }.bind(this)
         }>

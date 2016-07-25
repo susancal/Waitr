@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
 
     @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
     @waiting_list = @parties.order(:created_at)
-    @prize = @restaurant.prize
+
     @new = @waiting_list.map { |e| e.elapsed }
     if request.xhr?
       render json: @new.to_json

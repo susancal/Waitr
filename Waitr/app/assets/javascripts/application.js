@@ -49,7 +49,7 @@ $(document).ready(function(e) {
   }
 
   console.log(typeof update_times);
-var timer = setInterval(update_times, 1000);
+var timer = setInterval(update_times, 100000);
   timer;
 
 

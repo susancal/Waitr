@@ -1,7 +1,7 @@
   var Quiz = React.createClass({
 
   getInitialState: function(){
-    return {question_count: 0, complete: false, player_one_score: 0, answer_status: "Waiting For Answer"}
+    return {question_count: 0, complete: false, player_score: 0, answer_status: "Waiting For Answer"}
   },
 
   nextQuestion: function(){
@@ -12,8 +12,8 @@
     }
   },
 
-  incrementPlayerOneScore: function(){
-    this.setState({player_one_score: this.state.player_one_score + 1})
+  incrementPlayerScore: function(){
+    this.setState({player_score: this.state.player_score + 1})
   },
 
   checkCompletion: function(){
@@ -26,7 +26,7 @@
 
   saveScoreDatabase: function(){
     url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.round_id
-    data = {player_one_score: this.state.player_one_score}
+    data = {player_score: this.state.player_score}
 
     $.ajax({url: url, type: 'PUT', data}).done(function(response){
      console.log(response);
@@ -58,9 +58,9 @@
         <QuestionCount quizlength={this.props.questions.length}questionnumber={this.state.question_count}/>
         <Question question={question}/>
         <QuestionTimer nextQuestion={this.nextQuestion} complete={this.state.complete}/>
-        <Form round_id={this.props.round_id} party_id={this.props.party_id} question_id={this.props.questions[this.state.question_count].id} incrementPlayerOneScore ={this.incrementPlayerOneScore} updateAnswer={this.updateAnswerStatus}/>
+        <Form round_id={this.props.round_id} party_id={this.props.party_id} question_id={this.props.questions[this.state.question_count].id} incrementPlayerScore ={this.incrementPlayerScore} updateAnswer={this.updateAnswerStatus}/>
 
-        <ScoreBoard playerOneScore={this.state.player_one_score}/>
+        <ScoreBoard playerScore={this.state.player_score}/>
       </div>
       )
   }
