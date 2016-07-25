@@ -6,7 +6,8 @@ var Form = React.createClass({
   componentWillReceiveProps: function(nextProps){
     if (nextProps.question_id !== this.props.question_id) {
       this.setState({value: ""});
-      this.setState({guess: ""});
+      this.setState({guess: " "});
+      this.setState({guess_response: ""})
       this.setState({button_clicked_count: 0})
     }
   },
