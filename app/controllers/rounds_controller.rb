@@ -25,7 +25,6 @@ class RoundsController < ApplicationController
   def show
     # Waitingroom.destroy_all
     @round = Round.where(secret_key: params[:key], party_id: session[:party_id])[0]
-    p @round.quiz
     @quiz = Quiz.find(@round.quiz_id)
     @quiz_questions = @quiz.questions
     @party_id = session[:party_id]

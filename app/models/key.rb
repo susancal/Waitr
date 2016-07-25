@@ -1,1 +1,4 @@
-key.rb
+class Prize < ApplicationRecord
+  belongs_to :quiz
+
+end
