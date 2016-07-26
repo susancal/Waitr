@@ -3,13 +3,14 @@ $.ajax({
   contentType: "application/json; charset=utf-8",
   url: '/rounds/data/123456',
   success: function(data) {
-    console.log("THE AJAX WORKED")
-    console.log(data)
+    console.log("THE AJAX WORKED");
+    console.log(data);
     draw(data);
   }
 })
 
 function draw(data) {
+  console.log("Inside of the d3 shit");
 
   var dataset = {
     apples: [53245, 28479, 19697, 24037, 40245],

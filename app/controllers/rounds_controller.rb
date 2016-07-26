@@ -77,14 +77,14 @@ class RoundsController < ApplicationController
 
  def data
   round = Round.where(secret_key: params[:key])
-  @player_1 = round.find_by(party_id: 1)
+  @player_1_round = round.find_by(party_id: 1)
   p "$)HJEIUOFWEHFIUOPEWHJFIOWEPJFIOEWPFJIOPWEJFIWEOPFJIEWOPFJEWIOPFJOPEWIF"
-  p @player_1
+  p @player_1_round.party_score
   p "$)HJEIUOFWEHFIUOPEWHJFIOWEPJFIOEWPFJIOPWEJFIWEOPFJIEWOPFJEWIOPFJOPEWIF"
-  @player_2 = round.find_by(party_id: 2)
+  @player_2_round = round.find_by(party_id: 2)
   respond_to do |format|
     format.json {
-      render json: [1, @player2.id]
+      render json: [@player_1_round.party_score, @player_2_round.party_score]
     }
   end
  end
