@@ -9,6 +9,7 @@
   <%= javascript_include_tag 'application' %>
   <!--Import Google Icon Font-->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
   <!--Let browser know website is optimized for mobile-->
@@ -22,7 +23,7 @@
 
  <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo">Waitr</a>
+    <div class="brand-logo">Waitr.</div>
     <% if logged_in?%>
     <% unless current_patron %>
       <p align="right"><%= link_to 'Logout', logout_path%></p>
