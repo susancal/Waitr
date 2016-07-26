@@ -74,7 +74,7 @@ $(document).ready(function(e) {
     .done(function(response) {
       console.log(response)
       if (response.length === 2){
-        url = "http://localhost:3000/rounds/key/" + id
+        url = "https://waitr-app.herokuapp.com/rounds/key/" + id
         console.log(response);
         location.href=url;
       } else if (response.length === 1){
