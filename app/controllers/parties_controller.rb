@@ -6,7 +6,9 @@ class PartiesController < ApplicationController
   end
 
   def show
-      if Party.find(params[:id]) != nil
+
+      # if Party.find_by(key: params[:id]) != nil
+      if Party.find_by(key: params[:id]) != nil
         @party = Party.find(params[:id])
         @restaurant = @party.restaurant
         @waiting_parties = @restaurant.waiting_list
