@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   get '/coms' => 'waitingroom#sendstatus'
   get '/rounds/key/:key' => 'rounds#show'
   get '/rounds/key/:key/summary' => 'rounds#summary'
+  get '/rounds/data/:key' => 'rounds#data', :defaults => { :format => 'json' }
+
 end

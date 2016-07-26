@@ -12,6 +12,7 @@ class RoundsController < ApplicationController
     end
   end
 
+
   def show
     if current_patron
       @key = Key.where(key: params[:key].to_s)[0]
@@ -35,7 +36,42 @@ class RoundsController < ApplicationController
     end
   end
 
+
  def summary
+  @party = current_patron
+  @restaurant = Restaurant.find(@party.restaurant_id)
+  @your_round = Round.find_by_secret_key_and_party_id(params[:key], current_patron.id)
+  @your_round.player_num == 1 ? other_num = 2 : other_num = 1
+  @other_round = Round.find_by_secret_key_and_player_num(params[:key], other_num)
+  @your_round_score = @your_round.party_score
+  @other_round_score = @other_round.party_score
+  if @your_round_score > @other_round_score
+    @message = "You won 1,000 pts!"
+    @party.points_earned += 1000
+    @party.save
+  elsif @other_round_score > @your_round_score
+    @message = "Opponent won"
+  else
+    @message = "Tie Game"
+  end
+ end
+
+ def data
+  round = Round.where(secret_key: params[:key])
+
+
+
+
+  @player_1_round = round.find_by(party_id: 1)
+  p "$)HJEIUOFWEHFIUOPEWHJFIOWEPJFIOEWPFJIOPWEJFIWEOPFJIEWOPFJEWIOPFJOPEWIF"
+  p @player_1_round.party_score
+  p "$)HJEIUOFWEHFIUOPEWHJFIOWEPJFIOEWPFJIOPWEJFIWEOPFJIEWOPFJEWIOPFJOPEWIF"
+  @player_2_round = round.find_by(party_id: 2)
+  respond_to do |format|
+    format.json {
+      render json: [@player_1_round.party_score, @player_2_round.party_score]
+    }
+  end
  end
 
 end

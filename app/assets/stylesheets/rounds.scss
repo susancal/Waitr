@@ -1,3 +1,28 @@
 // Place all the styles related to the rounds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+  padding-top: 7px;
+}
+h5.summary, h5.summarytitle {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h5.summary{
+  font-size: 16px;
+}
+
+h5.summarytitle{
+  font-weight: bold;
+  font-size: 2.0em;
+
+}
+div.graphs {
+  height: 0px;
+}
+
+a.btn, a.btn:hover,a.btn-large, a.btn-large:hover {
+  background-color: #388DD2;
+  }
