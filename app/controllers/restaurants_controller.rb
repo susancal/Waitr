@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
   def index
+
     # Is user logged in?
   	if logged_in?
       @restaurant = Restaurant.find(session[:restaurant_id])
@@ -24,7 +25,7 @@ class RestaurantsController < ApplicationController
     if Waitingroom.all.length == 0
       random = match_key
       Key.create(key: random, quiz_id: rand(1..30))
-    elsif Waitingroom.all.length == 1
+    elsif Waitingroom.all.length != 0
         random = Waitingroom.first.key
     end
     @party = Party.find(session[:party_id])
