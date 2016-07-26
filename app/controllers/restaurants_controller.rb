@@ -29,6 +29,7 @@ class RestaurantsController < ApplicationController
     end
     @party = Party.find(session[:party_id])
     if @party.waitingroom != nil
+      @wr = @party.waitingroom
       render :waiting
     else
       @wr = Waitingroom.find_or_create_by(restaurant_id: params[:restaurant_id], party_id: @party.id, party_key: @party.key, key: random)

@@ -35,4 +35,8 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 
