@@ -1,7 +1,8 @@
-<h4><%= @party.name %> Party <h4>
+<h4 class="bold-text" class="party-title"><%= @party.name %> Party <h4>
+  <p class="prize-progress"> <span class="embolden"><%=@party_points %> pts </span>earned! <%=@points_needed%>  more needed to win a <span class="embolden">FREE <%=@prize.prize_name  %></span></p>
 <h5>Thanks for dining at <br><%= @restaurant.name %>!</h5>
 
-<h3 class="people-ahead-2">There are</h3><h1 id="people-ahead"><%= @people_ahead %></h1>
+<h3 class="people-ahead-2">There are:</h3><h1 id="people-ahead"><%= @people_ahead %></h1>
 <h3 class="people-ahead-2">parties ahead of you.</h3>
 
 

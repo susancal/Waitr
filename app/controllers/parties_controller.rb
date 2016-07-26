@@ -9,11 +9,14 @@ class PartiesController < ApplicationController
       if Party.find_by(key: params[:id]) != nil
         @party = Party.find_by(key: params[:id])
         session[:party_id] = @party.id
+        @party_points = @party.points_earned
+
         @restaurant = @party.restaurant
         @waiting_parties = @restaurant.waiting_list
         parties = @restaurant.waiting_list.map { |e| e.id  }
         @people_ahead = parties.index(@party.id)
         @prize = @restaurant.prize
+        @points_needed = @prize.points_needed - @party_points
       else
         redirect_to root_path
       end
@@ -68,5 +71,6 @@ class PartiesController < ApplicationController
     def party_params
       params.require(:party).permit(:name, :cell, :size, :restaurant_id)
     end
+
 end
 
