@@ -6,9 +6,8 @@ class PartiesController < ApplicationController
   end
 
   def show
-      if Party.find(key: params[:id]) != nil
-        @party = Party.find(key: params[:id])
-        # @party = Party.find(params[:id])
+      if Party.find(params[:id]) != nil
+        @party = Party.find(params[:id])
         @restaurant = @party.restaurant
         @waiting_parties = @restaurant.waiting_list
         session[:party_id] = params[:id]
@@ -25,7 +24,7 @@ class PartiesController < ApplicationController
     party = Party.find(params[:id])
     party.in_queue = false
     party.save
-    redirect_to root_path(params[:restaurant_id])
+    redirect_to root_path
   end
 
   def create
@@ -57,8 +56,7 @@ class PartiesController < ApplicationController
         to: '+17082548335',
         body: "I have hard coded the numbers but it is working after the create! #{link}"
       )
-
-      redirect_to root_path(params[:restaurant_id])
+      redirect_to root_path
     else
       redirect_to new_restaurant_party_path
     end

@@ -68,7 +68,7 @@ $(document).ready(function(e) {
       data: {}
     })
     .done(function(response) {
-      console.log(response.length)
+      console.log(response)
       if (response.length === 2){
         url = "http://localhost:3000/rounds/key/" + id
         console.log(response);
