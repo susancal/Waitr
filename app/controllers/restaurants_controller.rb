@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
   def index
+    # Is user logged in?
   	if logged_in?
       @restaurant = Restaurant.find(session[:restaurant_id])
       @waiting_list = @restaurant.waiting_list
@@ -20,13 +21,17 @@ class RestaurantsController < ApplicationController
   end
 
   def waitingroom
+    if Waitingroom.all.length == 0
+      random = match_key
+      Key.create(key: random, quiz_id: rand(1..30))
+    elsif Waitingroom.all.length == 1
+        random = Waitingroom.first.key
+    end
     @party = Party.find(session[:party_id])
-    p @party
-    p params
     if @party.waitingroom != nil
       render :waiting
     else
-      @wr = Waitingroom.find_or_create_by(restaurant_id: params[:restaurant_id], party_id: @party.id, party_key: @party.key)
+      @wr = Waitingroom.find_or_create_by(restaurant_id: params[:restaurant_id], party_id: @party.id, party_key: @party.key, key: random)
       render :waiting
     end
   end
@@ -38,6 +43,10 @@ private
 
 	def current_restaurant
     @restaurant = Restaurant.find_by(id: session[:restaurant_id])
+  end
+
+  def match_key
+    return [*"0".."9"].sample(6).join
   end
 
 	def logged_in?

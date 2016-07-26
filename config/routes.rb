@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get '/restaurants/login' => 'sessions#new'
 
+  # Serve websocket cable requests in-process
+  mount ActionCable.server => '/cable'
 
 
   resources :restaurants, only: [:show] do
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   get '/restaurants/:id', to: 'restaurants#show', as: 'r_show'
   get '/check' => 'waitingroom#check'
   get '/match' => 'waitingroom#match'
+  get '/coms' => 'waitingroom#sendstatus'
   get '/rounds/key/:key' => 'rounds#show'
   get '/rounds/key/:key/summary' => 'rounds#summary'
 

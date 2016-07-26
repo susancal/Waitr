@@ -9,7 +9,7 @@ class PartiesController < ApplicationController
       @party = Party.find(params[:id])
       @restaurant = @party.restaurant
       @waiting_parties = @restaurant.waiting_list
-      # session[:party_id] = (params[:id])
+      session[:party_id] = params[:id]
       parties = @restaurant.waiting_list.map { |e| e.id  }
       @people_ahead = parties.index(@party.id)
       @prize = @restaurant.prize
@@ -32,8 +32,8 @@ class PartiesController < ApplicationController
       # session[:party_id] = party.id
       # session[:party_key] = party.key
 
-      account_sid = 'AC30eba678ab51326f08e0af6ec82ddc8f'
-      auth_token = '7cd9dd7f964c9929ecd5e6b16052200f'
+      account_sid = ENV['TWILIO_SID']
+      auth_token = ENV['TWILIO_TOKEN']
       link = request.base_url + "/" + party.key
 
       @client = Twilio::REST::Client.new account_sid, auth_token

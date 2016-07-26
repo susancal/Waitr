@@ -13,14 +13,14 @@ class PrizesController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(session[:restaurant_id])
     @prize = Prize.find(params[:id])
   end
 
   def update
     @prize = Prize.find(params[:id])
     @prize.update(prize_params)
-    redirect_to restaurant_path(params[:restaurant_id])
+    redirect_to root_path
   end
 
   private
