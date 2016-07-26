@@ -45,9 +45,9 @@ class PartiesController < ApplicationController
       auth_token = ENV['TWILIO_TOKEN']
        
 
-      # link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
+      link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
 
-      link = "http://773044ba.ngrok.io/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
+      # link = "http://773044ba.ngrok.io/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
 
       @client = Twilio::REST::Client.new account_sid, auth_token
 
