@@ -4,8 +4,8 @@ module SessionHelper
     @saved_restaurant = Restaurant.find_by(id: session[:restaurant_id])
   end
 
-  def current_patron
-  	@patron = Party.find_by(id: session[:party_id])
+  def current_party
+  	return Party.find(session[:party_id])
   end
 
   def logged_in?

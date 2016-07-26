@@ -1,8 +1,8 @@
 class GuessesController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
-    @your_round = Round.find_by_secret_key_and_party_id(params[:key_number], current_patron.id)
-    @guess = Guess.new(party_id: current_patron.id, question_id: @question.id, round_id: @your_round.id, guess_value: params[:guess_value])
+    @your_round = Round.find_by_secret_key_and_party_id(params[:key_number], current_party.id)
+    @guess = Guess.new(party_id: current_party.id, question_id: @question.id, round_id: @your_round.id, guess_value: params[:guess_value])
 
     @your_round.player_num == 1 ? other_num = 2 : other_num = 1
     @other_round = Round.find_by_secret_key_and_player_num(params[:key_number], other_num)
