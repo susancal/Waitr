@@ -26,6 +26,10 @@ $(document).ready(function(e) {
     setTimeout(checkForFirstPlayer, 2000)
   }
 
+  (function blink() {
+  $('#waiting').fadeOut(500).fadeIn(500, blink);
+  })();
+
   if ($(".prize-header").length > 0){
     console.log("home page!")
     // timer
