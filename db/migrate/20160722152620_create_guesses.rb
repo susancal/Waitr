@@ -4,6 +4,7 @@ class CreateGuesses < ActiveRecord::Migration[5.0]
       t.integer :party_id
       t.integer :question_id
       t.integer :round_id
+      t.string :key_number
       t.string :status, presence: true, default: "none"
       t.string :guess_value
 

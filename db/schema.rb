@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160725225028) do
     t.integer  "party_id"
     t.integer  "question_id"
     t.integer  "round_id"
+    t.string   "key_number"
     t.string   "status",      default: "none"
     t.string   "guess_value"
     t.datetime "created_at",                   null: false

@@ -19,7 +19,7 @@ class PartiesController < ApplicationController
     party = Party.find(params[:id])
     party.in_queue = false
     party.save
-    redirect_to restaurant_path(params[:restaurant_id])
+    redirect_to root_path
   end
 
   def create
@@ -45,7 +45,7 @@ class PartiesController < ApplicationController
         body: "I have hard coded the numbers but it is working after the create! #{link}"
       )
 
-      redirect_to restaurant_path(params[:restaurant_id])
+      redirect_to root_path
     else
       redirect_to new_restaurant_party_path
     end
