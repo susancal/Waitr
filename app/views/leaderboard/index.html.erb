@@ -1,7 +1,7 @@
-<h3>Thanks for eating at <%= @rest.name %></h3>
-<h1>Leader Board</h1>
+<h5>Thanks for eating at <%= @rest.name %></h5>
+<h4>Leader Board</h4>
 
-<table class="waiting_list bordered centered responsive-table">
+<table class="waiting_list bordered centered">
   <thead>
     <tr>
       <th data-field="name" class="leader-board-header"> Party </th>
@@ -10,7 +10,11 @@
   </thead>
   <tbody>
     <% @current.each do |player| %>
-    <tr>
+    <% if session[:party_id] == player.id %>
+      <tr id="itsyou">
+    <% else %>
+      <tr>
+    <% end %>
       <td><%= player.name %></td>
       <td><%= player.points_earned %></td>
     </tr>
@@ -18,4 +22,4 @@
   </tbody>
 </table>
 <br>
-<a class="waves-effect waves-light btn large" href=/restaurants/<%= @rest.id %>/parties/<%= @current_party.id %>>Back to Main</a>
+<a class="waves-effect waves-light btn large" href=/restaurants/<%= @rest.id %>/parties/<%= @current_party.key %>>Back to Main</a>
