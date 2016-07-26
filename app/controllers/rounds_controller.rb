@@ -21,9 +21,7 @@ class RoundsController < ApplicationController
       @quiz_questions = @quiz.questions
       @party_id = session[:party_id]
       @wr = Waitingroom.find_by(party_id: @party_id)
-
       @any_rounds = Round.where(secret_key: @key.key)
-
       if @any_rounds.length < 1
         @round_you = Round.create(secret_key: params[:key], party_id: @party_id, quiz_id: @quiz.id, player_num: 2)
       else
