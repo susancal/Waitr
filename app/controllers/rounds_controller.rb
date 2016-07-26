@@ -46,7 +46,7 @@ class RoundsController < ApplicationController
   @other_round = Round.find_by_secret_key_and_player_num(params[:key], other_num)
   @your_round_score = @your_round.party_score
   @other_round_score = @other_round.party_score
-  @quiz_length = Quiz.find(id: @your_round.quiz_id).questions.length
+  @quiz_length = Quiz.find(@your_round.quiz_id).questions.length
     if @your_round_score > @other_round_score
       @message = "You won 1,000 pts!"
       @party.points_earned += 1000

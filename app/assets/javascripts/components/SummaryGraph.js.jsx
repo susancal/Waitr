@@ -43,8 +43,8 @@ var SummaryGraph = React.createClass({
   render: function(){
     return(
       <div class="graphs">
-        {this.renderGraph("player1", this.props.your_round_score)};
-        {this.renderGraph("player2", this.props.other_round_score)};
+        {this.renderGraph("player1", this.props.your_round_score)}
+        {this.renderGraph("player2", this.props.other_round_score)}
       </div>
       )
   }
