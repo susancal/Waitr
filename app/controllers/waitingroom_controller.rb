@@ -9,7 +9,7 @@ class WaitingroomController < ApplicationController
   def check
     if request.xhr?
       if Waitingroom.all.length == 1
-        render json: {"length" => Waitingroom.all.length}.to_json
+        render json: Waitingroom.all.length.to_json
       elsif Waitingroom.all.length == 2
         players = Waitingroom.first(2).map { |e| e.party_id }
         rnd_key = match_key
