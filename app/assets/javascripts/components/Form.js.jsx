@@ -1,12 +1,12 @@
 var Form = React.createClass({
   getInitialState: function(){
-    return {value: " ", guess: "", guess_response: "", button_clicked_count: 0}
+    return {value: "", guess: "", guess_response: "", button_clicked_count: 0}
   },
 
   componentWillReceiveProps: function(nextProps){
     if (nextProps.question_id !== this.props.question_id) {
-      this.setState({value: " "});
-      this.setState({guess: " "});
+      this.setState({value: ""});
+      this.setState({guess: ""});
       this.setState({guess_response: ""})
       this.setState({button_clicked_count: 0})
     }
@@ -22,7 +22,6 @@ var Form = React.createClass({
     this.setState({button_clicked_count: this.state.button_clicked_count + 1})
 
     if (this.state.button_clicked_count < 1) {
-      this.setState({value: " "})
       $.post('/guesses', data).done(function(response){
           this.props.updateAnswer();
           console.log(response)
@@ -41,7 +40,7 @@ var Form = React.createClass({
         }
     }.bind(this));
   } else {
-    this.setState({value: "HIIII"})
+    this.setState({value: ""})
   }
  },
 
