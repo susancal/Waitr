@@ -68,13 +68,12 @@ $(document).ready(function(e) {
     $.ajax({
       url: '/check',
       type: 'GET',
-      dataType: 'JSON',
-      data: {}
+      dataType: 'JSON'
     })
     .done(function(response) {
       console.log(response)
       if (response === 2){
-        url = "https://waitr-app.herokuapp.com/rounds/key/" + id
+        url = "http://localhost:3000/rounds/key/" + id
         console.log(response);
         location.href=url;
       } else if (response === 1){
