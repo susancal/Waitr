@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Waitr</title>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
+<head>
+  <title>Waitr</title>
+  <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
+  <script type="text/javascript" src="/d3.min.js"></script>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
 
-      <%= stylesheet_link_tag    'application', media: 'all'%>
-      <%= javascript_include_tag 'application' %>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<body>
+ <!--Import jQuery before materialize.js-->
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+ <script type="text/javascript" src="js/materialize.min.js"></script>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  </head>
-
-  <body>
-         <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-
-    <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Waitr</a>
-      <% if logged_in? %>
-        <p align="right"><%= link_to 'Logout', logout_path%></p>
-      <% end %>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
-    <%= yield %>
+ <nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Waitr</a>
+    <% if logged_in?%>
+    <% unless current_patron %>
+    <p align="right"><%= link_to 'Logout', logout_path%></p>
+    <% end %>
+    <% end %>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    </ul>
   </div>
-  </body>
+</nav>
+<div class="container">
+  <%= yield %>
+</div>
+</body>
 </html>

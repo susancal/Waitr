@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.timer {
+  font-size: 36px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
 h3.guess-status-incorrect {
   color: red;
@@ -17,39 +22,76 @@ h3.guess-status-correct {
 }
 
 .question-display {
-  margin-top: 30px;
+  margin-top: 15px;
   font-style: italic;
-  font-size: 24px;
-  border: solid 4px black;
-  padding: 15px;
+  font-size: 20px;
+  border: solid 2px black;
+  padding: 10px;
 }
 
 .question-count {
   font-size: 24px;
 font-weight: bold;
 text-align: center;
-text-decoration: underline;
 }
 
 .waiting {
 font-size: 20px;
 font-weight: bold;
-}
+  }
 
 .guess-container {
   left: 50%;
   right: 50%;
 }
 
-.scoreboard-container {
+.score-board {
+  display: inline-block;
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
+  border: solid blue 5px;
+  background: black;
+  width: 30%;
+}
+.player {
   position: relative;
-  width: 100%;
+  left: 0px;
+  padding: 0;
+  margin-left: 0 ;
+
+}
+.player h4 {
+  font-weight: bold;
+  font-size: 12px;
+  padding: 4px;
+  color: white;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  border: white solid 2px;
+  border-bottom: white solid 1px;
+
+}
+.score-box {
   margin: 0 auto;
+  font-size: 26px;
+  color: white;
+  border: white solid 2px;
+  border-top: white solid 1px;
+
 }
 
-.score-board {
-  padding-top: 10px;
-  text-align: center;
-  font-size: 1.92rem;
-  margin: 0 auto;
+.score-board-container{
+  margin-bottom:25px;
+  margin-top: 10px;
+}
+
+.staticquestionheader {
+  height: 230px;
+  width: 100%;
+}
+
+.waiting {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
