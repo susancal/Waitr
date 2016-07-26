@@ -9,7 +9,7 @@ class PrizesController < ApplicationController
     @prize = Prize.new(prize_params)
     @prize.restaurant_id = params[:restaurant_id]
     @prize.save
-    redirect_to @restaurant
+    redirect_to root_path
   end
 
   def edit

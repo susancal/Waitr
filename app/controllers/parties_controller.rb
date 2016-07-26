@@ -22,6 +22,11 @@ class PartiesController < ApplicationController
 
   def edit
     party = Party.find(params[:id])
+
+    if party.did_they_win?
+      party.send_prize_email
+    end
+
     party.in_queue = false
     party.save
     redirect_to root_path
@@ -32,8 +37,6 @@ class PartiesController < ApplicationController
     # p request.base_url
 
     party = Party.new(party_params)
-
-
     party.restaurant_id = params[:restaurant_id]
 
     if party.save
@@ -43,26 +46,20 @@ class PartiesController < ApplicationController
       account_sid = ENV['TWILIO_SID']
       auth_token = ENV['TWILIO_TOKEN']
 
-
       link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
 
-      # link = "http://773044ba.ngrok.io/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
-
       @client = Twilio::REST::Client.new account_sid, auth_token
-
 
       @client.messages.create(
         from: '+12242796373',
         to: '+17082548335',
-        body: "I have hard coded the numbers but it is working after the create! #{link}"
+        body: "Thanks for waiting.  Click here to check your wait time and play a game. #{link}"
       )
       redirect_to root_path
     else
       redirect_to new_restaurant_party_path
     end
-
   end
-
 
   private
     def party_params
