@@ -73,9 +73,9 @@ $(document).ready(function(e) {
     .done(function(response) {
       console.log(response)
       if (response === 2){
-        url = "http://localhost:3000/rounds/key/" + id
+        url = "/rounds/key/" + id
         console.log(response);
-        location.href=url;
+        window.location = url;
       } else if (response === 1){
         console.log("you are alone")
         console.log(response);
