@@ -44,6 +44,11 @@ class Party < ApplicationRecord
     self.key = [*"0".."9"].sample(6).join
   end
 
+  def did_they_win?
+    restaurant = Restaurant.find(self.restaurant.id)
+    return true if self.points_earned >= restaurant.prize.points_needed
+  end
+
   def quizzes_not_played
      taken = self.quizzes_taken.map { |q| q.id }
      all = Quiz.all.map { |e| e.id }
@@ -51,4 +56,30 @@ class Party < ApplicationRecord
      return avail
   end
 
+  def send_prize_email
+      restaurant = Restaurant.find(self.restaurant.id)
+      account_sid = ENV['TWILIO_SID']
+      auth_token = ENV['TWILIO_TOKEN']
+      @client = Twilio::REST::Client.new account_sid, auth_token
+
+      @client.messages.create(
+        from: '+12242796373',
+        to: '+17082548335',
+        body: "You WON!!!! Claim your prize of #{restaurant.prize.prize_name}."
+      )
+  end
+
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
