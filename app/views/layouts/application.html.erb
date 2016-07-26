@@ -24,7 +24,7 @@
   <div class="nav-wrapper">
     <div class="brand-logo">Waitr.</div>
     <% if logged_in?%>
-    <% unless current_patron %>
+    <% unless current_party %>
       <p align="right"><%= link_to 'Logout', logout_path%></p>
     <% end %>
     <% end %>

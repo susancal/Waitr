@@ -1,12 +1,11 @@
 <h5 class="summarytitle"><%= @message %></h5>
-<%= react_component('SummaryGraph', {your_round_score: 8, other_round_score: 5,quiz_length: 10}) %>
+<%= react_component('SummaryGraph', {your_round_score: @your_round_score, other_round_score: @other_round_score, quiz_length: @quiz_length}) %>
 <h5 class="summary"> Your Score </h5>
 <div class="player1"></div>
 <h5 class="summary"> Opponent Score </h5>
 <div class="player2"> </div>
 
-<a class="waves-effect waves-light btn" href="<%=restaurant_party_path(@restaurant, @party)  %>"> Home</a>
-
+<a class="waves-effect waves-light btn large" href="/restaurants/<%= @restaurant.id %>/parties/<%= current_party.key %>">Back to Main</a>
 
 
 

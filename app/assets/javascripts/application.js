@@ -68,16 +68,15 @@ $(document).ready(function(e) {
     $.ajax({
       url: '/check',
       type: 'GET',
-      dataType: 'JSON',
-      data: {}
+      dataType: 'JSON'
     })
     .done(function(response) {
       console.log(response)
-      if (response.length === 2){
-        url = "https://waitr-app.herokuapp.com/rounds/key/" + id
+      if (response === 2){
+        url = "/rounds/key/" + id
         console.log(response);
-        location.href=url;
-      } else if (response.length === 1){
+        window.location = url;
+      } else if (response === 1){
         console.log("you are alone")
         console.log(response);
         setTimeout(checkForFirstPlayer, 1000)
