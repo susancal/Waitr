@@ -73,11 +73,11 @@ $(document).ready(function(e) {
     })
     .done(function(response) {
       console.log(response)
-      if (response.length === 2){
+      if (response === 2){
         url = "https://waitr-app.herokuapp.com/rounds/key/" + id
         console.log(response);
         location.href=url;
-      } else if (response.length === 1){
+      } else if (response === 1){
         console.log("you are alone")
         console.log(response);
         setTimeout(checkForFirstPlayer, 1000)
