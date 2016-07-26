@@ -6,20 +6,25 @@ class PartiesController < ApplicationController
   end
 
   def show
-      @party = Party.find(params[:id])
-      @restaurant = @party.restaurant
-      @waiting_parties = @restaurant.waiting_list
-      session[:party_id] = params[:id]
-      parties = @restaurant.waiting_list.map { |e| e.id  }
-      @people_ahead = parties.index(@party.id)
-      @prize = @restaurant.prize
+      if Party.find(params[:id]) != nil
+        @party = Party.find(params[:id])
+        @restaurant = @party.restaurant
+        @waiting_parties = @restaurant.waiting_list
+        session[:party_id] = params[:id]
+        parties = @restaurant.waiting_list.map { |e| e.id  }
+        @people_ahead = parties.index(@party.id)
+        @prize = @restaurant.prize
+      else
+        redirect_to root_path
+      end
+
   end
 
   def edit
     party = Party.find(params[:id])
     party.in_queue = false
     party.save
-    redirect_to restaurant_path(params[:restaurant_id])
+    redirect_to root_path
   end
 
   def create
@@ -27,14 +32,21 @@ class PartiesController < ApplicationController
     # p request.base_url
 
     party = Party.new(party_params)
+
+
     party.restaurant_id = params[:restaurant_id]
+
     if party.save
       # session[:party_id] = party.id
       # session[:party_key] = party.key
 
       account_sid = ENV['TWILIO_SID']
       auth_token = ENV['TWILIO_TOKEN']
-      link = request.base_url + "/" + party.key
+
+
+      link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
+
+      # link = "http://773044ba.ngrok.io/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
 
       @client = Twilio::REST::Client.new account_sid, auth_token
 
@@ -44,8 +56,7 @@ class PartiesController < ApplicationController
         to: '+17082548335',
         body: "I have hard coded the numbers but it is working after the create! #{link}"
       )
-
-      redirect_to restaurant_path(params[:restaurant_id])
+      redirect_to root_path
     else
       redirect_to new_restaurant_party_path
     end

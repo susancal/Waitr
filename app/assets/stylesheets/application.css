@@ -23,7 +23,7 @@
 }
 
 nav {
-  background: blue;
+  background: #42a5f5;
 }
 
 .login-header, .login-slogan, .add-party-header {
@@ -31,4 +31,7 @@ nav {
   text-align: center;
 }
 
+body {
+  font-family: 'Raleway', sans-serif;
+}
 

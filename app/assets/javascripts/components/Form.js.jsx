@@ -1,39 +1,47 @@
 var Form = React.createClass({
   getInitialState: function(){
-    return {value: "", guess: "", guess_response: ""}
+    return {value: "", guess: "", guess_response: "", button_clicked_count: 0}
   },
 
   componentWillReceiveProps: function(nextProps){
     if (nextProps.question_id !== this.props.question_id) {
       this.setState({value: ""});
       this.setState({guess: ""});
+      this.setState({guess_response: ""})
+      this.setState({button_clicked_count: 0})
     }
   },
 
   handleChange: function(event){
     this.setState({value: event.target.value});
   },
-  saveGuess: function(party_id, question_id, round_id, guess_value){
-    var guess = {party_id: party_id , question_id: question_id, round_id: round_id, guess_value: guess_value}
-    $.post('/guesses', {guess: guess}).done(function(response){
+
+  saveGuess: function(question_id, guess_value, key_number){
+      var data = {question_id: question_id, guess_value: guess_value, key_number: key_number}
+      var guess = guess_value
+    this.setState({button_clicked_count: this.state.button_clicked_count + 1})
+
+    if (this.state.button_clicked_count < 1) {
+      $.post('/guesses', data).done(function(response){
           this.props.updateAnswer();
           console.log(response)
           this.props.setYourScore(response.your_new_score)
           this.props.setOtherScore(response.other_new_score)
-
-        if (response.status === "correct") {
-            this.setState({guess: "'" + guess.guess_value + "'" + " was "})
-            this.setState({guess_response: "CORRECT!"});
-            $('h3#guess').removeClass("guess-status-incorrect")
-            $('h3#guess').addClass('guess-status-correct')
-
+    if (response.status === "correct") {
+          this.setState({guess: "'" + guess + "'" + " was "})
+          this.setState({guess_response: "CORRECT!"});
+          $('h3#guess').removeClass("guess-status-incorrect")
+          $('h3#guess').addClass('guess-status-correct')
         } else {
-            this.setState({guess: "'" + guess.guess_value + "'" + " was "})
-            this.setState({guess_response: 'INCORRECT'})
-            $('h3#guess').removeClass("guess-status-correct")
-            $('h3#guess').addClass('guess-status-incorrect')
+          this.setState({guess: "'" + guess + "'" + " was "})
+          this.setState({guess_response: 'INCORRECT'})
+          $('h3#guess').removeClass("guess-status-correct")
+          $('h3#guess').addClass('guess-status-incorrect')
         }
     }.bind(this));
+  } else {
+    this.setState({value: ""})
+  }
  },
 
   render: function(){
@@ -49,10 +57,9 @@ var Form = React.createClass({
         <button className="btn waves-effect waves-light" onClick={
           function(){
             this.saveGuess(
-              this.props.party_id,
               this.props.question_id,
-              this.props.round_id,
-              this.state.value
+              this.state.value,
+              this.props.key_number
               )
           }.bind(this)
         }>

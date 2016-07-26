@@ -32,8 +32,6 @@ $(document).ready(function(e) {
   }
 });
 
-
-
   // var update_times = function(){
   //   $.ajax({
   //     url: '/restaurants/1',
@@ -51,8 +49,6 @@ $(document).ready(function(e) {
   //     console.log("error");
   //   });
   // }
-
-
 
     // var timer = setInterval(update_times, 1000);
 
@@ -72,7 +68,7 @@ $(document).ready(function(e) {
       data: {}
     })
     .done(function(response) {
-      console.log(response.length)
+      console.log(response)
       if (response.length === 2){
         url = "http://localhost:3000/rounds/key/" + id
         console.log(response);
@@ -88,11 +84,5 @@ $(document).ready(function(e) {
     });
 
   }
-
 // var timer = setInterval(update_times, 100000);
   // timer;
-
-
-
-
-

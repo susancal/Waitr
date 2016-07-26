@@ -17,7 +17,7 @@ var ScoreBoard = React.createClass({
 
   renderSingleBoard: function(player, score){
      return (
-        <div className="score-board">
+        <div  className="score-board">
             {this.renderPlayerTitle(player)}
             {this.renderPlayerScore(score)}
         </div>
@@ -28,8 +28,8 @@ var ScoreBoard = React.createClass({
   render: function(){
     return (
       <div className="score-board-container">
-        {this.renderSingleBoard("Player 1",this.props.yourScore)}
-        {this.renderSingleBoard("Player 2",this.props.otherScore)}
+        {this.renderSingleBoard("You",this.props.yourScore)}
+        {this.renderSingleBoard("Opponent",this.props.otherScore)}
       </div>
     )
   }
