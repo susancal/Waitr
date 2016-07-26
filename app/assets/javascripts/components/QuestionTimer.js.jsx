@@ -8,6 +8,7 @@ var QuestionTimer = React.createClass({
 
       connected: function(){
           $('body').append("WE ARE CONNECTED")
+          $.get("/readytoplay", {key_number: that.props.keynum});
       },
 
       disconnected: function(){
@@ -26,7 +27,6 @@ var QuestionTimer = React.createClass({
 
   componentDidMount: function(){
     this.setUpSubscription(this);
-    $.get("/readytoplay", {key_number: this.props.keynum});
   },
 
   componentWillUnmount: function(){
