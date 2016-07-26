@@ -28,6 +28,8 @@ class RoundsController < ApplicationController
       @quiz = @key.quiz
       @quiz_questions = @quiz.questions
       @party_id = session[:party_id]
+      @wr = Waitingroom.find_by(party_id: @party_id)
+
       @any_rounds = Round.where(secret_key: @key.key)
 
       if @any_rounds.length < 1
@@ -35,10 +37,11 @@ class RoundsController < ApplicationController
       else
         @round_you = Round.create(secret_key: params[:key], party_id: @party_id, quiz_id: @quiz.id, player_num: 1)
       end
-
+      if Round.where(secret_key: @key_number).length == 2
+        Waitingroom.destroy_all
+      end
       @round_you.player_num = 1 ? other_num = 2 : other_num = 1
       @round_other = Round.find_by_secret_key_and_player_num(@key.key, other_num)
-      sleep(3)
     else
       not_found
     end
