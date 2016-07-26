@@ -25,7 +25,7 @@ class PartiesController < ApplicationController
     party = Party.find(params[:id])
     party.in_queue = false
     party.save
-    redirect_to root_path(params[:restaurant_id])
+    redirect_to root_path
   end
 
   def create
@@ -33,8 +33,8 @@ class PartiesController < ApplicationController
     # p request.base_url
 
     party = Party.new(party_params)
-    
-    
+
+
     party.restaurant_id = params[:restaurant_id]
 
     if party.save
@@ -43,7 +43,7 @@ class PartiesController < ApplicationController
 
       account_sid = ENV['TWILIO_SID']
       auth_token = ENV['TWILIO_TOKEN']
-       
+
 
       link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
 
@@ -57,8 +57,7 @@ class PartiesController < ApplicationController
         to: '+17082548335',
         body: "I have hard coded the numbers but it is working after the create! #{link}"
       )
-
-      redirect_to root_path(params[:restaurant_id])
+      redirect_to root_path
     else
       redirect_to new_restaurant_party_path
     end
