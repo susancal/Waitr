@@ -57,29 +57,40 @@ font-weight: bold;
   font-weight: bold;
   font-size: 12px;
   padding: 4px;
-  color: white;
+  color: black;
   margin-bottom: 0px;
   margin-top: 0px;
   border: white solid 2px;
   border-bottom: white solid 1px;
 
 }
-.score-box {
-    display: inline-block;
-
+.score-board {
+  display: inline-block;
+  min-width: 46%;
   margin: 0 auto;
   font-size: 26px;
-  color: blue;
-  border: white solid 2px;
+  color: black;
+  border: none;
   border-top: white solid 1px;
+}
 
+.score-board h4 {
+  background-color: #42A5f5;
+  border-radius: 2px;
+  color: white;
+  padding: 1.0em;
+  font-size: 0.5em;
 }
 
 .score-board-container{
-  width: 40%;
-  margin-bottom:25px;
-  margin-top: 10px;
-  background: black
+  display: inline-block;
+  width: 80%;
+  margin: 0px;
+  margin-right: 0px
+}
+
+.score-box {
+  padding-top: 0.5em;
 }
 
 .staticquestionheader {
