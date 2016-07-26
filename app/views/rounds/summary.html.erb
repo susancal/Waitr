@@ -12,12 +12,32 @@
 </div>
 
 <script>
-xhttp.open("GET", "http://localhost:3000/rounds/key/123456/summary")
-$(document).ready(function(){
-  console.log("Hello")
+console.log( <%= @player_1.id %>)
+var url = 'http://localhost:3000/rounds/key/123456/summary'
+d3.json(url, function(response) {
+  console.log(response);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var dataset = {
-  apples: ,
+  apples: [1,2,3,4,5]
 };
 
 var width = 460,
