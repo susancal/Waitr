@@ -14,6 +14,7 @@
 //= require_tree ./channels
 //= require jquery
 //= require jquery_ujs
+//= require materialize-sprockets
 //= require d3
 //= require react
 //= require react_ujs

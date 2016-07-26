@@ -13,18 +13,24 @@ class RoundsController < ApplicationController
   end
 
     def readytoplay  #maybe try json
+
         @your_round = Round.find_by_secret_key_and_party_id(params[:key_number], current_patron.id)
         @your_round.update_attributes ready_to_play: true
 
         @your_round.player_num == 1 ? other_num = 2 : other_num = 1
         @other_round = Round.find_by_secret_key_and_player_num(params[:key_number], other_num)
-        if @your_round.save
-          if @your_round.ready_to_play == true && @other_round.ready_to_play == true
+        p  '*' * 100 + "ROUNDS DATAAAAAAAAAA"
+        p @your_round
+        if @other_round
+            if @your_round.ready_to_play == true && @other_round.ready_to_play == true
+              sleep 5
               ActionCable.server.broadcast "gameplay", status: "begin game"
           head :ok
-          else
-            ActionCable.server.broadcast "gameplay", status: "waiting for other player"
-          end
+            end
+        else
+              sleep 5
+          ActionCable.server.broadcast "gameplay", status: "waiting for other player"
+          head :ok
         end
     end
 

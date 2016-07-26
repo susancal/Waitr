@@ -2,9 +2,8 @@ var QuestionTimer = React.createClass({
   getInitialState: function(){
     return {timer: 15, waiting: "Answer Now!"}
   },
-  componentDidMount: function(){
-    $.get("/readytoplay", {key_number: this.props.keynum});
 
+  setUpSubscription: function(that){
      App.gameplay = App.cable.subscriptions.create("GameplayChannel",{
 
       connected: function(){
@@ -16,11 +15,18 @@ var QuestionTimer = React.createClass({
       },
 
       received: function(data){
-        if (data.status == "begin game") {
-          this.startTimer();
+        console.log(data)
+        if (data.status === "begin game") {
+          that.startTimer();
         }
       }
    })
+  },
+
+
+  componentDidMount: function(){
+    this.setUpSubscription(this);
+    $.get("/readytoplay", {key_number: this.props.keynum});
   },
 
   componentWillUnmount: function(){
