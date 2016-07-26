@@ -10,10 +10,15 @@ $.ajax({
 })
 
 function draw(data) {
-  console.log("Inside of the d3 shit");
+  console.log("THIS IS THE D3 DATA");
+  console.log(data);
+  console.log(typeof data);
+  console.log(typeof [0, 1]);
+
+
 
   var dataset = {
-    apples: [53245, 28479, 19697, 24037, 40245],
+    apples: data,
   };
 
   var width = 460,
@@ -29,7 +34,7 @@ function draw(data) {
   .innerRadius(radius - 100)
   .outerRadius(radius - 50);
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("player_1").append("svg")
   .attr("width", width)
   .attr("height", height)
   .append("g")

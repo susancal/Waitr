@@ -12,24 +12,8 @@ class RoundsController < ApplicationController
     end
   end
 
+
   def show
-    @key = Key.where(key: params[:key].to_s)[0]
-    @quiz = @key.quiz
-    @round = Round.create(secret_key: params[:key], party_id: session[:party_id], quiz_id: @quiz.id)
-    @quiz_questions = @quiz.questions
-    @party_id = session[:party_id]
-    sleep(2)
-    Waitingroom.destroy_all
-  end
-
-  def create
-
-    @player1 = Party.find(session[:party_id])
-    # @player = Party.find(session[:party_id])
-    @round = Round.create!(party_one_id: params[:player_one_id])
-    # @round = Round.create!(party_id: params[:player_id])
-    if @round
-      p "SHITTTTTTT"
     if current_patron
       @key = Key.where(key: params[:key].to_s)[0]
       @key_number = @key.key
@@ -53,6 +37,7 @@ class RoundsController < ApplicationController
     end
   end
 
+
  def summary
   round = Round.where(secret_key: params[:key])
   @player_1 = round.find_by(party_id: 1)
@@ -60,7 +45,7 @@ class RoundsController < ApplicationController
  end
 
  def data
-  round = Round.where(secret_key: params[:key])
+  round = Round.last(2)
   @player_1_round = round.find_by(party_id: 1)
   p "$)HJEIUOFWEHFIUOPEWHJFIOWEPJFIOEWPFJIOPWEJFIWEOPFJIEWOPFJEWIOPFJOPEWIF"
   p @player_1_round.party_score
