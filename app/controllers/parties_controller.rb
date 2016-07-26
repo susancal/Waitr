@@ -6,8 +6,8 @@ class PartiesController < ApplicationController
   end
 
   def show
-      if Party.find_by(key: params[:id])
-        @party = Party.find_by(key: params[:id])
+      if Party.find(key: params[:id]) != nil
+        @party = Party.find(key: params[:id])
         # @party = Party.find(params[:id])
         @restaurant = @party.restaurant
         @waiting_parties = @restaurant.waiting_list
@@ -33,8 +33,8 @@ class PartiesController < ApplicationController
     # p request.base_url
 
     party = Party.new(party_params)
-    
-    
+
+
     party.restaurant_id = params[:restaurant_id]
 
     if party.save
@@ -43,7 +43,7 @@ class PartiesController < ApplicationController
 
       account_sid = ENV['TWILIO_SID']
       auth_token = ENV['TWILIO_TOKEN']
-       
+
 
       link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
 
