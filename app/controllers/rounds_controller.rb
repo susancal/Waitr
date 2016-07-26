@@ -21,13 +21,6 @@ class RoundsController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
-    @round = Round.where(secret_key: params[:key].to_i, party_id: session[:party_id])[0]
-    @quiz = Quiz.find(@round.quiz_id)
-    @quiz_questions = @quiz.questions
-    @round_you = Round.find(1)  #HARDCODED
-    @round_other = Round.find(2) #HARDCODED
-=======
     @key = Key.where(key: params[:key].to_s)[0]
     @quiz = @key.quiz
     @round = Round.create(secret_key: params[:key], party_id: session[:party_id], quiz_id: @quiz.id)
@@ -35,7 +28,6 @@ class RoundsController < ApplicationController
     @party_id = session[:party_id]
     sleep(2)
     Waitingroom.destroy_all
->>>>>>> 78bfeedd70908b6d36724f4cc77d660fd6e86ac7
   end
 
   def create
@@ -81,11 +73,21 @@ class RoundsController < ApplicationController
   round = Round.where(secret_key: params[:key])
   @player_1 = round.find_by(party_id: 1)
   @player_2 = round.find_by(party_id: 2)
-
-  respond_to do |format|
-    format.json  render json: [@player_1, @player_2]
-  end
-
  end
+
+ def data
+  round = Round.where(secret_key: params[:key])
+  @player_1 = round.find_by(party_id: 1)
+  p "$)HJEIUOFWEHFIUOPEWHJFIOWEPJFIOEWPFJIOPWEJFIWEOPFJIEWOPFJEWIOPFJOPEWIF"
+  p @player_1
+  p "$)HJEIUOFWEHFIUOPEWHJFIOWEPJFIOEWPFJIOPWEJFIWEOPFJIEWOPFJEWIOPFJOPEWIF"
+  @player_2 = round.find_by(party_id: 2)
+  respond_to do |format|
+    format.json {
+      render json: [1, @player2.id]
+    }
+  end
+ end
+
 
 end
