@@ -30,7 +30,6 @@ class RoundsController < ApplicationController
       @round_you.player_num = 1 ? other_num = 2 : other_num = 1
       @round_other = Round.find_by_secret_key_and_player_num(@key.key, other_num)
       sleep(3)
-      Waitingroom.destroy_all
     else
       not_found
     end
