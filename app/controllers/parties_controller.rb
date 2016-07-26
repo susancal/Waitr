@@ -6,11 +6,11 @@ class PartiesController < ApplicationController
   end
 
   def show
-      if Party.find(params[:id]) != nil
-        @party = Party.find(params[:id])
+      if Party.find_by(key: params[:id]) != nil
+        @party = Party.find_by(key: params[:id])
+        session[:party_id] = @party.id
         @restaurant = @party.restaurant
         @waiting_parties = @restaurant.waiting_list
-        session[:party_id] = params[:id]
         parties = @restaurant.waiting_list.map { |e| e.id  }
         @people_ahead = parties.index(@party.id)
         @prize = @restaurant.prize
