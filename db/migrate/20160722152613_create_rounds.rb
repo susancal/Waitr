@@ -6,6 +6,7 @@ class CreateRounds < ActiveRecord::Migration[5.0]
       t.integer :party_score, default: 0
       t.integer :secret_key
       t.integer :player_num
+      t.boolean :ready_to_play
 
       t.timestamps
     end

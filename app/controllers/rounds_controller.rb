@@ -12,6 +12,14 @@ class RoundsController < ApplicationController
     end
   end
 
+    def readytoplay  #maybe try json
+        @your_round = Round.find_by_secret_key_and_party_id(params[:key_number], current_patron.id)
+        @your_round.ready_to_play = true
+        if @your_round.save
+          ActionCable.server.broadcast "gameplay", round: @your_round
+          head :ok
+        end
+    end
 
   def show
     if current_patron

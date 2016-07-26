@@ -3,6 +3,7 @@ var QuestionTimer = React.createClass({
     return {timer: 15, waiting: "Answer Now!"}
   },
   componentDidMount: function(){
+    $.get("/readytoplay");
     this.startTimer();
   },
   componentWillUnmount: function(){
