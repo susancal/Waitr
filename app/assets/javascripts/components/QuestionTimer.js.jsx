@@ -3,13 +3,30 @@ var QuestionTimer = React.createClass({
     return {timer: 15, waiting: "Answer Now!"}
   },
   componentDidMount: function(){
-    $.get("/readytoplay");
-    this.startTimer();
+    $.get("/readytoplay", {key_number: this.props.keynum});
+
+     App.gameplay = App.cable.subscriptions.create("GameplayChannel",{
+
+      connected: function(){
+          $('body').append("WE ARE CONNECTED")
+      },
+
+      disconnected: function(){
+          return;
+      },
+
+      received: function(data){
+        if (data.status == "begin game") {
+          this.startTimer();
+        }
+      }
+   })
   },
+
   componentWillUnmount: function(){
     clearInterval(this.interval);
   },
-// called anytime the props or state updates
+
   componentDidUpdate: function(){
     if (this.props.complete === true){
       clearInterval(this.interval);
