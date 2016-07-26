@@ -10,9 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require ./cable
 //= require_tree ./channels
 //= require jquery
 //= require jquery_ujs
+//= require materialize-sprockets
 //= require d3
 //= require react
 //= require react_ujs

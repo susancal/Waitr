@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
+    mount ActionCable.server => "/cable"
+
   resources :restaurants, only: [:show] do
     get '/waitingroom' => 'restaurants#waitingroom'
     resources :parties
@@ -27,5 +29,5 @@ Rails.application.routes.draw do
   get '/rounds/key/:key' => 'rounds#show'
   get '/rounds/key/:key/summary' => 'rounds#summary'
   get '/rounds/data/:key' => 'rounds#data', :defaults => { :format => 'json' }
-
+  get '/readytoplay' => 'rounds#readytoplay'
 end

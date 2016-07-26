@@ -76,12 +76,13 @@ ActiveRecord::Schema.define(version: 20160725225028) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer  "quiz_id"
-    t.integer  "party_id",                null: false
-    t.integer  "party_score", default: 0
+    t.integer  "party_id",                  null: false
+    t.integer  "party_score",   default: 0
     t.integer  "secret_key"
     t.integer  "player_num"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.boolean  "ready_to_play"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "waitingrooms", force: :cascade do |t|

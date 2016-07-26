@@ -65,17 +65,21 @@ font-weight: bold;
 
 }
 .score-box {
+    display: inline-block;
+
   margin: 0 auto;
   font-size: 26px;
-  color: white;
+  color: blue;
   border: white solid 2px;
   border-top: white solid 1px;
 
 }
 
 .score-board-container{
+  width: 40%;
   margin-bottom:25px;
   margin-top: 10px;
+  background: black
 }
 
 .staticquestionheader {

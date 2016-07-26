@@ -2,13 +2,37 @@ var QuestionTimer = React.createClass({
   getInitialState: function(){
     return {timer: 15, waiting: "Answer Now!"}
   },
-  componentDidMount: function(){
-    this.startTimer();
+
+  setUpSubscription: function(that){
+     App.gameplay = App.cable.subscriptions.create("GameplayChannel",{
+
+      connected: function(){
+          $('body').append("WE ARE CONNECTED")
+          $.get("/readytoplay", {key_number: that.props.keynum});
+      },
+
+      disconnected: function(){
+          return;
+      },
+
+      received: function(data){
+        console.log(data)
+        if (data.status === "begin game") {
+          that.startTimer();
+        }
+      }
+   })
   },
+
+
+  componentDidMount: function(){
+    this.setUpSubscription(this);
+  },
+
   componentWillUnmount: function(){
     clearInterval(this.interval);
   },
-// called anytime the props or state updates
+
   componentDidUpdate: function(){
     if (this.props.complete === true){
       clearInterval(this.interval);
