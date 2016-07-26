@@ -13,6 +13,7 @@
 //= require_tree ./channels
 //= require jquery
 //= require jquery_ujs
+//= require d3
 //= require react
 //= require react_ujs
 //= require components
@@ -31,8 +32,6 @@ $(document).ready(function(e) {
   }
 });
 
-
-
   // var update_times = function(){
   //   $.ajax({
   //     url: '/restaurants/1',
@@ -50,8 +49,6 @@ $(document).ready(function(e) {
   //     console.log("error");
   //   });
   // }
-
-
 
     // var timer = setInterval(update_times, 1000);
 
@@ -87,11 +84,5 @@ $(document).ready(function(e) {
     });
 
   }
-
 // var timer = setInterval(update_times, 100000);
   // timer;
-
-
-
-
-

@@ -1,7 +1,7 @@
   var Quiz = React.createClass({
 
   getInitialState: function(){
-    return {question_count: 0, complete: false, player_score: 0, answer_status: "Waiting For Answer"}
+    return {question_count: 0, complete: false, your_score: 0, other_score: 0, answer_status: ""}
   },
 
   nextQuestion: function(){
@@ -12,29 +12,40 @@
     }
   },
 
-  incrementPlayerScore: function(){
-    this.setState({player_score: this.state.player_score + 1})
+  setYourScore: function(your_new_score){
+    this.setState({your_score: your_new_score})
+  },
+
+  setOtherScore: function(other_new_score){
+    this.setState({other_score: other_new_score})
   },
 
   checkCompletion: function(){
       if (this.state.question_count === this.props.questions.length - 1) {
         this.setState({complete: true});
-        this.saveScoreDatabase();
-        this.loadSummaryPage();
+        this.saveYourScoreDatabase();
+        this.saveOtherScoreDatabase();
       }
   },
 
-  saveScoreDatabase: function(){
-    url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.round_id
-    data = {player_score: this.state.player_score}
+  saveYourRoundScoreDatabase: function(){
+    url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.roundYou.id
+    data = {your_score: this.state.your_score}
+    $.ajax({url: url, type: 'PUT', data}).done(function(response){
+     console.log(response);
+    }.bind(this))
+  },
 
+  saveOtherRoundScoreDatabase: function(){
+   url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.roundOther.id
+    data = {other_score: this.state.other_score}
     $.ajax({url: url, type: 'PUT', data}).done(function(response){
      console.log(response);
     }.bind(this))
   },
 
   loadSummaryPage: function(){
-    var summary_url = '/quizzes/' + this.props.quiz_id + '/rounds/' + this.props.round_id + '/summary'
+    var summary_url = '/rounds/key/' + this.props.roundYou.secret_key + '/summary/'
     window.location.replace(summary_url)
   },
 
@@ -51,18 +62,25 @@
     $('h2#guess-status').addClass("guess-status-waiting")
   },
 
-  render: function(){
+  renderStaticQuestionHeader: function(){
       var question = this.props.questions[this.state.question_count]
+    return(
+        <div className="staticquestionheader">
+          <QuestionCount quizlength={this.props.questions.length}questionnumber={this.state.question_count}/>
+          <Question question={question}/>
+         </div>
+      )
+  },
+
+  render: function(){
     return (
       <div>
-        <QuestionCount quizlength={this.props.questions.length}questionnumber={this.state.question_count}/>        
-        <ScoreBoard playerScore={this.state.player_score}/>
-        <Question question={question}/>
-        <QuestionTimer nextQuestion={this.nextQuestion} complete={this.state.complete}/>
-        <Form round_id={this.props.round_id} party_id={this.props.party_id} question_id={this.props.questions[this.state.question_count].id} incrementPlayerScore ={this.incrementPlayerScore} updateAnswer={this.updateAnswerStatus}/>
+        {this.renderStaticQuestionHeader()}
+        <Form round_id={this.props.roundYou.id} party_id={this.props.roundYou.party_id} question_id={this.props.questions[this.state.question_count].id} setYourScore ={this.setYourScore} setOtherScore ={this.setOtherScore} updateAnswer={this.updateAnswerStatus}/>
+        <QuestionTimer nextQuestion={this.nextQuestion} complete={this.state.complete} goToSummary={this.loadSummaryPage}/>
+        <ScoreBoard yourScore={this.state.your_score} otherScore={this.state.other_score}/>
       </div>
       )
   }
-
 
 });
