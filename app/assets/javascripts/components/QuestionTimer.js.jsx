@@ -29,11 +29,11 @@ var QuestionTimer = React.createClass({
 
       // Append updates from players guesses
         if (typeof data.guess.status!== 'undefined') {
-          if ( $("p.update1").length > 0 ) {
-                $("p.update1").append("<p class='update'> The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
-          } else {
-               $("p.waiting").append("<p class='update'> The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
-          }
+              if ( $("p.update1").length > 0 ) {
+                    $("p.update1").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
+              } else {
+                    $("p.waiting").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
+              }
 
       // Update scores based on each other's updates
               if (data.guess.status === "correct") {
@@ -41,7 +41,7 @@ var QuestionTimer = React.createClass({
                     that.props.setYourScore(data.your_round.party_score);
                   } else {
                     that.props.setOtherScore(data.your_round.party_score);
-                  };
+                  }
               }
         }
 
