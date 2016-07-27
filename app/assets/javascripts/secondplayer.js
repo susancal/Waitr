@@ -20,6 +20,10 @@ function checkForFirstPlayer(){
     });
 };
 
+
+
+$(function() {
 (function blink() {
   $('#waiting').fadeOut(500).fadeIn(500, blink);
   })();
+})

@@ -1,11 +1,10 @@
 <h2 id="wr">Get ready to play!</h2>
 <div id="key" class="hidden"><%= @wr.key %></div>
 
-<h4 id="waiting">Waiting for another party to play against...</h4>
+<h4 id="waiting">Waiting for player 2...</h4>
 
 <script>
 $(function() {
   setInterval(checkForFirstPlayer, 500)
-  blink();
 })
 </script>
