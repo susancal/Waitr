@@ -1,6 +1,6 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 15, text_status: "Answer Now!", guess_one_update: "", guess_two_update: ""}
+    return {timer: 4, text_status: "Let the game's begin!"}
   },
 
   setUpSubscription: function(that){
@@ -29,9 +29,9 @@ var QuestionTimer = React.createClass({
 
       // Append updates from players guesses
         if (typeof data.guess.status!== 'undefined') {
-              if ( $("p.update1").length > 0 ) {
+              if ( $("p.update1").length > 0 && that.state.timer >=1) {
                     $("p.update1").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
-              } else {
+              } else if (that.state.timer >=1) {
                     $("p.waiting").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
               }
 
@@ -60,7 +60,6 @@ var QuestionTimer = React.createClass({
   componentDidUpdate: function(){
     if (this.props.complete === true){
       clearInterval(this.interval);
-      this.setState({text_status: "  "})
       this.props.goToSummary();
     }
   },
@@ -70,16 +69,29 @@ var QuestionTimer = React.createClass({
       $('button').addClass('btn disabled')
       clearInterval(this.interval);
       $('p.update').remove();
-      this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Get Ready For Next Question" });
-      setTimeout(this.questionReset, 5000);
+        if (this.props.lastQuestion == true) {
+          this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Let'see the results."})
+        } else {
+        this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Get Ready For Next Question" });
+      }
+      setTimeout(this.questionReset, 4000);
     }
+  },
+
+  checkLastQuestion: function(){
+    if (this.props.last_question == true) {
+      this.setState({text_status: "Last Question!" });
+    } else {
+      this.setState({text_status: "Submit Your Guess!" });
+    }
+
   },
 
   questionReset: function(){
     this.props.nextQuestion();
-    this.setState({timer: 15});
+    this.checkLastQuestion();
+    this.setState({timer: 4});
     this.startTimer();
-    this.setState({text_status: "Clock's Tickin'" });
   },
 
   startTimer: function() {
