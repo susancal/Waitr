@@ -30,7 +30,6 @@ class RestaurantsController < ApplicationController
     end
     @party = Party.find(session[:party_id])
     if @party.waitingroom != nil
-
       @wr = @party.waitingroom
       render :waiting
     else
