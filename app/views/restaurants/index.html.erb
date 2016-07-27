@@ -48,10 +48,16 @@ You are logged in as: <%= @restaurant.name %>
         <td><%= party.size %></td>
         <td><%= party.formatted_cell %></td>
         <td class="points-earned"><%= party.points_earned %></td>
-        <td class="elapsed <%= i %>"><%= party.elapsed %></td>
+        <td id="elapsed<%= i %>"><%= party.elapsed %></td>
       </tr>
       <% i+=1 %>
       <% end %>
       <tbody>
       </table>
     </div>
+
+<script>
+$(function() {
+  setInterval(update_times, 1000);
+})
+</script>
