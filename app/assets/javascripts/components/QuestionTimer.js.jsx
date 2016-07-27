@@ -1,6 +1,6 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 4, text_status: "Let the game's begin!"}
+    return {timer: 30, text_status: "Let the game's begin!"}
   },
 
   setUpSubscription: function(that){
@@ -74,7 +74,7 @@ var QuestionTimer = React.createClass({
         } else {
         this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Get Ready For Next Question" });
       }
-      setTimeout(this.questionReset, 4000);
+      setTimeout(this.questionReset, 10000);
     }
   },
 
@@ -90,7 +90,7 @@ var QuestionTimer = React.createClass({
   questionReset: function(){
     this.props.nextQuestion();
     this.checkLastQuestion();
-    this.setState({timer: 4});
+    this.setState({timer: 30});
     this.startTimer();
   },
 
