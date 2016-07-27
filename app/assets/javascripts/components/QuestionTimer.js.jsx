@@ -1,6 +1,6 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 15, text_status: "Answer Now!"}
+    return {timer: 15, text_status: "Answer Now!", guess_one_update: "", guess_two_update: ""}
   },
 
   setUpSubscription: function(that){
@@ -27,19 +27,24 @@ var QuestionTimer = React.createClass({
           }
         }
 
-      // Keep scores in sync
-        if (typeof data.guess.status!== 'undefined' && data.guess.status === "correct") {
-          console.log("CORRECT ANSWER SUBMITTED")
-          that.setState({text_status: "Pressure's on! The" + data.current_party.name + " answered correctly"})
-            if (data.guess.party_id === that.props.currentParty.id) {
-              that.props.setYourScore(data.your_round.party_score);
-            } else {
-              that.props.setOtherScore(data.your_round.party_score);
-            };
-        } else {
-          console.log("INCORRECT ANSWER SUBMITTED")
-          that.setState({text_status: "The" + data.current_party.name + " answered incorrectly"})
+      // Append updates from players guesses
+        if (typeof data.guess.status!== 'undefined') {
+          if ( $("p.update1").length > 0 ) {
+                $("p.update1").append("<p class='update'> The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
+          } else {
+               $("p.waiting").append("<p class='update'> The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
+          }
+
+      // Update scores based on each other's updates
+              if (data.guess.status === "correct") {
+                  if (data.guess.party_id === that.props.currentParty.id) {
+                    that.props.setYourScore(data.your_round.party_score);
+                  } else {
+                    that.props.setOtherScore(data.your_round.party_score);
+                  };
+              }
         }
+
       }
    })
   },
@@ -64,7 +69,8 @@ var QuestionTimer = React.createClass({
     if (this.state.timer <=0) {
       $('button').addClass('btn disabled')
       clearInterval(this.interval);
-      this.setState({text_status: "Get Ready For Next Question" });
+      $('p.update').remove();
+      this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Get Ready For Next Question" });
       setTimeout(this.questionReset, 5000);
     }
   },
@@ -73,7 +79,7 @@ var QuestionTimer = React.createClass({
     this.props.nextQuestion();
     this.setState({timer: 15});
     this.startTimer();
-    this.setState({text_status: "Answer Now!" });
+    this.setState({text_status: "Clock's Tickin'" });
   },
 
   startTimer: function() {
