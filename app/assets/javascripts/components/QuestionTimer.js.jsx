@@ -1,13 +1,12 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 15, waiting: "Answer Now!"}
+    return {timer: 15, text_status: "Answer Now!"}
   },
 
   setUpSubscription: function(that){
      App.gameplay = App.cable.subscriptions.create("GameplayChannel", {
 
       connected: function(){
-          $('body').append("WE ARE CONNECTED")
           $.get("/readytoplay", {key_number: that.props.keynum});
       },
 
@@ -17,19 +16,29 @@ var QuestionTimer = React.createClass({
 
       received: function(data){
         console.log(data)
-        if (data.status === "begin game") {
-          that.startTimer();
+
+      // Start Game in sync
+        if (typeof data.status!== 'undefined') {
+          if (data.status === "begin game") {
+            that.startTimer();
+            return;
+          } else if (data.status === "waiting for other player") {
+            return;
+          }
         }
 
-        if (data.guess.status != null && data.guess.status === "correct") {
-          console.log("WORKING - CORRECT")
-            if (data.guess.party_id === that.props.roundOther.party_id){
-              that.props.setOtherScore(data.other_score);
+      // Keep scores in sync
+        if (typeof data.guess.status!== 'undefined' && data.guess.status === "correct") {
+          console.log("CORRECT ANSWER SUBMITTED")
+          that.setState({text_status: "Pressure's on! The" + data.current_party.name + " answered correctly"})
+            if (data.guess.party_id === that.props.currentParty.id) {
+              that.props.setYourScore(data.your_round.party_score);
             } else {
-              that.props.setYourScore(data.your_score);
-            }
-        } else if (data.guess.status != null && data.guess.status === "incorrect") {
-          console.log("WORKING - INCORRECT")
+              that.props.setOtherScore(data.your_round.party_score);
+            };
+        } else {
+          console.log("INCORRECT ANSWER SUBMITTED")
+          that.setState({text_status: "The" + data.current_party.name + " answered incorrectly"})
         }
       }
    })
@@ -46,7 +55,7 @@ var QuestionTimer = React.createClass({
   componentDidUpdate: function(){
     if (this.props.complete === true){
       clearInterval(this.interval);
-      this.setState({waiting: "  "})
+      this.setState({text_status: "  "})
       this.props.goToSummary();
     }
   },
@@ -55,7 +64,7 @@ var QuestionTimer = React.createClass({
     if (this.state.timer <=0) {
       $('button').addClass('btn disabled')
       clearInterval(this.interval);
-      this.setState({waiting: "Get Ready For Next Question" });
+      this.setState({text_status: "Get Ready For Next Question" });
       setTimeout(this.questionReset, 5000);
     }
   },
@@ -64,7 +73,7 @@ var QuestionTimer = React.createClass({
     this.props.nextQuestion();
     this.setState({timer: 15});
     this.startTimer();
-    this.setState({waiting: "Answer Now!" });
+    this.setState({text_status: "Answer Now!" });
   },
 
   startTimer: function() {
@@ -81,8 +90,8 @@ var QuestionTimer = React.createClass({
   render: function(){
     return (
       <div>
-        <h1 className="timer">{this.state.timer}'</h1>
-        <p className="waiting"> {this.state.waiting} </p>
+        <h1 className="timer">{this.state.timer}</h1>
+        <p className="waiting"> {this.state.text_status} </p>
       </div>
       )
   }
