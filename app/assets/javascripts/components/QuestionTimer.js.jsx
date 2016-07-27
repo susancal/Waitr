@@ -1,13 +1,12 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 15, waiting: "Answer Now!"}
+    return {timer: 4, text_status: "Let the game's begin!"}
   },
 
   setUpSubscription: function(that){
      App.gameplay = App.cable.subscriptions.create("GameplayChannel", {
 
       connected: function(){
-          $('body').append("WE ARE CONNECTED")
           $.get("/readytoplay", {key_number: that.props.keynum});
       },
 
@@ -17,20 +16,35 @@ var QuestionTimer = React.createClass({
 
       received: function(data){
         console.log(data)
-        if (data.status === "begin game") {
-          that.startTimer();
+
+      // Start Game in sync
+        if (typeof data.status!== 'undefined') {
+          if (data.status === "begin game") {
+            that.startTimer();
+            return;
+          } else if (data.status === "waiting for other player") {
+            return;
+          }
         }
 
-        if (data.guess.status != null && data.guess.status === "correct") {
-          console.log("WORKING - CORRECT")
-            if (data.guess.party_id === that.props.roundOther.party_id){
-              that.props.setOtherScore(data.other_score);
-            } else {
-              that.props.setYourScore(data.your_score);
-            }
-        } else if (data.guess.status != null && data.guess.status === "incorrect") {
-          console.log("WORKING - INCORRECT")
+      // Append updates from players guesses
+        if (typeof data.guess.status!== 'undefined') {
+              if ( $("p.update1").length > 0 && that.state.timer >=1) {
+                    $("p.update1").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
+              } else if (that.state.timer >=1) {
+                    $("p.waiting").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
+              }
+
+      // Update scores based on each other's updates
+              if (data.guess.status === "correct") {
+                  if (data.guess.party_id === that.props.currentParty.id) {
+                    that.props.setYourScore(data.your_round.party_score);
+                  } else {
+                    that.props.setOtherScore(data.your_round.party_score);
+                  }
+              }
         }
+
       }
    })
   },
@@ -46,7 +60,6 @@ var QuestionTimer = React.createClass({
   componentDidUpdate: function(){
     if (this.props.complete === true){
       clearInterval(this.interval);
-      this.setState({waiting: "  "})
       this.props.goToSummary();
     }
   },
@@ -55,16 +68,30 @@ var QuestionTimer = React.createClass({
     if (this.state.timer <=0) {
       $('button').addClass('btn disabled')
       clearInterval(this.interval);
-      this.setState({waiting: "Get Ready For Next Question" });
-      setTimeout(this.questionReset, 5000);
+      $('p.update').remove();
+        if (this.props.lastQuestion == true) {
+          this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Let'see the results."})
+        } else {
+        this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Get Ready For Next Question" });
+      }
+      setTimeout(this.questionReset, 4000);
     }
+  },
+
+  checkLastQuestion: function(){
+    if (this.props.last_question == true) {
+      this.setState({text_status: "Last Question!" });
+    } else {
+      this.setState({text_status: "Submit Your Guess!" });
+    }
+
   },
 
   questionReset: function(){
     this.props.nextQuestion();
-    this.setState({timer: 15});
+    this.checkLastQuestion();
+    this.setState({timer: 4});
     this.startTimer();
-    this.setState({waiting: "Answer Now!" });
   },
 
   startTimer: function() {
@@ -81,8 +108,8 @@ var QuestionTimer = React.createClass({
   render: function(){
     return (
       <div>
-        <h1 className="timer">{this.state.timer}'</h1>
-        <p className="waiting"> {this.state.waiting} </p>
+        <h1 className="timer">{this.state.timer}</h1>
+        <p className="waiting"> {this.state.text_status} </p>
       </div>
       )
   }

@@ -5,8 +5,10 @@ var SummaryGraph = React.createClass({
     var dataset = {
       scores: [score, 10 - score]
     };
-     console.log(dataset)
-    var average = (score / this.props.quiz_length) * 100
+    console.log(typeof score);
+    console.log(typeof this.props.quiz_length);
+    var average = Math.floor((score / this.props.quiz_length) * 100)
+    console.log(average);
     var append = "." + player
     var width = 300,
         height = 200,
