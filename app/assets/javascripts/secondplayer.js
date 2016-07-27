@@ -8,6 +8,7 @@ function checkForFirstPlayer(){
     })
     .done(function(response) {
       if (response === 2){
+        console.log("2!!!!")
         url = "/rounds/key/" + id
         window.location = url;
       } else if (response === 1){
