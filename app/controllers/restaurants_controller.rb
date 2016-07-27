@@ -1,8 +1,6 @@
 class RestaurantsController < ApplicationController
 
   def index
-
-
   	if logged_in?
       @restaurant = Restaurant.find(session[:restaurant_id])
       # @waiting_list = @restaurant.waiting_list
@@ -11,12 +9,13 @@ class RestaurantsController < ApplicationController
       # @search = Party.ransack(restaurant_id_eq: session[:restaurant_id], in_queue: true).result.to_sql
       
       @waiting_list = @parties.order(:created_at)
-      @new = @waiting_list.map { |e| e.elapsed }
+      @newtimes = @waiting_list.map { |e| e.elapsed }
+      @scores = @waiting_list.map { |e| e.party_score }
     else
       redirect_to login_path
     end
     if request.xhr?
-      render json: @new.to_json
+      render json: @newtimes.to_json
     end
 
   end
