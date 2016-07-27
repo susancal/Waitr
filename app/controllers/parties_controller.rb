@@ -11,9 +11,13 @@ class PartiesController < ApplicationController
         session[:party_id] = @party.id
         @restaurant = @party.restaurant
         @waiting_parties = @restaurant.waiting_list
+          @party_points = @party.points_earned
+        if @restaurant.prize != nil
+          @prize = @restaurant.prize
+          @points_needed = @prize.points_needed - @party_points
+        end
         parties = @restaurant.waiting_list.map { |e| e.id  }
         @people_ahead = parties.index(@party.id)
-        @prize = @restaurant.prize
       else
         redirect_to root_path
       end

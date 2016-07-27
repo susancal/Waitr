@@ -1,6 +1,14 @@
 <h4><%= @party.name %> Party <h4>
 <h5>Thanks for dining at <br><%= @restaurant.name %>!</h5>
 
+
+  <% if @prize != nil %>
+  <p class="prize-progress"> <span class="embolden"><%= @party_points %> pts </span>earned! <%= @points_needed %>  more needed to win a <span class="embolden">FREE <%=@prize.prize_name  %></span></p>
+  <% else %>
+    <p class="prize-progress"> <span class="embolden"><%= @party_points %> pts </span>earned!
+  <% end %>
+
+
 <h3 class="people-ahead-2">There are</h3><h3 id="people-ahead"><%= @people_ahead %></h3>
 <h3 class="people-ahead-2">parties ahead of you.</h3>
 
@@ -13,4 +21,3 @@
 <%= link_to "PLAY", restaurant_waitingroom_path(@restaurant),class: "waves-effect waves-light btn-large btn-party" %>
 
 <%= link_to "Leader Board", leaderboard_path(@restaurant),class: "waves-effect waves-light btn-large btn-party" %>
-
