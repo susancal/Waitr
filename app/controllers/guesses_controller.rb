@@ -8,21 +8,29 @@ class GuessesController < ApplicationController
     @other_round = Round.find_by_secret_key_and_player_num(params[:key_number], other_num)
     @other_round_score = @other_round.party_score
 
-      if @guess.save
         if @guess.guess_value == @question.answer
           @guess.status = "correct"
+          @guess.save
           @your_round.party_score = @your_round.party_score + 1
           @your_round.save
           @your_new_score = @your_round.party_score
+          ActionCable.server.broadcast "gameplay", your_score: @your_new_score, other_score: @other_round_score, guess: @guess
         else
           @guess.status = "incorrect"
-          @your_new_score = @your_round.party_score
+          @guess.save
+          ActionCable.server.broadcast "gameplay", guess: @guess
         end
-        @guess.save
-      else
-        render json: {status: "error"}
-      end
-      render json: {status: @guess.status, your_new_score: @your_new_score, other_new_score: @other_round_score}
+
+      # render json: {status: "incorrect"}
+      #   else
+      #     @guess.status = "incorrect"
+      #     @your_new_score = @your_round.party_score
+      #   end
+      #   @guess.save
+      # else
+      #   render json: {status: "error"}
+      # end
+      # render json: {status: @guess.status, your_new_score: @your_new_score, other_new_score: @other_round_score}
     end
 
 private

@@ -23,10 +23,11 @@ var Form = React.createClass({
 
     if (this.state.button_clicked_count < 1) {
       $.post('/guesses', data).done(function(response){
-          this.props.updateAnswer();
+          // this.props.updateAnswer();
+          console.log("GUESS SAVING RESPONSE")
           console.log(response)
-          this.props.setYourScore(response.your_new_score)
-          this.props.setOtherScore(response.other_new_score)
+          // this.props.setYourScore(response.your_new_score)
+          // this.props.setOtherScore(response.other_new_score)
     if (response.status === "correct") {
           this.setState({guess: "'" + guess + "'" + " was "})
           this.setState({guess_response: "CORRECT!"});

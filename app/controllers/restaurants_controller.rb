@@ -25,15 +25,16 @@ class RestaurantsController < ApplicationController
     if Waitingroom.all.length == 0
       random = match_key
       Key.create(key: random, quiz_id: rand(1..30))
-    elsif Waitingroom.all.length != 0
+    elsif Waitingroom.all.length == 1
         random = Waitingroom.first.key
     end
     @party = Party.find(session[:party_id])
     if @party.waitingroom != nil
+
       @wr = @party.waitingroom
       render :waiting
     else
-      @wr = Waitingroom.find_or_create_by(restaurant_id: params[:restaurant_id], party_id: @party.id, party_key: @party.key, key: random)
+      @wr = Waitingroom.create(restaurant_id: params[:restaurant_id], party_id: @party.id, party_key: @party.key, key: random)
       render :waiting
     end
   end

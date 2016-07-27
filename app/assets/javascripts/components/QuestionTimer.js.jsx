@@ -4,7 +4,7 @@ var QuestionTimer = React.createClass({
   },
 
   setUpSubscription: function(that){
-     App.gameplay = App.cable.subscriptions.create("GameplayChannel",{
+     App.gameplay = App.cable.subscriptions.create("GameplayChannel", {
 
       connected: function(){
           $('body').append("WE ARE CONNECTED")
@@ -20,10 +20,20 @@ var QuestionTimer = React.createClass({
         if (data.status === "begin game") {
           that.startTimer();
         }
+
+        if (data.guess.status != null && data.guess.status === "correct") {
+          console.log("WORKING - CORRECT")
+            if (data.guess.party_id === that.props.roundOther.party_id){
+              that.props.setOtherScore(data.other_score);
+            } else {
+              that.props.setYourScore(data.your_score);
+            }
+        } else if (data.guess.status != null && data.guess.status === "incorrect") {
+          console.log("WORKING - INCORRECT")
+        }
       }
    })
   },
-
 
   componentDidMount: function(){
     this.setUpSubscription(this);
