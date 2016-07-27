@@ -1,4 +1,4 @@
-var update_times = function(){
+var update_times_and_scores = function(){
     url = "/"
     $.ajax({
       url: url,
@@ -6,13 +6,14 @@ var update_times = function(){
       dataType: 'JSON'
     })
     .done(function(response) {
-      for (var i = 0; i < response.length; i++){
+      for (var i = 0; i < response.times.length; i++){
         var x = i+1;
-        $("#elapsed" + x).html(response[i]);
-      }
-
-    })
-    .fail(function() {
-      console.log("error");
+        $("#elapsed" + x).html(response.times[i]);
+      };
+      for (var i = 0; i < response.scores.length; i++){
+        var x = i+1;
+        $("#points" + x).html(response.scores[i]);
+      };
     });
-  }
+
+ }
