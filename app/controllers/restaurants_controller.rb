@@ -7,15 +7,15 @@ class RestaurantsController < ApplicationController
       @prize = @restaurant.prize
       @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
       # @search = Party.ransack(restaurant_id_eq: session[:restaurant_id], in_queue: true).result.to_sql
-      
+
       @waiting_list = @parties.order(:created_at)
       @newtimes = @waiting_list.map { |e| e.elapsed }
-      @scores = @waiting_list.map { |e| e.party_score }
+      @scores = @waiting_list.map { |e| e.points_earned }
     else
       redirect_to login_path
     end
     if request.xhr?
-      render json: @newtimes.to_json
+      render json: {times: @newtimes, scores: @scores}.to_json
     end
 
   end

@@ -8,7 +8,7 @@ You are logged in as: <%= @restaurant.name %><br><br>
 
     <a class="waves-effect waves-light btn promo" href="<%= edit_restaurant_prize_path(restaurant_id: @restaurant.id, id: @prize.id) %>">Change</a>
     <% else %>
-    <h4>No current promo!</h4>
+    <h4>None</h4>
     <a class="waves-effect waves-light btn promo" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>">+ Add Promo</a>
   <% end %>
 </div>
@@ -42,11 +42,11 @@ You are logged in as: <%= @restaurant.name %><br><br>
     <tbody>
       <% i = 1 %>
       <% @waiting_list.each do |party| %>
-      <tr id="<%= i %>">
+      <tr>
         <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  data: { confirm: "Would you like to remove party from waiting list?" } %></td>
         <td><%= party.size %></td>
         <td><%= party.formatted_cell %></td>
-        <td class="points-earned"><%= party.points_earned %></td>
+        <td class="points<%= i %>"><%= party.points_earned %></td>
         <td id="elapsed<%= i %>"><%= party.elapsed %></td>
       </tr>
       <% i+=1 %>
@@ -57,6 +57,6 @@ You are logged in as: <%= @restaurant.name %><br><br>
 
 <script>
 $(function() {
-  setInterval(update_times, 1000);
+  setInterval(update_times_and_scores, 1000);
 })
 </script>
