@@ -2,23 +2,23 @@ class RestaurantsController < ApplicationController
 
   def index
 
-    # Is user logged in?
+
   	if logged_in?
       @restaurant = Restaurant.find(session[:restaurant_id])
-      @waiting_list = @restaurant.waiting_list
+      # @waiting_list = @restaurant.waiting_list
       @prize = @restaurant.prize
       @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
+      # @search = Party.ransack(restaurant_id_eq: session[:restaurant_id], in_queue: true).result.to_sql
+      
       @waiting_list = @parties.order(:created_at)
       @new = @waiting_list.map { |e| e.elapsed }
-      # else
-      #   redirect_to "/restaurants/#{session[:restaurant_id]}"
     else
       redirect_to login_path
     end
-
     if request.xhr?
       render json: @new.to_json
     end
+
   end
 
   def waitingroom

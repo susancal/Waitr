@@ -1,16 +1,15 @@
-You are logged in as: <%= @restaurant.name %>
+You are logged in as: <%= @restaurant.name %><br><br>
   <div class="prize-header">
-    <h3>Current Promotion </h3>
+    <h4>Current Promotion: </h4>
 
 
     <% if @prize != nil %>
-    <h4> <%= @prize.prize_name %> - <%= @prize.points_needed %></h4><br>
+    <h4> <%= @prize.prize_name %> - <%= @prize.points_needed %> points</h4>
 
-    <a class="waves-effect waves-light btn" href="<%= edit_restaurant_prize_path(restaurant_id: @restaurant.id, id: @prize.id) %>">Change Promo</a>
+    <a class="waves-effect waves-light btn promo" href="<%= edit_restaurant_prize_path(restaurant_id: @restaurant.id, id: @prize.id) %>">Change</a>
     <% else %>
-    <h4>No current promo!</h4><br>
-    <a class="waves-effect waves-light btn" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>">+ Add Promo</a>
-  </p>
+    <h4>No current promo!</h4>
+    <a class="waves-effect waves-light btn promo" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>">+ Add Promo</a>
   <% end %>
 </div>
 
@@ -48,10 +47,16 @@ You are logged in as: <%= @restaurant.name %>
         <td><%= party.size %></td>
         <td><%= party.formatted_cell %></td>
         <td class="points-earned"><%= party.points_earned %></td>
-        <td class="elapsed <%= i %>"><%= party.elapsed %></td>
+        <td id="elapsed<%= i %>"><%= party.elapsed %></td>
       </tr>
       <% i+=1 %>
       <% end %>
       <tbody>
       </table>
     </div>
+
+<script>
+$(function() {
+  setInterval(update_times, 1000);
+})
+</script>
