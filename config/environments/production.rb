@@ -30,6 +30,8 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
+  # Specify the socket URI for actioncable code.
+  config.action_cable.url = "wss://waitr-app.herokuapp.com/cable"
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
@@ -70,6 +72,11 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Actioncable - redis Heroku configuration
+
+  config.web_socket_server_url = "wss://waitr-app.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://waitr-app.herokuapp.com', 'http://waitr-app.herokuapp.com']
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
