@@ -10,7 +10,6 @@ You are logged in as: <%= @restaurant.name %>
     <% else %>
     <h4>No current promo!</h4><br>
     <a class="waves-effect waves-light btn" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>">+ Add Promo</a>
-  </p>
   <% end %>
 </div>
 
