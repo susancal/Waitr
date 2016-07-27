@@ -45,8 +45,10 @@ class Party < ApplicationRecord
   end
 
   def did_they_win?
-    restaurant = Restaurant.find(self.restaurant.id)
-    return true if self.points_earned >= restaurant.prize.points_needed
+    # restaurant = Restaurant.find(self.restaurant.id)
+    if restaurant.prize != nil
+      return true if self.points_earned >= restaurant.prize.points_needed
+    end
   end
 
   def quizzes_not_played
