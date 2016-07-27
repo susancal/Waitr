@@ -1,4 +1,4 @@
-<h1>Change Current Promo edit</h1>
+<h4>Change Current Promo</h4>
 
 <%= form_for [@restaurant, @prize] do |f| %>
   <p>
@@ -11,9 +11,9 @@
     <%= f.text_field :points_needed %>
   </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+ <p>
+      <%= f.submit "Change Promo", class: "btn waves-effect waves-light"  %>
+    </p>
 
 <% end %>
 

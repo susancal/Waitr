@@ -2,3 +2,9 @@
 <div id="key" class="hidden"><%= @wr.key %></div>
 
 <h4 id="waiting">Waiting for player 2...</h4>
+
+<script>
+$(function() {
+  setInterval(checkForFirstPlayer, 500)
+})
+</script>

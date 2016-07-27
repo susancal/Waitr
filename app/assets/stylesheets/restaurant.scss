@@ -11,11 +11,19 @@
 
 .add-party-button {
   padding-bottom: 20px;
+  text-align: left;
+  font-size: 1em;
 }
+
+.embolden {
+  font-weight: bold;
+   color: #3C97E0;
+   font-size: 24px;
+ }
 
 #people-ahead {
   font-weight: bold;
-  font-size:8em;
+  font-size:5em;
   margin-top: -13px;
   margin-bottom: 0px;
 }
@@ -75,6 +83,31 @@
   background-color: #bbdefb
 }
 
+/* Prize-header */
+
+.prize-header {
+  text-align: left;
+  margin-left: 1%;
+}
+
+.prize-header > h4 {
+  text-align: left;
+  display: inline-block;
+  font-size: 1.3em;
+  padding: 0px;
+  margin-left: 0px;
+  vertical-align: center;
+
+}
+
+a.promo {
+  display: inline-block;
+  vertical-align: center;
+  font-size: 0.8em;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  margin-left: 0.5%;
+}
 
 
 
