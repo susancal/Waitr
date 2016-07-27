@@ -76,8 +76,8 @@
     return (
       <div>
         {this.renderStaticQuestionHeader()}
-        <Form question_id={this.props.questions[this.state.question_count].id} setYourScore ={this.setYourScore} setOtherScore ={this.setOtherScore} updateAnswer={this.updateAnswerStatus} key_number={this.props.key_number}/>
-        <QuestionTimer nextQuestion={this.nextQuestion} complete={this.state.complete} keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} roundOther={this.props.roundOther}/>
+        <Form question_id={this.props.questions[this.state.question_count].id} updateAnswer={this.updateAnswerStatus} key_number={this.props.key_number}/>
+        <QuestionTimer setYourScore ={this.setYourScore}nextQuestion={this.nextQuestion} complete={this.state.complete} setOtherScore ={this.setOtherScore}  keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} roundOther={this.props.roundOther}/>
         <ScoreBoard yourScore={this.state.your_score} otherScore={this.state.other_score}/>
       </div>
       )
