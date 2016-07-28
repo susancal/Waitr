@@ -1,6 +1,6 @@
 var QuestionTimer = React.createClass({
   getInitialState: function(){
-    return {timer: 30, text_status: "Let the game's begin!"}
+    return {timer: 15, text_status: "Let the game's begin!"}
   },
 
   setUpSubscription: function(that){
@@ -32,9 +32,7 @@ var QuestionTimer = React.createClass({
 
       // Append updates from players guesses
         if (typeof data.guess.status!== 'undefined') {
-              if ( $("p.update1").length > 0 && that.state.timer >=1) {
-                    $("p.update1").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
-              } else if (that.state.timer >=1) {
+              if (that.state.timer >=1) {
                     $("p.waiting").append("<p class='update " + data.guess.status + "'>" + "The " + data.current_party.name + " party's guess was " + data.guess.status + " </p>")
               }
 
@@ -63,37 +61,24 @@ var QuestionTimer = React.createClass({
   componentDidUpdate: function(){
     if (this.props.complete === true){
       clearInterval(this.interval);
-      this.props.goToSummary();
+      setTimeout(this.props.goToSummary(), 1000);
     }
   },
 
   checkZeroInterval: function(){
-    if (this.state.timer <=0) {
+    if (this.state.timer <= 0) {
+      this.setState({text_status: "Correct answer was: " + "'" + this.props.question.answer + "'"})
       $('button').addClass('btn disabled')
       clearInterval(this.interval);
-      $('p.update').remove();
-        if (this.props.lastQuestion == true) {
-          this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Let'see the results."})
-        } else {
-        this.setState({text_status: "Correct answer was: " + "'" + this.props.question.answer + "'"})
-      }
-      setTimeout(this.questionReset, 10000);
+      $('p.update').empty();
+      setTimeout(this.questionReset, 5000);
     }
-  },
-
-  checkLastQuestion: function(){
-    if (this.props.last_question == true) {
-      this.setState({text_status: "Last Question!" });
-    } else {
-      this.setState({text_status: "Submit Your Guess!" });
-    }
-
   },
 
   questionReset: function(){
     this.props.nextQuestion();
-    this.checkLastQuestion();
-    this.setState({timer: 30});
+    this.setState({text_status: ""})
+    this.setState({timer: 15});
     this.startTimer();
   },
 
@@ -129,7 +114,7 @@ var QuestionTimer = React.createClass({
 
     g.append("path")
       .style("fill", color(0))
-      .transition().delay(function(d, i) { return i * 1; }).duration(30000)
+      .transition().delay(function(d, i) { return i * 1; }).duration(15000)
       .attrTween('d', function(d) {
            var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
            return function(t) {
@@ -143,8 +128,8 @@ var QuestionTimer = React.createClass({
     $("#chart").empty();
      this.loadGraphObject();
      this.interval = setInterval(function(){
-        this.decreaseTimer();
-        this.checkZeroInterval();
+      this.decreaseTimer();
+      this.checkZeroInterval();
     }.bind(this), 1000)
   },
 
@@ -166,9 +151,9 @@ var QuestionTimer = React.createClass({
   render: function(){
     return (
       <div id="timer">
-        <p className="update"> {this.state.text_status} </p>
-        <div id="chart"> </div>
+        <p> {this.state.text_status} </p>
         <p className="waiting"> {this.state.waiting} </p>
+        <div id="chart"> </div>
       </div>
       )
   }
