@@ -44,7 +44,6 @@ class RoundsController < ApplicationController
         @round_you = Round.create(secret_key: params[:key], party_id: @party_id, quiz_id: @quiz.id, player_num: 1)
       end
       if Round.where(secret_key: @key_number).length == 2
-        Waitingroom.destroy_all
       end
       @round_you.player_num = 1 ? other_num = 2 : other_num = 1
       @round_other = Round.find_by_secret_key_and_player_num(@key.key, other_num)
@@ -52,6 +51,7 @@ class RoundsController < ApplicationController
       not_found
     end
   end
+
 
 
  def summary

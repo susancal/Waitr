@@ -34,4 +34,8 @@ class WaitingroomController < ApplicationController
     return [*"0".."9"].sample(6).join
   end
 
+  def clearwaitingrooms
+    Waitingroom.destroy_all
+  end
+
 end
