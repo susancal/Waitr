@@ -9,8 +9,10 @@ function checkForFirstPlayer(){
     .done(function(response) {
       if (response === 2){
         console.log("2!!!!")
-        url = "/rounds/key/" + id
-        window.location = url;
+        setTimeout(function(){
+          url = "/rounds/key/" + id
+          window.location = url;
+        }, 2000)
       } else if (response === 1){
         console.log("you are alone");
       }

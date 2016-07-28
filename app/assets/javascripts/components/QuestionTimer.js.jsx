@@ -20,6 +20,9 @@ var QuestionTimer = React.createClass({
       // Start Game in sync
         if (typeof data.status!== 'undefined') {
           if (data.status === "begin game") {
+            $.get('/clearwaitingrooms').done(function(response){
+              console.log("WAITING ROOMS CLEARED")
+            });
             that.startTimer();
             return;
           } else if (data.status === "waiting for other player") {
