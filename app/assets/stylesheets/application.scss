@@ -15,7 +15,7 @@
  */
 @import "materialize";
 
- $primary-color: color("#42a5f5") !default;
+$primary-color: color("#42a5f5", "lighten-2") !default;
 
 /*Login Page*/
 
@@ -57,6 +57,7 @@ input[type=text]:focus {
   border-bottom-color: #42A5F5;
   box-shadow: 0 1px 0 0 #000;
 }
+
 
 
 textarea:focus {
