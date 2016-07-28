@@ -18,6 +18,12 @@ class RoundsController < ApplicationController
         @your_round.player_num == 1 ? other_num = 2 : other_num = 1
         @other_round = Round.find_by_secret_key_and_player_num(params[:key_number], other_num)
 
+p "YOUR ROUNNNDDDD"
+p @your_round
+p "OTHER ROUNDDDDD"
+p @other_round
+
+
         if @other_round
             if @your_round.ready_to_play == true && @other_round.ready_to_play == true
               ActionCable.server.broadcast "gameplay", status: "begin game"

@@ -28,13 +28,13 @@ class RestaurantsController < ApplicationController
         random = Waitingroom.first.key
     end
     @party = Party.find(session[:party_id])
-    if @party.waitingroom != nil
-      @wr = @party.waitingroom
-      render :waiting
-    else
+    # if @party.waitingroom != nil
+    #   @wr = @party.waitingroom
+    #   render :waiting
+    # else
       @wr = Waitingroom.create(restaurant_id: params[:restaurant_id], party_id: @party.id, party_key: @party.key, key: random)
       render :waiting
-    end
+    # end
   end
 
 private
