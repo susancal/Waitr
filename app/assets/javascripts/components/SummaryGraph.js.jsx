@@ -3,7 +3,7 @@ var SummaryGraph = React.createClass({
   renderGraph: function(player,score){
 
     var dataset = {
-      scores: [score, 10 - score]
+      scores: [score, this.props.quiz_length - score]
     };
 
     var average = Math.floor((score / this.props.quiz_length) * 100)
