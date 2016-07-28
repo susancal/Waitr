@@ -6,16 +6,21 @@
 
 
 
-  <div class="prize-header top">
-    You are logged in as: <%= @restaurant.name %> <br>
+  <div class="restaurant-name"> 
+    <h1><%= @restaurant.name %></h1>
+  </div>
+
+  <div class="top">
     Current Promotion:
     <% if @prize != nil %>
       <%= @prize.prize_name %> - <%= @prize.points_needed %> points
-       <a class="waves-effect waves-light btn promo" href="<%= edit_restaurant_prize_path(restaurant_id: @restaurant.id, id: @prize.id) %>"><i class="material-icons small">mode_edit</i></a>
+       <a class="waves-effect waves-light" href="<%= edit_restaurant_prize_path(restaurant_id: @restaurant.id, id: @prize.id) %>"><i class="material-icons tiny">settings</i></a>
     <% else %>
       None
-      <a class="waves-effect waves-light btn promo" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>"><i class="material-icons">add</i></a>
+      <a class="waves-effect waves-light" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>"><i class="material-icons tiny">add</i></a>
     <% end %>
+
+
   </div>
 <br><br>
 <div>
