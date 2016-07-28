@@ -1,4 +1,7 @@
+
 class GuessesController < ApplicationController
+
+
   def create
     @question = Question.find(params[:question_id])
     @your_round = Round.find_by_secret_key_and_party_id(params[:key_number], current_party.id)
@@ -8,7 +11,7 @@ class GuessesController < ApplicationController
     @other_round = Round.find_by_secret_key_and_player_num(params[:key_number], other_num)
     @other_round_score = @other_round.party_score
 # Correctness check
-        if @guess.guess_value == @question.answer
+        if sanitize(@guess.guess_value) == sanitize(@question.answer)
           @guess.update_attributes status: "correct"
           @your_round.update_attributes party_score: @your_round.party_score + 1
         else
