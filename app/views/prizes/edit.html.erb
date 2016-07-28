@@ -1,4 +1,4 @@
-<h1>Change Current Promo edit</h1>
+<h4>Change Current Promo</h4>
 
 <%= form_for [@restaurant, @prize] do |f| %>
   <p>
@@ -12,7 +12,7 @@
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit "Change Promo", class: "btn waves-effect waves-light"  %>
   </p>
 
 <% end %>

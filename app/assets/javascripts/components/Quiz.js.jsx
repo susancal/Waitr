@@ -1,7 +1,8 @@
   var Quiz = React.createClass({
 
   getInitialState: function(){
-    return {question_count: 0, complete: false, your_score: 0, other_score: 0, answer_status: "", lastQuestion: false}
+
+    return {question_count: 0, complete: false, your_score: 0, other_score: 0, answer_status: "", last_question: false}
   },
 
   nextQuestion: function(){
@@ -21,6 +22,11 @@
   },
 
   checkCompletion: function(){
+    // before the final question is  shown
+      if (this.state.question_count === this.props.questions.length - 2) {
+        this.setState({last_question: true});
+      }
+  //after the final question is shown
       if (this.state.question_count === this.props.questions.length - 1) {
         this.setState({complete: true});
         this.saveYourScoreDatabase();
@@ -78,7 +84,7 @@
       <div>
         {this.renderStaticQuestionHeader()}
         <Form question_id={this.props.questions[this.state.question_count].id} updateAnswer={this.updateAnswerStatus} key_number={this.props.key_number}/>
-        <QuestionTimer beginGraphTimer={this.beginGraphTimer} ResetYourScore ={this.setYourScore} nextQuestion={this.nextQuestion} complete={this.state.complete} setOtherScore ={this.setOtherScore}  keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} roundOther={this.props.roundOther}/>
+        <QuestionTimer currentParty ={this.props.current_user} setYourScore={this.setYourScore} nextQuestion={this.nextQuestion} complete={this.state.complete} setOtherScore ={this.setOtherScore} lastQuestion={this.state.last_question} keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} question={this.props.questions[this.state.question_count]}/>
         <ScoreBoard yourScore={this.state.your_score} otherScore={this.state.other_score}/>
       </div>
       )

@@ -15,6 +15,8 @@
  */
 @import "materialize";
 
+ $primary-color: color("#42a5f5") !default;
+
 /*Login Page*/
 
 .logout {
@@ -36,6 +38,7 @@ nav {
   position: relative;
   text-align: center;
 }
+
 
 body {
   font-family: 'Raleway', sans-serif;
@@ -64,5 +67,3 @@ textarea:focus {
 .btn, .btn:hover, .btn-large, .btn-large:hover {
   background-color: #42A5F5;
 }
-
-

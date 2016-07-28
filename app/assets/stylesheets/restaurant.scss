@@ -8,6 +8,7 @@
   padding-top: 20px;
 }
 
+
 .add-party-button {
   padding-bottom: 20px;
   text-align: left;
@@ -22,7 +23,7 @@
 
 #people-ahead {
   font-weight: bold;
-  font-size:8em;
+  font-size:5em;
   margin-top: -13px;
   margin-bottom: 0px;
 }
@@ -47,7 +48,12 @@
   width: 200px;
 }
 
-/* Portrait */
+.btn-promo {
+  width: 200px;
+  margin: 4px;
+}
+
+/* iPhone 6 Portrait */
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)
@@ -57,9 +63,10 @@
     width: 200px;
     margin: 4px;
   }
+
 }
 
-/* Landscape */
+/* iPhone 6 Landscape */
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)
@@ -71,6 +78,19 @@
 
   }
 }
+
+/* iPhone 5 */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) {
+
+  .btn-party {
+    width: 200px;
+    margin: 3px;
+  }
+}
+
+
 
 #itsyou {
   background-color: #bbdefb
@@ -90,7 +110,6 @@
   padding: 0px;
   margin-left: 0px;
   vertical-align: center;
-
 }
 
 a.promo {
@@ -100,6 +119,14 @@ a.promo {
   padding-left: 0.5%;
   padding-right: 0.5%;
   margin-left: 0.5%;
+}
+
+.top {
+  font-size: 1.2em;
+}
+
+#loggedinas {
+  margin-bottom: 10px;
 }
 
 
