@@ -1,17 +1,20 @@
-<div id="loggedinas" class="top">
+<!-- <div id="loggedinas" class="top">
   <div>
     You are logged in as: <%= @restaurant.name %>
   </div>
-</div>
+</div> -->
+
+
 
   <div class="prize-header top">
+    You are logged in as: <%= @restaurant.name %> <br>
     Current Promotion:
     <% if @prize != nil %>
       <%= @prize.prize_name %> - <%= @prize.points_needed %> points
-      <a class="waves-effect waves-light btn promo" href="<%= edit_restaurant_prize_path(restaurant_id: @restaurant.id, id: @prize.id) %>">Change</a>
+       <a class="waves-effect waves-light btn promo" href="<%= edit_restaurant_prize_path(restaurant_id: @restaurant.id, id: @prize.id) %>"><i class="material-icons small">mode_edit</i></a>
     <% else %>
       None
-      <a class="waves-effect waves-light btn promo" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>">+ Add Promo</a>
+      <a class="waves-effect waves-light btn promo" href="<%= new_restaurant_prize_path(restaurant_id: @restaurant.id) %>"><i class="material-icons">add</i></a>
     <% end %>
   </div>
 <br><br>

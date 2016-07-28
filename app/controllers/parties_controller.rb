@@ -47,6 +47,9 @@ class PartiesController < ApplicationController
       # session[:party_id] = party.id
       # session[:party_key] = party.key
 
+
+      phone_numbers = ['+17082548335', '+18507120657', '+18155457182', '+18479620328']
+
       account_sid = ENV['TWILIO_SID']
       auth_token = ENV['TWILIO_TOKEN']
 
@@ -54,11 +57,18 @@ class PartiesController < ApplicationController
 
       @client = Twilio::REST::Client.new account_sid, auth_token
 
-      @client.messages.create(
-        from: '+12242796373',
-        to: '+17082548335',
-        body: "Thanks for waiting.  Click here to check your wait time and play a game. #{link}"
-      )
+      phone_numbers.each do |phone| 
+
+        @client.messages.create(
+          from: '+12242796373',
+          # to: '+18507120657',
+          # to: '+17082548335',
+          to: phone,
+          body: "Thank you for waiting at #{party.restaurant.name}.  Click here to check your wait time and play a game. #{link}"
+        )
+
+      end
+
       redirect_to root_path
     else
       redirect_to new_restaurant_party_path
