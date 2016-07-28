@@ -63,11 +63,23 @@ p @other_round
  def summary
   @party = current_party
   @restaurant = Restaurant.find(@party.restaurant_id)
+
   @your_round = Round.find_by_secret_key_and_party_id(params[:key], current_party.id)
+
   @your_round.player_num == 1 ? other_num = 2 : other_num = 1
   @other_round = Round.find_by_secret_key_and_player_num(params[:key], other_num)
+
+p "YOUR SCORE"
   @your_round_score = @your_round.party_score
+p @your_round_score
+
+
+p "OTHER SCORE"
+
   @other_round_score = @other_round.party_score
+p @other_round_score
+
+
   @quiz_length = Quiz.find(@your_round.quiz_id).questions.length
     if @your_round_score > @other_round_score
       @message = "You won 1,000 pts!"
