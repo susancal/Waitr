@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   get '/rounds/key/:key/summary' => 'rounds#summary'
   get '/rounds/data/:key' => 'rounds#data', :defaults => { :format => 'json' }
   get '/readytoplay' => 'rounds#readytoplay'
+
+  get '/clearwaitingrooms' => 'waitingroom#clearwaitingrooms'
+
 end
