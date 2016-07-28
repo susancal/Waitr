@@ -94,7 +94,51 @@ var QuestionTimer = React.createClass({
     this.startTimer();
   },
 
+  loadGraphObject: function(){
+
+    var data = [ {name: "one second", value: 1} ];
+    var margin = {top: 10, right: 0, bottom: 0, left: 0};
+        width = 105 - margin.left - margin.right;
+        height = width - margin.top - margin.bottom + 10;
+
+    var svg = d3.select("#chart")
+        .append('svg')
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+         .append("g")
+          .attr("transform", "translate(" + ((width/2)+margin.left) + "," + ((height/2)+margin.top) + ")");
+
+    var radius = Math.min(width, height) / 2;
+    var colors = ["#42A5F5",  "#99d6ff"]
+    var color = d3.scale.linear().range(colors);
+    var arc = d3.svg.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(radius - 18);
+    var pie = d3.layout.pie()
+        .sort(null)
+        .startAngle(0)
+        .endAngle(2*(Math.PI))
+        .value(function(d) { return d.value; });
+    var g = svg.selectAll(".arc")
+      .data(pie(data))
+    .enter().append("g")
+      .attr("class", "arc");
+
+    g.append("path")
+      .style("fill", color(0))
+      .transition().delay(function(d, i) { return i * 1; }).duration(30000)
+      .attrTween('d', function(d) {
+           var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+           return function(t) {
+               d.endAngle = i(t);
+             return arc(d);
+           }
+      });
+  },
+
   startTimer: function() {
+    $("#chart").empty();
+     this.loadGraphObject();
      this.interval = setInterval(function(){
         this.decreaseTimer();
         this.checkZeroInterval();
@@ -103,13 +147,24 @@ var QuestionTimer = React.createClass({
 
   decreaseTimer: function(){
     this.setState({timer: this.state.timer - 1})
+    this.appendTimer(this.state.timer);
+  },
+
+  appendTimer: function (timer) {
+    var timer = String(this.state.timer);
+    console.log(timer);
+    d3.selectAll("text").remove()
+    d3.selectAll(".arc")
+      .append("text")
+        .classed("timer-text", true)
+        .text(timer).attr("text-anchor", "middle").attr('font-family', 'sans-serif').attr('dy', '13');
   },
 
   render: function(){
     return (
-      <div>
-        <h1 className="timer">{this.state.timer}</h1>
-        <p className="waiting"> {this.state.text_status} </p>
+      <div id="timer">
+        <div id="chart"> </div>
+        <p className="waiting"> {this.state.waiting} </p>
       </div>
       )
   }

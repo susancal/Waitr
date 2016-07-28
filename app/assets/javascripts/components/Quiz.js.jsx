@@ -1,6 +1,7 @@
   var Quiz = React.createClass({
 
   getInitialState: function(){
+
     return {question_count: 0, complete: false, your_score: 0, other_score: 0, answer_status: "", last_question: false}
   },
 
@@ -37,7 +38,6 @@
     url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.roundYou.id
     data = {your_score: this.state.your_score}
     $.ajax({url: url, type: 'PUT', data}).done(function(response){
-     console.log(response);
     }.bind(this))
   },
 
@@ -53,6 +53,8 @@
     var summary_url = '/rounds/key/' + this.props.roundYou.secret_key + '/summary/'
     window.location.replace(summary_url)
   },
+
+
 
   updateAnswerStatus: function(){
     this.setState({answer_status: "Answer Saved"})
@@ -82,7 +84,7 @@
       <div>
         {this.renderStaticQuestionHeader()}
         <Form question_id={this.props.questions[this.state.question_count].id} updateAnswer={this.updateAnswerStatus} key_number={this.props.key_number}/>
-        <QuestionTimer currentParty ={this.props.current_user} setYourScore={this.setYourScore} nextQuestion={this.nextQuestion} complete={this.state.complete} setOtherScore ={this.setOtherScore} lastQueston={this.state.last_question} keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} question={this.props.questions[this.state.question_count]}/>
+        <QuestionTimer currentParty ={this.props.current_user} setYourScore={this.setYourScore} nextQuestion={this.nextQuestion} complete={this.state.complete} setOtherScore ={this.setOtherScore} lastQuestion={this.state.last_question} keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} question={this.props.questions[this.state.question_count]}/>
         <ScoreBoard yourScore={this.state.your_score} otherScore={this.state.other_score}/>
       </div>
       )
