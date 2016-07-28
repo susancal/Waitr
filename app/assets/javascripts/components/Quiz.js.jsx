@@ -1,7 +1,7 @@
   var Quiz = React.createClass({
 
   getInitialState: function(){
-    return {question_count: 0, complete: false, your_score: 0, other_score: 0, answer_status: ""}
+    return {question_count: 0, complete: false, your_score: 0, other_score: 0, answer_status: "", lastQuestion: false}
   },
 
   nextQuestion: function(){
@@ -32,7 +32,6 @@
     url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.roundYou.id
     data = {your_score: this.state.your_score}
     $.ajax({url: url, type: 'PUT', data}).done(function(response){
-     console.log(response);
     }.bind(this))
   },
 
@@ -48,6 +47,8 @@
     var summary_url = '/rounds/key/' + this.props.roundYou.secret_key + '/summary/'
     window.location.replace(summary_url)
   },
+
+
 
   updateAnswerStatus: function(){
     this.setState({answer_status: "Answer Saved"})
@@ -77,7 +78,7 @@
       <div>
         {this.renderStaticQuestionHeader()}
         <Form question_id={this.props.questions[this.state.question_count].id} updateAnswer={this.updateAnswerStatus} key_number={this.props.key_number}/>
-        <QuestionTimer setYourScore ={this.setYourScore}nextQuestion={this.nextQuestion} complete={this.state.complete} setOtherScore ={this.setOtherScore}  keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} roundOther={this.props.roundOther}/>
+        <QuestionTimer beginGraphTimer={this.beginGraphTimer} ResetYourScore ={this.setYourScore} nextQuestion={this.nextQuestion} complete={this.state.complete} setOtherScore ={this.setOtherScore}  keynum={this.props.roundYou.secret_key} goToSummary={this.loadSummaryPage} roundOther={this.props.roundOther}/>
         <ScoreBoard yourScore={this.state.your_score} otherScore={this.state.other_score}/>
       </div>
       )
