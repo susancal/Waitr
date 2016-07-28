@@ -1,4 +1,4 @@
-class PrizesController < ApplicationController
+`class PrizesController < ApplicationController
 
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
