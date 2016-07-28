@@ -1,17 +1,21 @@
-<h5>Thanks for waiting at <br><%= @restaurant.name %>!</h5>
+<h5><%= @restaurant.name %></h5>
 <h5><%= @party.name %> Party <h5>
 
 <h3 class="people-ahead-2">There are</h3>
   <h3 id="people-ahead"><%= @people_ahead %></h3>
 <h3 class="people-ahead-2">parties ahead of you.</h3>
-<br>
+<br><br>
   <div id="blurb">
-    Want to pass the time? Battle another waiting party in a round of trivia to win points.
+    Want to pass the time?<br> Battle another waiting party in a round of trivia to win points.
   </div>
     <% if @prize != nil %>
-      <p class="prize-progress"> <span class="embolden"><%= @party_points %> pts </span>earned! <%= @points_needed %>  more needed to win a <span class="embolden">FREE <%=@prize.prize_name  %></span></p>
+      <p class="prize-progress">
+        You have <span class="embolden"><%= @party_points %> points</span>.<br> <%= @points_needed %>  more needed to win<br><span class="embolden"><%=@prize.prize_name  %></span>.
+      </p>
     <% else %>
-      <p class="prize-progress"> <span class="embolden"><%= @party_points %> pts </span>earned!
+      <p class="prize-progress">
+        You have <span class="embolden"><%= @party_points %></span> points.
+      </p>
     <% end %>
 <br>
 
