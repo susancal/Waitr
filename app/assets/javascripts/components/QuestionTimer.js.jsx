@@ -72,7 +72,7 @@ var QuestionTimer = React.createClass({
         if (this.props.lastQuestion == true) {
           this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Let'see the results."})
         } else {
-        this.setState({text_status: "Correct answer was: " + this.props.question.answer + ". Get Ready For Next Question" });
+        this.setState({text_status: "Correct answer was: " + "'" + this.props.question.answer + "'"});
       }
       setTimeout(this.questionReset, 10000);
     }
