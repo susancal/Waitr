@@ -62,13 +62,18 @@ class Party < ApplicationRecord
       restaurant = Restaurant.find(self.restaurant.id)
       account_sid = ENV['TWILIO_SID']
       auth_token = ENV['TWILIO_TOKEN']
+      phone_numbers = ['+17082548335', '+18507120657', '+18155457182', '+18479620328']
+
       @client = Twilio::REST::Client.new account_sid, auth_token
 
-      @client.messages.create(
-        from: '+12242796373',
-        to: '+17082548335',
-        body: "You WON!!!! Claim your prize of #{restaurant.prize.prize_name}."
-      )
+      phone_numbers.each do |phone|
+
+        @client.messages.create(
+          from: '+12242796373',
+          # to: '+17082548335',
+          to: phone,
+          body: "You WON!!!! Claim your prize of #{restaurant.prize.prize_name}.")
+      end
   end
 
 
