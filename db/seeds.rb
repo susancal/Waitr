@@ -10,7 +10,6 @@
 Restaurant.create!(name: "The Matte Bakery", email:"matt@baker.com", password: "password")
 
 Party.create!(restaurant_id: 1, name: "Smiths", size: 2, cell: "7738958335", in_queue: true, points_earned: 0)
-#   Character.create(name: 'Luke', movie: movies.first)
 
 Quiz.create!
 
