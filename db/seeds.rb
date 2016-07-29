@@ -16,12 +16,20 @@ Party.create!(restaurant_id: 1, name: "Johnson", size: 8, cell: "7739050234", in
 Party.create!(restaurant_id: 1, name: "Fonzi", size: 2, cell: "7736243333", in_queue: true, points_earned: 500)
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Quiz.create!
+
+Question.create!(question_text: "The type of bird that shares the name of the greatest DBC cohort.", answer: "nighthawk", quiz_id: 1, value: 200)
+Question.create!(question_text: "The medieval sport that is reenacted every evening at DBC.", answer: "swordfighting", quiz_id: 1, value: 200)
+Question.create!(question_text: "The dreaded activity performed every Thursday after lunch at DBC.", answer: "cleaning", quiz_id: 1, value: 200)
+Question.create!(question_text: "The instrument used to tell time at DBC.", answer: "gong", quiz_id: 1, value: 200)
+Question.create!(question_text: "Name three cities in Iceland.", answer: "nobody knows", quiz_id: 1, value: 200)
 
 
-api = Triviaapi.new
-api.seed_db
 
-Round.create!(quiz_id: 1, party_id: 1, secret_key: 123456)
+# api = Triviaapi.new
+# api.seed_db
 
-Round.create!(quiz_id: 1, party_id: 2, secret_key: 123456)
+# Round.create!(quiz_id: 1, party_id: 1, secret_key: 123456)
+
+# Round.create!(quiz_id: 1, party_id: 2, secret_key: 123456)
 

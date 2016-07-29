@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
 		@restaurant = Restaurant.find_by(name: login_params[:name])
 		if @restaurant && @restaurant.authenticate(login_params[:password])
 			session[:restaurant_id] = @restaurant.id
-
 			redirect_to root_path
 		else
 			@error = "Your name or password was incorrect."
