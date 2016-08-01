@@ -1,24 +1,5 @@
-# README
+# Waitr
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Created by @susancal, @kjkalpa, @mcassid3, and @stephanoH
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Waitr is a mobile web app that was created to enhance the experience of parties while waiting for their table at a restaurant. It integrates live updating wait times with head-to-head trivia to make your wait time more enjoyable. 
