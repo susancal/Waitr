@@ -21,7 +21,6 @@ var Form = React.createClass({
 
     if (that.state.button_clicked_count < 1) {
         $.post('/guesses', data).done(function(response){
-          console.log("GUESS SAVING RESPONSE")
           that.setState({value: ""})
           $('button').addClass('btn disabled')
         })
