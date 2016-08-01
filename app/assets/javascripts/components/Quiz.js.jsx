@@ -45,7 +45,6 @@
    url = "/quizzes/" + this.props.quiz_id + "/rounds/" + this.props.roundOther.id
     data = {other_score: this.state.other_score}
     $.ajax({url: url, type: 'PUT', data}).done(function(response){
-     console.log(response);
     }.bind(this))
   },
 

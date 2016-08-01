@@ -8,7 +8,6 @@ function checkForFirstPlayer(){
     })
     .done(function(response) {
       if (response === 2){
-        console.log("2!!!!")
         setTimeout(function(){
           url = "/rounds/key/" + id
           window.location = url;
