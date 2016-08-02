@@ -58,35 +58,23 @@ class Party < ApplicationRecord
      return avail
   end
 
-  def send_prize_email
-      restaurant = Restaurant.find(self.restaurant.id)
-      account_sid = ENV['TWILIO_SID']
-      auth_token = ENV['TWILIO_TOKEN']
-      phone_numbers = ['+17082548335', '+18507120657', '+18155457182', '+18479620328']
+  # def send_prize_email
+  #     restaurant = Restaurant.find(self.restaurant.id)
+  #     account_sid = ENV['TWILIO_SID']
+  #     auth_token = ENV['TWILIO_TOKEN']
+  #     phone_numbers = []
 
-      @client = Twilio::REST::Client.new account_sid, auth_token
+  #     @client = Twilio::REST::Client.new account_sid, auth_token
 
-      phone_numbers.each do |phone|
+  #     phone_numbers.each do |phone|
 
-        @client.messages.create(
-          from: '+12242796373',
-          # to: '+17082548335',
-          to: phone,
-          body: "You WON!!!! Claim your prize of #{restaurant.prize.prize_name}.")
-      end
-  end
+  #       @client.messages.create(
+  #         from: '',
+  #         # to: '',
+  #         to: phone,
+  #         body: "You WON!!!! Claim your prize of #{restaurant.prize.prize_name}.")
+  #     end
+  # end
 
 
 end
-
-
-
-
-
-
-
-
-
-
-
-

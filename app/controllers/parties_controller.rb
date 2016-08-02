@@ -36,44 +36,44 @@ class PartiesController < ApplicationController
     redirect_to root_path
   end
 
-  def create
-    # p request.protocol + request.host
-    # p request.base_url
+  # def create
+  #   # p request.protocol + request.host
+  #   # p request.base_url
 
-    party = Party.new(party_params)
-    party.restaurant_id = params[:restaurant_id]
+  #   party = Party.new(party_params)
+  #   party.restaurant_id = params[:restaurant_id]
 
-    if party.save
-      # session[:party_id] = party.id
-      # session[:party_key] = party.key
+  #   if party.save
+  #     # session[:party_id] = party.id
+  #     # session[:party_key] = party.key
 
 
-      phone_numbers = ['+17082548335', '+18507120657', '+18155457182', '+18479620328']
+  #     phone_numbers = []
 
-      account_sid = ENV['TWILIO_SID']
-      auth_token = ENV['TWILIO_TOKEN']
+  #     account_sid = ENV['TWILIO_SID']
+  #     auth_token = ENV['TWILIO_TOKEN']
 
-      link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
+  #     link = request.base_url + "/restaurants/" + params[:restaurant_id] + "/parties/" + party.key
 
-      @client = Twilio::REST::Client.new account_sid, auth_token
+  #     @client = Twilio::REST::Client.new account_sid, auth_token
 
-      phone_numbers.each do |phone| 
+  #     phone_numbers.each do |phone| 
 
-        @client.messages.create(
-          from: '+12242796373',
-          # to: '+18507120657',
-          # to: '+17082548335',
-          to: phone,
-          body: "Thank you for waiting at #{party.restaurant.name}.  Click here to check your wait time and play a game. #{link}"
-        )
+  #       @client.messages.create(
+  #         from: '+',
+  #         # to: '+',
+  #         # to: '+',
+  #         to: phone,
+  #         body: "Thank you for waiting at #{party.restaurant.name}.  Click here to check your wait time and play a game. #{link}"
+  #       )
 
-      end
+  #     end
 
-      redirect_to root_path
-    else
-      redirect_to new_restaurant_party_path
-    end
-  end
+  #     redirect_to root_path
+  #   else
+  #     redirect_to new_restaurant_party_path
+  #   end
+  # end
 
   private
     def party_params
