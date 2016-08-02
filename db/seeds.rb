@@ -8,7 +8,8 @@
 
 Restaurant.create!(name: "DemoRestaurant", email:"demo@demo.com", password: "password")
 
-Party.create!(restaurant_id: 1, name: "Smiths", size: 2, cell: "8883679203", in_queue: true, points_earned: 0)
+Party.create!(restaurant_id: 1, name: "Smith", size: 2, cell: "8882345678", key: "123456", in_queue: true, points_earned: 0)
+Party.create!(restaurant_id: 1, name: "Jones", size: 2, cell: "8889876543", key: "098765", in_queue: true, points_earned: 0)
 
 Quiz.create!
 
