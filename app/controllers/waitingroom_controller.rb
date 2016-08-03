@@ -13,7 +13,7 @@ class WaitingroomController < ApplicationController
       elsif Waitingroom.all.length == 2
         players = Waitingroom.first(2).map { |e| e.party_id }
         rnd_key = match_key
-        random_q = rand(1..30)
+        random_q = 1
         Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[0], player_num: 1)
         Round.create(quiz_id: random_q, secret_key: rnd_key, party_id: players[1], player_num: 2)
         render json: Waitingroom.all.length.to_json
