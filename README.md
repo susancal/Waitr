@@ -15,14 +15,13 @@ There are two interfaces we created: one for restaurants, and one for waiting pa
 * Restaurants have the option to add or change the current "promotion" and points needed. Parties will have the option to play trivia for points to win these promotions.
 
 ### Patron/Party Interface (Best viewed on mobile)
-* When a party is added to the waiting list, they will receive a text message from our app with a link to their custom URL. [View screenshot](http://i.imgur.com/Puv06sb.jpg)
+* When a party is added to the waiting list, they will receive [a text message](http://i.imgur.com/Puv06sb.jpg) from our app with a link to their custom URL.
 * [Visit Waitr Party View on Heroku](http://waitr-app.herokuapp.com/restaurants/1/parties/098765)
 * You will see the number of parties ahead of you on the waiting list, an option to play live head-to-head trivia, and an option to view your restaurant's leaderboard.
 If you want to see the trivia in action, open another incognito browser window and [view this party's page](http://waitr-app.herokuapp.com/restaurants/1/parties/123456). Click play on each page!
 
 ## Technologies Used
-* Ruby
-* Rails 5
+* Ruby on Rails 5
 * jQuery
 * JavaScript
 * AJAX polling
