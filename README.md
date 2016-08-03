@@ -16,4 +16,4 @@ There are two interfaces we created: one for restaurants, and one for waiting pa
 
 ### Patron/Party Interface (Best viewed on mobile)
 * When a party is added to the waiting list, they will receive a text message from our app with a link to their custom URL. [View screenshot]()
-* [Visit Party Page on Heroku](waitr-app.herokuapp.com/restaurants/1/party/123456)
+* [http://waitr-app.herokuapp.com/restaurants/1/parties/098765]
