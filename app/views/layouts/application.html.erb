@@ -5,7 +5,7 @@
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   <script src="https://d3js.org/d3.v3.min.js"></script>  <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application' %>
@@ -22,7 +22,7 @@
  <nav>
   <div class="nav-wrapper">
     <div class="brand-logo">Waitr</div>
-    <% if logged_in? && current_party == nil%>
+    <% if logged_in? %>
         <p class="logout"><%= link_to 'Logout', logout_path%></p>
     <% end %>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
