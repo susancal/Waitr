@@ -11,4 +11,9 @@ There are two interfaces we created: one for restaurants, and one for waiting pa
 * [Visit Waitr on Heroku](http://waitr-app.herokuapp.com)
 * Login as "DemoRestaurant" and "password"
 * You will see your restaurant's current waiting list with the option to add a party or change the current promotion. The first two parties have been hardcoded to the list, but feel free to add a party. 
-* This feature has been removed, but when a party is added to the list, a text will be sent to their provided phone number with a custom link that they use to view their party interface. Visit app/controllers/parties_controller.rb on Github to view the commented code for this feature.
+* (This feature has been removed) When a party is added to the list, a text will be sent to their provided phone number with a custom link that they use to view their party interface. Visit app/controllers/parties_controller.rb on Github to view the commented code for this feature.
+* Restaurants have the option to add or change the current "promotion" and points needed. Parties will have the option to play trivia for points to win these promotions.
+
+### Patron/Party Interface (Best viewed on mobile)
+* When a party is added to the waiting list, they will receive a text message from our app with a link to their custom URL. [View screenshot]()
+* [Visit Party Page on Heroku](waitr-app.herokuapp.com/restaurants/1/party/123456)
