@@ -16,7 +16,7 @@ There are two interfaces we created: one for restaurants, and one for waiting pa
 
 ### Patron/Party Interface (Best viewed on mobile)
 * When a party is added to the waiting list, they will receive [a text message](http://i.imgur.com/Puv06sb.jpg) from our app with a link to their custom URL.
-* [Visit Waitr Party View on Heroku](http://waitr-app.herokuapp.com/restaurants/1/parties/098765)
+* When the link in the text is clicked, they will be taken to this page: [visit Waitr Party View on Heroku](http://waitr-app.herokuapp.com/restaurants/1/parties/098765)
 * You will see the number of parties ahead of you on the waiting list, an option to play live head-to-head trivia, and an option to view your restaurant's leaderboard.
 If you want to see the trivia in action, open another incognito browser window and [view this party's page](http://waitr-app.herokuapp.com/restaurants/1/parties/123456). Click play on each page!
 
