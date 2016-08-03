@@ -6,7 +6,7 @@
 
 
 
-  <div class="restaurant-name"> 
+  <div class="restaurant-name">
     <h1><%= @restaurant.name %></h1>
   </div>
 
@@ -50,7 +50,11 @@
       <% i = 1 %>
       <% @waiting_list.each do |party| %>
       <tr>
-        <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  data: { confirm: "Would you like to remove party from waiting list?" } %></td>
+        <% if i != 1 || i != 0 %>
+          <td><%= link_to party.name, edit_restaurant_party_path(@restaurant, party),  data: { confirm: "Would you like to remove party from waiting list?" } %></td>
+        <% else %>
+          <td><%= party.name %></td>
+        <% end %>
         <td><%= party.size %></td>
         <td><%= party.formatted_cell %></td>
         <td id="points<%= i %>"><%= party.points_earned %></td>
