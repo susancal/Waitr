@@ -29,5 +29,5 @@ If you want to see the trivia in action, open another incognito browser window a
 * Action Cable
 * React
 * D3
-* Twilio
+* Twilio API
 * Materialize
