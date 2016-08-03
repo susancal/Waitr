@@ -11,12 +11,13 @@ There are two interfaces we created: one for restaurants, and one for waiting pa
 * [Visit Waitr Restaurant View on Heroku](http://waitr-app.herokuapp.com)
 * Login as "DemoRestaurant" and "password"
 * You will see your restaurant's current waiting list with the option to add a party or change the current promotion. The first two parties have been hardcoded to the list, but feel free to add a party. 
-* (This feature has been removed) When a party is added to the list, a text will be sent to their provided phone number with a custom link that they use to view their party interface. Visit app/controllers/parties_controller.rb on Github to view the commented code for this feature.
+* (This feature has been removed for demo) When a party is added to the list, a text will be sent to their provided phone number with a custom link that they use to view their party interface. Visit app/controllers/parties_controller.rb on Github to view the commented code for this feature.
 * Restaurants have the option to add or change the current "promotion" and points needed. Parties will have the option to play trivia for points to win these promotions.
+* (This feature has been removed for demo) When a party is removed from the waiting list, if they have reached the minimum number of points needed to win the promotion, they will receive an additional confirmation text to redeem the offer.
 
 ### Patron/Party Interface (Best viewed on mobile)
 * [View Waitr Party View on Heroku](http://waitr-app.herokuapp.com/restaurants/1/parties/098765)
-* (This feature has been removed) When a party is added to the waiting list, they will receive [a text message](http://i.imgur.com/Puv06sb.jpg) from our app with a link to their custom URL.
+* (This feature has been removed for demo) When a party is added to the waiting list, they will receive [a text message](http://i.imgur.com/Puv06sb.jpg) from our app with a link to their custom URL.
 * When the link in the text is clicked, they will be taken to the party view page. You will see the number of parties ahead of you on the waiting list, an option to play live head-to-head trivia, and an option to view your restaurant's leaderboard.
 If you want to see the trivia in action, open another incognito browser window and [view this party's page](http://waitr-app.herokuapp.com/restaurants/1/parties/123456). Click play on each page!
 
