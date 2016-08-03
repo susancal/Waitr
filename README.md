@@ -15,5 +15,5 @@ There are two interfaces we created: one for restaurants, and one for waiting pa
 * Restaurants have the option to add or change the current "promotion" and points needed. Parties will have the option to play trivia for points to win these promotions.
 
 ### Patron/Party Interface (Best viewed on mobile)
-* When a party is added to the waiting list, they will receive a text message from our app with a link to their custom URL. [View screenshot]()
+* When a party is added to the waiting list, they will receive a text message from our app with a link to their custom URL. [View screenshot](http://i.imgur.com/Puv06sb.jpg)
 * [http://waitr-app.herokuapp.com/restaurants/1/parties/098765]
