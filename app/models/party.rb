@@ -69,7 +69,7 @@ class Party < ApplicationRecord
       phone_numbers.each do |phone|
 
         @client.messages.create(
-          from: '+12242796373',
+          from: '+',
           # to: '+11111111111',
           to: phone,
           body: "You WON!!!! Claim your prize of #{restaurant.prize.prize_name}.")
