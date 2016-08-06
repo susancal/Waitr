@@ -3,11 +3,8 @@ class RestaurantsController < ApplicationController
   def index
   	if logged_in?
       @restaurant = Restaurant.find(session[:restaurant_id])
-      # @waiting_list = @restaurant.waiting_list
       @prize = @restaurant.prize
       @parties = Party.where(restaurant_id: session[:restaurant_id], in_queue: true)
-      # @search = Party.ransack(restaurant_id_eq: session[:restaurant_id], in_queue: true).result.to_sql
-
       @waiting_list = @parties.order(:created_at)
       @newtimes = @waiting_list.map { |e| e.elapsed }
       @scores = @waiting_list.map { |e| e.points_earned }
@@ -23,7 +20,7 @@ class RestaurantsController < ApplicationController
   def waitingroom
     if Waitingroom.all.length == 0
       random = match_key
-      Key.create(key: random, quiz_id: rand(1..30))
+      Key.create(key: random, quiz_id: 1)
     elsif Waitingroom.all.length == 1
         random = Waitingroom.first.key
     end
